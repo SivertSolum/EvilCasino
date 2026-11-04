@@ -434,15 +434,15 @@ const SATAN_BOSS = {
 };
 
 const ROOM_ICONS = {
-    normal: '🃏',
-    elite: '⚔️',
-    event: '❓',
-    shop: '🛒',
-    rest: '😴',
-    treasure: '💎',
-    gamble: '🎰',
-    boss: '👹',
-    start: '🚪'
+    normal: 'room-normal',
+    elite: 'room-elite',
+    event: 'room-event',
+    shop: 'room-shop',
+    rest: 'room-rest',
+    treasure: 'room-treasure',
+    gamble: 'room-gamble',
+    boss: 'room-boss',
+    start: 'room-start'
 };
 
 // Random events

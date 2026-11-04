@@ -2504,7 +2504,7 @@ class EvilCasino {
         this.renderSplitHands(1);
         playCardDealSound();
         
-        this.showMessage("✂️ Hand split! Play Hand 1 first.");
+        this.showMessage("{i:action-split} Hand split! Play Hand 1 first.");
         this.updateSplitScores();
         this.syncStandButton();
     }
@@ -2630,19 +2630,19 @@ class EvilCasino {
         // Determine overall result
         if (wins > losses) {
             playWinSound();
-            this.showMessage(`✂️ Split WIN! ${wins} wins, ${losses} losses. +$${totalWinnings}`, 'win');
+            this.showMessage(`{i:action-split} Split WIN! ${wins} wins, ${losses} losses. +$${totalWinnings}`, 'win');
             this.winStreak++;
             this.totalWins++;
             await this.finishRoundWithBeat(true);
         } else if (losses > wins) {
             playLoseSound();
-            this.showMessage(`✂️ Split LOSS. ${wins} wins, ${losses} losses.`, 'lose');
+            this.showMessage(`{i:action-split} Split LOSS. ${wins} wins, ${losses} losses.`, 'lose');
             this.winStreak = 0;
             this.timesLost++;
             await this.finishRoundWithBeat(false);
         } else {
             playChipSound();
-            this.showMessage(`✂️ Split PUSH. ${wins} wins, ${losses} losses.`);
+            this.showMessage(`{i:action-split} Split PUSH. ${wins} wins, ${losses} losses.`);
             await this.finishRoundWithBeat(null);
         }
         

@@ -411,7 +411,7 @@ Object.assign(EvilCasino.prototype, {
             case 'shop':
                 this.setDealerSprite('house');
                 this.showPreRoundShop();
-                this.showMessage('🛒 Shop — buy perks, then close to continue.');
+                this.showMessage('{i:room-shop} Shop — buy perks, then close to continue.');
                 break;
             case 'event':
                 this.showRandomEvent();
@@ -438,8 +438,8 @@ Object.assign(EvilCasino.prototype, {
         this.combatCleared = false;
         this.setDealerSprite(kind === 'elite' ? 'elite' : 'house');
         this.showMessage(kind === 'elite'
-            ? `⚔️ Elite fight! Beat the dealer to clear the room.`
-            : `🃏 Win a hand to clear this room.`);
+            ? `{i:room-elite} Elite fight! Beat the dealer to clear the room.`
+            : `{i:room-normal} Win a hand to clear this room.`);
         this.resetForNewRound(true);
     },
 
@@ -451,7 +451,7 @@ Object.assign(EvilCasino.prototype, {
         if (this.tableEl) this.tableEl.classList.add('elite-mode');
         this.startCombatRoom('elite');
         if (this.currentElite) {
-            this.showMessage(`⚔️ ${this.currentElite.name}: ${this.currentElite.rule}`);
+            this.showMessage(`${IconSprites.html(this.currentElite.icon)} ${this.currentElite.name}: ${this.currentElite.rule}`);
         }
         this.refreshRuleBanner();
     },
@@ -552,7 +552,7 @@ Object.assign(EvilCasino.prototype, {
         }
         if (this.bossNameEl) this.bossNameEl.textContent = boss.name;
         if (this.bossDescEl) this.bossDescEl.textContent = boss.desc;
-        if (this.bossRuleEl) this.bossRuleEl.innerHTML = `${IconSprites.html(boss.icon || '🔥')} ${boss.rule}`;
+        if (this.bossRuleEl) this.bossRuleEl.innerHTML = `${IconSprites.html(boss.icon || 'room-boss')} ${boss.rule}`;
         const warningEl = document.getElementById('boss-warning');
         if (warningEl) {
             const atRisk = !this.contractComplete && this.contract?.type !== 'defeatBoss';
@@ -580,7 +580,7 @@ Object.assign(EvilCasino.prototype, {
         this.bookieDeclaration = null;
         if (this.tableEl) this.tableEl.classList.add('boss-mode');
         this.setDealerSprite(this.currentBoss.sprite || this.currentBoss.id, this.currentBoss);
-        this.showMessage(`⚔️ ${this.currentBoss.name} — ${this.currentBoss.rule}`);
+        this.showMessage(`${IconSprites.html(this.currentBoss.icon)} ${this.currentBoss.name} — ${this.currentBoss.rule}`);
         this.refreshRuleBanner();
         this.resetForNewRound(true);
     },
@@ -679,7 +679,7 @@ Object.assign(EvilCasino.prototype, {
     showRestSite() {
         if (!this.restPopup) {
             this.money += 150;
-            this.showMessage('😴 Rest: +$150');
+            this.showMessage('{i:room-rest} Rest: +$150');
             this.updateDisplay();
             this.finishCurrentRoom();
             return;
@@ -743,13 +743,13 @@ Object.assign(EvilCasino.prototype, {
         if (picked.type === 'money') {
             const amt = Math.floor(Math.random() * (picked.max - picked.min + 1)) + picked.min;
             this.money += amt;
-            msg = `💎 Treasure! +$${amt}`;
+            msg = `{i:room-treasure} Treasure! +$${amt}`;
         } else if (picked.type === 'perk') {
             this.grantRandomPerk('random');
-            msg = '💎 Found a perk!';
+            msg = '{i:room-treasure} Found a perk!';
         } else if (picked.type === 'relic') {
             this.grantRandomRelic();
-            msg = '💎 Found a relic!';
+            msg = '{i:room-treasure} Found a relic!';
         } else if (picked.type === 'curse') {
             this.addRandomCurse();
             msg = 'Mimic! You gained a curse!';

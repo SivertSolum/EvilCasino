@@ -328,11 +328,11 @@ Object.assign(EvilCasino.prototype, {
         let kind = '';
         if (this.isBossFight && this.currentBoss) {
             tag = this.currentBoss.id === 'satan' ? 'FINAL RULE' : 'BOSS RULE';
-            rule = `${IconSprites.html(this.currentBoss.icon || '🔥')} ${this.currentBoss.rule}`;
+            rule = `${IconSprites.html(this.currentBoss.icon || 'room-boss')} ${this.currentBoss.rule}`;
             kind = 'boss';
         } else if (this.isEliteFight && this.currentElite) {
             tag = 'ELITE RULE';
-            rule = `${IconSprites.html(this.currentElite.icon || '⚔️')} ${this.currentElite.rule}`;
+            rule = `${IconSprites.html(this.currentElite.icon || 'room-elite')} ${this.currentElite.rule}`;
             kind = 'elite';
         }
 

@@ -263,7 +263,7 @@ const IconSprites = {
         if (!parts) return this.missing(key);
         const cls = extraClass ? ` ${extraClass}` : '';
         return `<span class="px-icon px-icon--${key}${cls}" aria-hidden="true">`
-            + parts.map(p => `<i class="${p}"></i>`).join('')
+            + parts.map(p => `<i class="p-${p}"></i>`).join('')
             + `</span>`;
     },
 
@@ -306,6 +306,21 @@ IconSprites.define({
     'ui-warning': 'sign shade bar dot',
     'ui-arrow-left': 'head shaft',
     'ui-contract': 'roll-top sheet lines roll-bottom seal',
-    'ui-deck-skull': 'cranium jaw eye-l eye-r nose teeth'
+    'ui-deck-skull': 'cranium jaw eye-l eye-r nose teeth',
+    // Actions
+    'action-hit': 'sleeve hand fingers thumb knuckle',
+    'action-stand': 'thumb fingers palm seps crease',
+    'action-double': 'stack-l stack-r plus-h plus-v',
+    'action-split': 'blade-a blade-b ring-l ring-r pivot',
+    // Map rooms
+    'room-normal': 'card pattern',
+    'room-elite': 'blade-a guard-a grip-a blade-b guard-b grip-b',
+    'room-event': 'tile q-top q-left q-right q-mid q-stem dot',
+    'room-shop': 'posts awning counter coin',
+    'room-rest': 'mattress pillow frame legs z-big z-small',
+    'room-treasure': 'lid gold shine body band lock',
+    'room-gamble': 'cabinet window reels tray lever knob',
+    'room-boss': 'horn-l horn-r door bands slit ring',
+    'room-start': 'frame light door knob'
 });
 // @gen:end

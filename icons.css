@@ -87,40 +87,110 @@
 
 /* --- Glyphs: card suits (currentColor, no outline, 1em box so they sit in card text) --- */
 .px-icon--suit-spade { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
-.px-icon--suit-spade .point { --x:1;--y:0;--w:14;--h:11;--c:currentColor;--clip:polygon(50% 0%, 100% 72%, 0% 72%) }
-.px-icon--suit-spade .lobe-l { --x:1;--y:6;--w:7;--h:7;--c:currentColor;border-radius:50% }
-.px-icon--suit-spade .lobe-r { --x:8;--y:6;--w:7;--h:7;--c:currentColor;border-radius:50% }
-.px-icon--suit-spade .stem { --x:5;--y:10;--w:6;--h:6;--c:currentColor;--clip:polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%) }
+.px-icon--suit-spade .p-point { --x:1;--y:0;--w:14;--h:11;--c:currentColor;--clip:polygon(50% 0%, 100% 72%, 0% 72%) }
+.px-icon--suit-spade .p-lobe-l { --x:1;--y:6;--w:7;--h:7;--c:currentColor;border-radius:50% }
+.px-icon--suit-spade .p-lobe-r { --x:8;--y:6;--w:7;--h:7;--c:currentColor;border-radius:50% }
+.px-icon--suit-spade .p-stem { --x:5;--y:10;--w:6;--h:6;--c:currentColor;--clip:polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%) }
 .px-icon--suit-heart { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
-.px-icon--suit-heart .lobe-l { --x:1;--y:2;--w:7;--h:7;--c:currentColor;border-radius:50% }
-.px-icon--suit-heart .lobe-r { --x:8;--y:2;--w:7;--h:7;--c:currentColor;border-radius:50% }
-.px-icon--suit-heart .tip { --x:1;--y:5;--w:14;--h:10;--c:currentColor;--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
+.px-icon--suit-heart .p-lobe-l { --x:1;--y:2;--w:7;--h:7;--c:currentColor;border-radius:50% }
+.px-icon--suit-heart .p-lobe-r { --x:8;--y:2;--w:7;--h:7;--c:currentColor;border-radius:50% }
+.px-icon--suit-heart .p-tip { --x:1;--y:5;--w:14;--h:10;--c:currentColor;--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
 .px-icon--suit-diamond { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
-.px-icon--suit-diamond .gem { --x:2;--y:0;--w:12;--h:16;--c:currentColor;--clip:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%) }
+.px-icon--suit-diamond .p-gem { --x:2;--y:0;--w:12;--h:16;--c:currentColor;--clip:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%) }
 .px-icon--suit-club { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
-.px-icon--suit-club .top { --x:5;--y:1;--w:6;--h:6;--c:currentColor;border-radius:50% }
-.px-icon--suit-club .left { --x:1;--y:6;--w:6;--h:6;--c:currentColor;border-radius:50% }
-.px-icon--suit-club .right { --x:9;--y:6;--w:6;--h:6;--c:currentColor;border-radius:50% }
-.px-icon--suit-club .core { --x:6;--y:5;--w:4;--h:5;--c:currentColor }
-.px-icon--suit-club .stem { --x:5;--y:9;--w:6;--h:7;--c:currentColor;--clip:polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%) }
+.px-icon--suit-club .p-top { --x:5;--y:1;--w:6;--h:6;--c:currentColor;border-radius:50% }
+.px-icon--suit-club .p-left { --x:1;--y:6;--w:6;--h:6;--c:currentColor;border-radius:50% }
+.px-icon--suit-club .p-right { --x:9;--y:6;--w:6;--h:6;--c:currentColor;border-radius:50% }
+.px-icon--suit-club .p-core { --x:6;--y:5;--w:4;--h:5;--c:currentColor }
+.px-icon--suit-club .p-stem { --x:5;--y:9;--w:6;--h:7;--c:currentColor;--clip:polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%) }
 
 /* --- Glyphs: UI --- */
-.px-icon--ui-warning .sign { --x:0;--y:1;--w:16;--h:15;--c:var(--flame);--clip:polygon(50% 0%, 100% 100%, 0% 100%) }
-.px-icon--ui-warning .shade { --x:0;--y:9;--w:16;--h:7;--c:#e08a00;--clip:polygon(23% 0%, 77% 0%, 100% 100%, 0% 100%) }
-.px-icon--ui-warning .bar { --x:7;--y:5;--w:2;--h:6;--c:var(--ink) }
-.px-icon--ui-warning .dot { --x:7;--y:12;--w:2;--h:2;--c:var(--ink) }
+.px-icon--ui-warning .p-sign { --x:0;--y:1;--w:16;--h:15;--c:var(--flame);--clip:polygon(50% 0%, 100% 100%, 0% 100%) }
+.px-icon--ui-warning .p-shade { --x:0;--y:9;--w:16;--h:7;--c:#e08a00;--clip:polygon(23% 0%, 77% 0%, 100% 100%, 0% 100%) }
+.px-icon--ui-warning .p-bar { --x:7;--y:5;--w:2;--h:6;--c:var(--ink) }
+.px-icon--ui-warning .p-dot { --x:7;--y:12;--w:2;--h:2;--c:var(--ink) }
 .px-icon--ui-arrow-left { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
-.px-icon--ui-arrow-left .head { --x:0;--y:2;--w:8;--h:12;--c:currentColor;--clip:polygon(0% 50%, 100% 0%, 100% 100%) }
-.px-icon--ui-arrow-left .shaft { --x:7;--y:6;--w:8;--h:4;--c:currentColor }
-.px-icon--ui-contract .roll-top { --x:2;--y:1;--w:12;--h:3;--c:var(--bone-dk);--r:1 }
-.px-icon--ui-contract .sheet { --x:3;--y:3;--w:10;--h:10;--c:var(--bone) }
-.px-icon--ui-contract .lines { --x:5;--y:5;--w:6;--h:1;--c:#8b6b4a;--sh:0 calc(2 * var(--u)) 0 #8b6b4a, calc(-1 * var(--u)) calc(4 * var(--u)) 0 #8b6b4a }
-.px-icon--ui-contract .roll-bottom { --x:2;--y:12;--w:12;--h:3;--c:var(--bone-dk);--r:1 }
-.px-icon--ui-contract .seal { --x:9;--y:9;--w:5;--h:5;--c:var(--blood);border-radius:50%;--b:1;--bc:var(--blood-dk) }
-.px-icon--ui-deck-skull .cranium { --x:2;--y:1;--w:12;--h:10;--c:var(--bone);border-radius:50% 50% 40% 40% }
-.px-icon--ui-deck-skull .jaw { --x:4;--y:9;--w:8;--h:5;--c:var(--bone);--r:1 }
-.px-icon--ui-deck-skull .eye-l { --x:4;--y:5;--w:3;--h:3;--c:var(--blood-dk);--r:1 }
-.px-icon--ui-deck-skull .eye-r { --x:9;--y:5;--w:3;--h:3;--c:var(--blood-dk);--r:1 }
-.px-icon--ui-deck-skull .nose { --x:7;--y:8;--w:2;--h:2;--c:var(--ink) }
-.px-icon--ui-deck-skull .teeth { --x:5;--y:12;--w:1;--h:2;--c:var(--ink);--sh:calc(2 * var(--u)) 0 0 var(--ink),calc(4 * var(--u)) 0 0 var(--ink),calc(6 * var(--u)) 0 0 var(--ink) }
+.px-icon--ui-arrow-left .p-head { --x:0;--y:2;--w:8;--h:12;--c:currentColor;--clip:polygon(0% 50%, 100% 0%, 100% 100%) }
+.px-icon--ui-arrow-left .p-shaft { --x:7;--y:6;--w:8;--h:4;--c:currentColor }
+.px-icon--ui-contract .p-roll-top { --x:2;--y:1;--w:12;--h:3;--c:var(--bone-dk);--r:1 }
+.px-icon--ui-contract .p-sheet { --x:3;--y:3;--w:10;--h:10;--c:var(--bone) }
+.px-icon--ui-contract .p-lines { --x:5;--y:5;--w:6;--h:1;--c:#8b6b4a;--sh:0 calc(2 * var(--u)) 0 #8b6b4a, calc(-1 * var(--u)) calc(4 * var(--u)) 0 #8b6b4a }
+.px-icon--ui-contract .p-roll-bottom { --x:2;--y:12;--w:12;--h:3;--c:var(--bone-dk);--r:1 }
+.px-icon--ui-contract .p-seal { --x:9;--y:9;--w:5;--h:5;--c:var(--blood);border-radius:50%;--b:1;--bc:var(--blood-dk) }
+.px-icon--ui-deck-skull .p-cranium { --x:2;--y:1;--w:12;--h:10;--c:var(--bone);border-radius:50% 50% 40% 40% }
+.px-icon--ui-deck-skull .p-jaw { --x:4;--y:9;--w:8;--h:5;--c:var(--bone);--r:1 }
+.px-icon--ui-deck-skull .p-eye-l { --x:4;--y:5;--w:3;--h:3;--c:var(--blood-dk);--r:1 }
+.px-icon--ui-deck-skull .p-eye-r { --x:9;--y:5;--w:3;--h:3;--c:var(--blood-dk);--r:1 }
+.px-icon--ui-deck-skull .p-nose { --x:7;--y:8;--w:2;--h:2;--c:var(--ink) }
+.px-icon--ui-deck-skull .p-teeth { --x:5;--y:12;--w:1;--h:2;--c:var(--ink);--sh:calc(2 * var(--u)) 0 0 var(--ink),calc(4 * var(--u)) 0 0 var(--ink),calc(6 * var(--u)) 0 0 var(--ink) }
+
+/* --- Actions --- */
+.px-icon--action-hit .p-sleeve { --x:11;--y:4;--w:5;--h:9;--c:var(--purple-dk);--r:1 }
+.px-icon--action-hit .p-hand { --x:2;--y:3;--w:10;--h:10;--c:var(--skin);--r:3 }
+.px-icon--action-hit .p-fingers { --x:3;--y:5;--w:6;--h:1;--c:var(--skin-dk);--sh:0 calc(2 * var(--u)) 0 var(--skin-dk),0 calc(4 * var(--u)) 0 var(--skin-dk) }
+.px-icon--action-hit .p-thumb { --x:4;--y:10;--w:6;--h:3;--c:var(--skin-dk);--r:1 }
+.px-icon--action-hit .p-knuckle { --x:2;--y:4;--w:2;--h:8;--c:#f6d1ad;--r:1 }
+.px-icon--action-stand .p-thumb { --x:0;--y:7;--w:5;--h:4;--c:var(--skin);--r:2;--t:rotate(-25deg);transform-origin:calc(8 * var(--u)) calc(1 * var(--u)) }
+.px-icon--action-stand .p-fingers { --x:4;--y:1;--w:10;--h:8;--c:var(--skin);border-radius:calc(2 * var(--u)) calc(2 * var(--u)) 0 0 }
+.px-icon--action-stand .p-palm { --x:4;--y:6;--w:10;--h:9;--c:var(--skin);border-radius:0 0 calc(3 * var(--u)) calc(3 * var(--u)) }
+.px-icon--action-stand .p-seps { --x:6.4;--y:1.5;--w:0.7;--h:6;--c:var(--skin-dk);--sh:calc(2.5 * var(--u)) 0 0 var(--skin-dk),calc(5 * var(--u)) 0 0 var(--skin-dk) }
+.px-icon--action-stand .p-crease { --x:7;--y:11;--w:5;--h:1;--c:var(--skin-dk) }
+.px-icon--action-double .p-stack-l { --x:1;--y:9;--w:6;--h:6;--c:repeating-linear-gradient(var(--mint) 0 calc(1.5 * var(--u)),#14804e calc(1.5 * var(--u)) calc(2.5 * var(--u)));--r:1 }
+.px-icon--action-double .p-stack-r { --x:9;--y:3;--w:6;--h:12;--c:repeating-linear-gradient(var(--gold) 0 calc(1.5 * var(--u)),var(--gold-dk) calc(1.5 * var(--u)) calc(2.5 * var(--u)));--r:1 }
+.px-icon--action-double .p-plus-h { --x:5;--y:3;--w:4;--h:1.5;--c:var(--card) }
+.px-icon--action-double .p-plus-v { --x:6.25;--y:1.75;--w:1.5;--h:4;--c:var(--card) }
+.px-icon--action-split .p-blade-a { --x:6.5;--y:0;--w:3;--h:10;--c:var(--steel);--clip:polygon(50% 0%, 100% 20%, 100% 100%, 0% 100%, 0% 20%);--t:rotate(-24deg);transform-origin:calc(1.5 * var(--u)) calc(8 * var(--u)) }
+.px-icon--action-split .p-blade-b { --x:6.5;--y:0;--w:3;--h:10;--c:#d5dde8;--clip:polygon(50% 0%, 100% 20%, 100% 100%, 0% 100%, 0% 20%);--t:rotate(24deg);transform-origin:calc(1.5 * var(--u)) calc(8 * var(--u)) }
+.px-icon--action-split .p-ring-l { --x:1;--y:10;--w:6;--h:6;border-radius:50%;--b:2;--bc:var(--blood) }
+.px-icon--action-split .p-ring-r { --x:9;--y:10;--w:6;--h:6;border-radius:50%;--b:2;--bc:var(--blood) }
+.px-icon--action-split .p-pivot { --x:7;--y:8;--w:2;--h:2;--c:var(--ink);border-radius:50% }
+
+/* --- Map rooms --- */
+.px-icon--room-normal .p-card { --x:3;--y:1;--w:10;--h:14;--c:var(--blood);--r:1;--b:1;--bc:var(--card) }
+.px-icon--room-normal .p-pattern { --x:5.5;--y:4;--w:5;--h:8;--c:var(--blood-dk);--clip:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%) }
+.px-icon--room-elite .p-blade-a { --x:7;--y:1;--w:2;--h:11;--c:var(--steel);--clip:polygon(50% 0%, 100% 15%, 100% 100%, 0% 100%, 0% 15%);--t:rotate(45deg);transform-origin:calc(1 * var(--u)) calc(7 * var(--u)) }
+.px-icon--room-elite .p-guard-a { --x:4.5;--y:11.5;--w:7;--h:2;--c:var(--gold);--t:rotate(45deg);transform-origin:calc(3.5 * var(--u)) calc(-3.5 * var(--u)) }
+.px-icon--room-elite .p-grip-a { --x:7;--y:13.5;--w:2;--h:3;--c:var(--wood);--t:rotate(45deg);transform-origin:calc(1 * var(--u)) calc(-5.5 * var(--u)) }
+.px-icon--room-elite .p-blade-b { --x:7;--y:1;--w:2;--h:11;--c:#d5dde8;--clip:polygon(50% 0%, 100% 15%, 100% 100%, 0% 100%, 0% 15%);--t:rotate(-45deg);transform-origin:calc(1 * var(--u)) calc(7 * var(--u)) }
+.px-icon--room-elite .p-guard-b { --x:4.5;--y:11.5;--w:7;--h:2;--c:var(--gold);--t:rotate(-45deg);transform-origin:calc(3.5 * var(--u)) calc(-3.5 * var(--u)) }
+.px-icon--room-elite .p-grip-b { --x:7;--y:13.5;--w:2;--h:3;--c:var(--wood);--t:rotate(-45deg);transform-origin:calc(1 * var(--u)) calc(-5.5 * var(--u)) }
+.px-icon--room-event .p-tile { --x:1;--y:1;--w:14;--h:14;--c:var(--purple-dk);--r:2 }
+.px-icon--room-event .p-q-top { --x:5;--y:3;--w:6;--h:2;--c:var(--gold) }
+.px-icon--room-event .p-q-left { --x:4;--y:4;--w:2;--h:2;--c:var(--gold) }
+.px-icon--room-event .p-q-right { --x:10;--y:4;--w:2;--h:4;--c:var(--gold) }
+.px-icon--room-event .p-q-mid { --x:7;--y:7;--w:4;--h:2;--c:var(--gold) }
+.px-icon--room-event .p-q-stem { --x:7;--y:8;--w:2;--h:2;--c:var(--gold) }
+.px-icon--room-event .p-dot { --x:7;--y:11;--w:2;--h:2;--c:var(--gold) }
+.px-icon--room-shop .p-posts { --x:2;--y:6;--w:1.5;--h:6;--c:var(--wood);--sh:calc(10.5 * var(--u)) 0 0 var(--wood) }
+.px-icon--room-shop .p-awning { --x:1;--y:1;--w:14;--h:6;--c:repeating-linear-gradient(90deg,var(--blood) 0 calc(2 * var(--u)),var(--card) calc(2 * var(--u)) calc(4 * var(--u)));--clip:polygon(0% 0%, 100% 0%, 100% 78%, 87.5% 100%, 75% 78%, 62.5% 100%, 50% 78%, 37.5% 100%, 25% 78%, 12.5% 100%, 0% 78%) }
+.px-icon--room-shop .p-counter { --x:1;--y:11;--w:14;--h:4;--c:var(--wood);--r:1 }
+.px-icon--room-shop .p-coin { --x:6;--y:8.5;--w:4;--h:2.5;--c:var(--gold);border-radius:50% }
+.px-icon--room-rest .p-mattress { --x:2;--y:8;--w:12;--h:3;--c:#cfd8e3;--r:1 }
+.px-icon--room-rest .p-pillow { --x:2;--y:6.5;--w:4;--h:2.5;--c:var(--card);--r:1 }
+.px-icon--room-rest .p-frame { --x:1;--y:10.5;--w:14;--h:2.5;--c:var(--wood) }
+.px-icon--room-rest .p-legs { --x:2;--y:13;--w:1.5;--h:2;--c:var(--wood-dk);--sh:calc(10.5 * var(--u)) 0 0 var(--wood-dk) }
+.px-icon--room-rest .p-z-big { --x:9;--y:0;--w:6;--h:5;--c:var(--sky);--clip:polygon(0% 0%, 100% 0%, 100% 25%, 40% 75%, 100% 75%, 100% 100%, 0% 100%, 0% 75%, 60% 25%, 0% 25%) }
+.px-icon--room-rest .p-z-small { --x:6;--y:3;--w:3.5;--h:3;--c:var(--sky);--clip:polygon(0% 0%, 100% 0%, 100% 25%, 40% 75%, 100% 75%, 100% 100%, 0% 100%, 0% 75%, 60% 25%, 0% 25%) }
+.px-icon--room-treasure .p-lid { --x:2;--y:1;--w:12;--h:5;--c:var(--wood-dk);border-radius:calc(3 * var(--u)) calc(3 * var(--u)) 0 0 }
+.px-icon--room-treasure .p-gold { --x:3;--y:4;--w:10;--h:5;--c:var(--gold);border-radius:50% 50% 0 0 }
+.px-icon--room-treasure .p-shine { --x:5;--y:5;--w:2;--h:1;--c:#fff6b0 }
+.px-icon--room-treasure .p-body { --x:2;--y:8;--w:12;--h:7;--c:var(--wood);--r:1 }
+.px-icon--room-treasure .p-band { --x:2;--y:8;--w:12;--h:2;--c:var(--gold-dk) }
+.px-icon--room-treasure .p-lock { --x:7;--y:10;--w:2;--h:3;--c:var(--gold) }
+.px-icon--room-gamble .p-cabinet { --x:2;--y:1;--w:11;--h:14;--c:var(--blood);--r:2 }
+.px-icon--room-gamble .p-window { --x:3.5;--y:4;--w:8;--h:5;--c:var(--card) }
+.px-icon--room-gamble .p-reels { --x:4.5;--y:5;--w:1.6;--h:3;--c:var(--gold-dk);--sh:calc(2.4 * var(--u)) 0 0 var(--blood),calc(4.8 * var(--u)) 0 0 var(--gold-dk) }
+.px-icon--room-gamble .p-tray { --x:4;--y:11;--w:7;--h:2;--c:var(--ink);--r:1 }
+.px-icon--room-gamble .p-lever { --x:13.5;--y:4;--w:1;--h:6;--c:var(--steel) }
+.px-icon--room-gamble .p-knob { --x:12.75;--y:1.5;--w:2.5;--h:2.5;--c:var(--gold);border-radius:50% }
+.px-icon--room-boss .p-horn-l { --x:0;--y:0;--w:5;--h:7;--c:var(--bone);--clip:polygon(0% 0%, 100% 70%, 60% 100%) }
+.px-icon--room-boss .p-horn-r { --x:11;--y:0;--w:5;--h:7;--c:var(--bone);--clip:polygon(100% 0%, 40% 100%, 0% 70%) }
+.px-icon--room-boss .p-door { --x:3;--y:3;--w:10;--h:13;--c:var(--steel-dk);border-radius:calc(5 * var(--u)) calc(5 * var(--u)) 0 0 }
+.px-icon--room-boss .p-bands { --x:3;--y:8;--w:10;--h:1;--c:var(--ink);--sh:0 calc(4 * var(--u)) 0 var(--ink) }
+.px-icon--room-boss .p-slit { --x:5.5;--y:5.5;--w:5;--h:1.5;--c:var(--hell) }
+.px-icon--room-boss .p-ring { --x:7;--y:10.5;--w:2;--h:2;--c:var(--gold);border-radius:50% }
+.px-icon--room-start .p-frame { --x:3;--y:1;--w:10;--h:15;--c:var(--wood-dk) }
+.px-icon--room-start .p-light { --x:4;--y:2;--w:8;--h:14;--c:#ffd27a }
+.px-icon--room-start .p-door { --x:4;--y:2;--w:6;--h:14;--c:var(--wood);--clip:polygon(0% 0%, 100% 8%, 100% 92%, 0% 100%) }
+.px-icon--room-start .p-knob { --x:8;--y:9;--w:1.25;--h:1.25;--c:var(--gold) }
 /* @gen:end */
