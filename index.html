@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVIL CASINO - The World's Most Fair Casino™</title>
-    <link rel="stylesheet" href="style.css?v=49">
+    <link rel="stylesheet" href="style.css?v=50">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -228,16 +228,33 @@
     </div>
     
     <div class="game-container hidden" id="game-container">
-        <header>
-            <h1>EVIL CASINO</h1>
-        </header>
-
-        <div class="money-display">
-            <span class="money-label">YOUR LIFE SAVINGS:</span>
-            <span class="money-amount" id="money">$1000</span>
-            <span class="bet-separator">|</span>
-            <span class="money-label">CURRENT BET:</span>
-            <span class="bet-amount" id="current-bet">$0</span>
+        <!-- Run status: what matters this run, in priority order -->
+        <div class="run-status-bar" id="run-status-bar">
+            <div class="status-cell status-floor">
+                <span class="status-label">FLOOR</span>
+                <span class="status-value"><span id="current-floor">1</span><span class="status-of" id="floor-total">/7</span></span>
+            </div>
+            <div class="status-cell status-contract" id="contract-stat">
+                <span class="status-label">CONTRACT</span>
+                <span class="status-contract-name" id="escape-goal">—</span>
+                <div class="contract-progress" id="contract-progress"></div>
+            </div>
+            <div class="status-cell status-money">
+                <span class="status-label">LIFE SAVINGS</span>
+                <span class="money-amount" id="money">$100</span>
+            </div>
+            <div class="status-cell status-bet">
+                <span class="status-label">BET</span>
+                <span class="bet-amount" id="current-bet">$0</span>
+            </div>
+            <div class="status-cell status-perks" id="upgrades-bar">
+                <span class="status-label">PERKS</span>
+                <div class="active-upgrades" id="active-upgrades"><span class="perks-empty">None yet...</span></div>
+            </div>
+            <!-- Legacy streak counter (pre-contract runs) -->
+            <div class="hidden" id="legacy-wins-stat">
+                <span id="win-streak">0</span>/<span id="wins-needed">3</span>
+            </div>
         </div>
 
         <div class="table">
@@ -278,6 +295,11 @@
                     </div>
                     </div>
                     <span class="dealer-title">HOUSE DEALER<br><span class="satan-subtitle">DEFINITELY FAIR</span></span>
+                    <div class="rule-banner hidden" id="rule-banner">
+                        <span class="rule-banner-tag" id="rule-banner-tag">BOSS RULE</span>
+                        <span class="rule-banner-text" id="rule-banner-text"></span>
+                        <span class="rule-banner-warn hidden" id="rule-banner-warn">⚠ CONTRACT INCOMPLETE</span>
+                    </div>
                 </div>
                 <div class="hand" id="dealer-hand"></div>
                 <div class="score" id="dealer-score"></div>
@@ -417,27 +439,6 @@
                     ✂️ SPLIT<br><span class="subtext">(Risky)</span>
                 </button>
             </div>
-        </div>
-
-        <div class="stats-bar">
-            <div class="stat">
-                <span class="stat-label">Floor:</span>
-                <span class="stat-value" id="current-floor">1</span>
-            </div>
-            <div class="stat contract-stat">
-                <span class="stat-label">Contract:</span>
-                <span class="stat-value" id="escape-goal">—</span>
-            </div>
-            <div class="stat hidden" id="legacy-wins-stat">
-                <span class="stat-label">Wins:</span>
-                <span class="stat-value" id="win-streak">0</span>/<span class="stat-value" id="wins-needed">3</span>
-            </div>
-        </div>
-
-        <!-- Active Upgrades Display -->
-        <div class="upgrades-bar" id="upgrades-bar">
-            <span class="upgrades-label">🎭 Perks:</span>
-            <div class="active-upgrades" id="active-upgrades">None yet...</div>
         </div>
 
     </div>
@@ -696,12 +697,13 @@
     <!-- Modular JavaScript -->
     <script src="js/config.js?v=25"></script>
     <script src="js/map.js?v=1"></script>
-    <script src="js/sprites.js?v=1"></script>
+    <script src="js/sprites.js?v=2"></script>
     <script src="js/audio.js?v=22"></script>
     <script src="js/ui.js?v=28"></script>
     <script src="js/animations.js?v=2"></script>
-    <script src="js/game.js?v=55"></script>
-    <script src="js/roguelike.js?v=3"></script>
+    <script src="js/game.js?v=56"></script>
+    <script src="js/game/hud.js?v=1"></script>
+    <script src="js/roguelike.js?v=4"></script>
     <script src="js/main.js?v=23"></script>
 </body>
 </html>

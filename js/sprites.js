@@ -229,7 +229,8 @@ const DealerSprites = {
     },
 
     titleFor(id, boss) {
-        if (boss) return `${boss.name}<br><span class="satan-subtitle">${boss.rule}</span>`;
+        // Rule lives in the HUD rule banner; subtitle stays flavor only
+        if (boss) return `${boss.name}<br><span class="satan-subtitle">${boss.id === 'satan' ? 'THE HOUSE ITSELF' : 'ANOMALY DEALER'}</span>`;
         if (id === 'elite') return `ELITE DEALER<br><span class="satan-subtitle">HOUSE ENFORCER</span>`;
         return `HOUSE DEALER<br><span class="satan-subtitle">DEFINITELY FAIR</span>`;
     }

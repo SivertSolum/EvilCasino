@@ -154,6 +154,49 @@ Object.assign(EvilCasino.prototype, {
         return `${c.icon} ${desc}`;
     },
 
+    // Numeric progress for the HUD meter: { current, target, text, extra, complete, failed }
+    getContractProgress() {
+        const c = this.contract;
+        if (!c) return null;
+        let current = this.contractProgress || 0;
+        let target = c.target || 1;
+        let text = null;
+        let extra = null;
+        switch (c.type) {
+            case 'winsBeforeLosses':
+                current = this.floorWins;
+                extra = `${this.floorLosses}/${c.failAt || 3} L`;
+                break;
+            case 'netGain': {
+                const net = this.money - this.floorMoneyStart;
+                current = Math.max(0, net);
+                text = `$${net}/$${target}`;
+                break;
+            }
+            case 'clearElite':
+                current = this.floorEliteClears;
+                break;
+            case 'totalWins':
+                current = this.floorWins;
+                break;
+            case 'winBlackjack':
+            case 'winSplit':
+            case 'defeatBoss':
+                current = this.contractComplete ? 1 : 0;
+                target = 1;
+                break;
+        }
+        current = Math.min(current, target);
+        return {
+            current,
+            target,
+            text: text || `${current}/${target}`,
+            extra,
+            complete: !!this.contractComplete,
+            failed: !!this.contractFailed
+        };
+    },
+
     updateContractFromHand(playerWon, isBlackjack = false) {
         if (!this.contract || this.contractComplete || this.isBossFight) return;
 
@@ -323,6 +366,7 @@ Object.assign(EvilCasino.prototype, {
         this.isEliteFight = false;
         this.currentElite = null;
         if (this.tableEl) this.tableEl.classList.remove('boss-mode', 'elite-mode');
+        this.refreshRuleBanner();
 
         switch (node.type) {
             case 'start':
@@ -379,6 +423,7 @@ Object.assign(EvilCasino.prototype, {
         if (this.currentElite) {
             this.showMessage(`⚔️ ${this.currentElite.name}: ${this.currentElite.rule}`);
         }
+        this.refreshRuleBanner();
     },
 
     finishCurrentRoom() {
@@ -386,6 +431,7 @@ Object.assign(EvilCasino.prototype, {
         this.isEliteFight = false;
         this.isBossFight = false;
         this.currentElite = null;
+        this.refreshRuleBanner();
 
         if (!this.currentRoom || !this.floorMap) {
             this.showFloorMap();
@@ -504,6 +550,7 @@ Object.assign(EvilCasino.prototype, {
         if (this.tableEl) this.tableEl.classList.add('boss-mode');
         this.setDealerSprite(this.currentBoss.sprite || this.currentBoss.id, this.currentBoss);
         this.showMessage(`⚔️ ${this.currentBoss.name} — ${this.currentBoss.rule}`);
+        this.refreshRuleBanner();
         this.resetForNewRound(true);
     },
 
@@ -511,6 +558,7 @@ Object.assign(EvilCasino.prototype, {
         const boss = this.currentBoss;
         this.isBossFight = false;
         if (this.tableEl) this.tableEl.classList.remove('boss-mode');
+        this.refreshRuleBanner();
 
         // Satan finale — beating him is the win
         if (boss?.id === 'satan' || boss?.reward?.type === 'victory') {

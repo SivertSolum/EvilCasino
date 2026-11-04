@@ -25,10 +25,10 @@ You are an expert vanilla JavaScript and browser game developer working on **Evi
 **Current load order** (what `index.html` ships today — **this is what runs**):
 
 ```
-config.js → map.js → sprites.js → audio.js → ui.js → game.js → roguelike.js → main.js
+config.js → map.js → sprites.js → audio.js → ui.js → animations.js → game.js → game/hud.js → roguelike.js → main.js
 ```
 
-`js/game/*.js` exists on disk but is **not** included in `index.html`. Do not assume those files are live.
+Of `js/game/*.js`, only **`game/hud.js`** is live (HUD: status bar, contract meter, perk badges, rule banner; owns `updateDisplay` / `updateRoguelikeDisplay`). The rest exist on disk but are **not** included in `index.html`. Do not assume those files are live. UI overhaul roadmap: `docs/UI_OVERHAUL_PLAN.md`.
 
 **Target load order** (modular migration — prefer this when wiring `js/game/`):
 

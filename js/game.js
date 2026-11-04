@@ -2316,97 +2316,7 @@ class EvilCasino {
         return false;
     }
 
-    updateRoguelikeDisplay() {
-        if (this.currentFloorEl) this.currentFloorEl.textContent = this.currentFloor;
-        if (this.winStreakEl) this.winStreakEl.textContent = this.floorWins != null ? this.floorWins : this.winStreak;
-        if (this.winsNeededEl) {
-            const parent = this.winsNeededEl.parentElement;
-            // Hide old streak fraction when using contracts
-            if (this.contract) this.winsNeededEl.textContent = '';
-            else this.winsNeededEl.textContent = this.winsNeededForUpgrade;
-        }
-        if (this.escapeGoalEl) {
-            this.escapeGoalEl.textContent = typeof this.getContractLabel === 'function'
-                ? this.getContractLabel()
-                : `$${this.escapeGoal}`;
-        }
-        if (this.contractHudEl && typeof this.getContractLabel === 'function') {
-            this.contractHudEl.textContent = this.getContractLabel();
-        }
-        
-        if (this.activePerks.length === 0) {
-            this.activeUpgradesEl.innerHTML = 'None yet...';
-        } else {
-            this.activeUpgradesEl.innerHTML = this.activePerks.map(p => 
-                `<span class="perk-badge" data-perk-id="${p.id}" data-perk-name="${p.icon} ${p.name}" data-perk-desc="${p.desc}">${p.icon} ${p.name}${p.maxUses ? ` (${p.uses})` : ''}</span>`
-            ).join('');
-            
-            this.setupPerkTooltips();
-        }
-    }
-    
-    setupPerkTooltips() {
-        if (!this.perkTooltip) return;
-        
-        const perkBadges = this.activeUpgradesEl.querySelectorAll('.perk-badge[data-perk-id]');
-        perkBadges.forEach(badge => {
-            badge.addEventListener('mouseenter', (e) => this.showPerkTooltip(e, badge));
-            badge.addEventListener('mouseleave', () => this.hidePerkTooltip());
-        });
-    }
-    
-    showPerkTooltip(e, badge) {
-        if (!this.perkTooltip) return;
-        
-        const name = badge.getAttribute('data-perk-name');
-        const desc = badge.getAttribute('data-perk-desc');
-        
-        this.perkTooltipName.textContent = name;
-        this.perkTooltipDesc.textContent = desc;
-        this.perkTooltip.classList.remove('hidden');
-        
-        this.positionPerkTooltip(badge);
-    }
-    
-    positionPerkTooltip(badge) {
-        if (!this.perkTooltip || this.perkTooltip.classList.contains('hidden')) return;
-        
-        // Get badge position in viewport
-        const rect = badge.getBoundingClientRect();
-        
-        // Position tooltip centered above the badge
-        const x = rect.left + rect.width / 2;
-        const y = rect.top;
-        
-        this.perkTooltip.style.left = `${x}px`;
-        this.perkTooltip.style.top = `${y}px`;
-        
-        // Check if tooltip would go off screen at top
-        const tooltipRect = this.perkTooltip.getBoundingClientRect();
-        if (tooltipRect.top < 10) {
-            // Position below instead
-            this.perkTooltip.style.top = `${rect.bottom + 15}px`;
-            this.perkTooltip.style.transform = 'translate(-50%, 0)';
-        } else {
-            this.perkTooltip.style.transform = 'translate(-50%, -100%)';
-        }
-        
-        // Check horizontal bounds
-        const leftOverflow = tooltipRect.left < 10;
-        const rightOverflow = tooltipRect.right > window.innerWidth - 10;
-        
-        if (leftOverflow) {
-            this.perkTooltip.style.left = `${tooltipRect.width / 2 + 10}px`;
-        } else if (rightOverflow) {
-            this.perkTooltip.style.left = `${window.innerWidth - tooltipRect.width / 2 - 10}px`;
-        }
-    }
-    
-    hidePerkTooltip() {
-        if (this.perkTooltip) {
-            this.perkTooltip.classList.add('hidden');
-        }
-    }
+    // updateRoguelikeDisplay + perk tooltip helpers live in js/game/hud.js
 
     // === PRE-ROUND SHOP ===
     
@@ -3032,21 +2942,7 @@ class EvilCasino {
         this.endRound(playerWon, isBlackjack);
     }
 
-    updateDisplay() {
-        this.moneyDisplay.textContent = `$${this.money}`;
-
-        if (this.money < 100) {
-            this.moneyDisplay.classList.add('losing');
-        } else {
-            this.moneyDisplay.classList.remove('losing');
-        }
-
-        if (this._pendingMoneyDelta && typeof GameAnimations !== 'undefined') {
-            GameAnimations.animateMoneyChange(this._pendingMoneyDelta, this.moneyDisplay);
-            this._pendingMoneyDelta = 0;
-        }
-        this._lastMoney = this.money;
-    }
+    // updateDisplay lives in js/game/hud.js
 
     updateScores(hideDealer = false) {
         const playerScore = this.isSplitHand
