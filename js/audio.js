@@ -230,15 +230,10 @@ function playShuffleSound() {
 function toggleMusic() {
     if (!bgMusic) return;
     
-    const btn = document.getElementById('music-toggle');
     const btnOpt = document.getElementById('music-toggle-opt');
-    
+
     if (musicEnabled && !bgMusic.paused) {
         bgMusic.pause();
-        if (btn) {
-            btn.textContent = '🔇';
-            btn.classList.remove('playing');
-        }
         if (btnOpt) {
             btnOpt.textContent = 'OFF';
             btnOpt.classList.add('off');
@@ -246,10 +241,6 @@ function toggleMusic() {
         musicEnabled = false;
     } else {
         bgMusic.play().catch(e => console.log('Music play failed:', e));
-        if (btn) {
-            btn.textContent = '🔊';
-            btn.classList.add('playing');
-        }
         if (btnOpt) {
             btnOpt.textContent = 'ON';
             btnOpt.classList.remove('off');

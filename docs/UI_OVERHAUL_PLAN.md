@@ -98,6 +98,77 @@ Goal: emoji only where it **carries meaning the text doesn't** (recognition, not
 
 **Verify:** menus, popups and messages still read clearly; identifiers (perks, rooms, bosses) unchanged.
 
+### Phase 7 audit (2026-11-04) — approved; B, C, D applied
+
+Scan: 289 emoji-bearing lines (66 in `index.html` + UI modules, 76 in `game.js`, 147 in `config.js` of which 104 are `icon:` fields). Card suits ♠♥♦♣ and `☰`/`⚙` glyphs excluded.
+
+#### A. KEEP — identifiers (recognition)
+
+| Where | What | Why |
+|---|---|---|
+| `config.js` `icon:` fields (104) | Perks, relics, curses, dealer perks, bosses, elites, contracts, events, shop items, gamble games | The icon *is* the identity; shown in badges, tooltips, map, banner, shop |
+| `ROOM_ICONS` | 🃏 ⚔️ ❓ 🛒 😴 💎 🎰 👹 🚪 | Map nodes + legend |
+| Room popup titles | `🛒 PERK SHOP`, `😴 REST SITE`, `💎 TREASURE`, `🎰 GAMBLE ROOM` | Same icon as the map node you clicked — continuity |
+| `📒 THE BOOKIE` popup title | 📒 | Matches the Bookie's boss icon |
+| Action buttons + Bookie choices | 👊 HIT, 🛑 STAND, 💸 DOUBLE, ✂️ SPLIT, `👊/🛑 LOCK IN …` | Gameplay controls scanned under time pressure; same glyph reused in Bookie popup |
+| `#event-icon` | set from `EVENTS[].icon` | Event identity |
+| Rule banner / boss intro rule | `${boss.icon}` / `⚔️` (elite) | Identifies whose rule it is |
+| Bust probability | `🧠 Bust: x%` | Card Counter's icon — tells you *why* you see it |
+| Side-bet result `emoji:` (`game.js` ~1432–1467) | 👯 🎨 👫 🔥 🌟 🎰 📈 💎 | Hand-type identifiers in the result toast (see C for collisions) |
+| Messages whose emoji == the source's icon | e.g. `🛡️ Soul Shield…`, `🧘 Zen Mind…`, `🕷️ Black Widow…`, `👯 Twins…`, `🎭 Lady Luck…`, `🪢 Hangman…`, `📋 Auditor…`, `🎴 Croupier…`, `🃏 Jester…`, `⚡ Quick Draw…`, `🕵️ Double Agent…`, `🧛 Vampiric…`, `🤏 Pickpocket…`, `🌟 Lucky Start…`, `🔮 / 📦 / 🍺 / 🗡️` event outcomes, `😴 / 🎰 / 💎` room outcomes, `✂️ Split…`, `📜 Contract…` | Message → source recognition |
+
+#### A2. KEEP — state signals
+
+| Where | What |
+|---|---|
+| Rule banner, boss intro, map boss badge | ⚠ contract incomplete |
+| How to Play | `⚠️ The dealer may or may not cheat` |
+
+#### B. FIX — wrong identifier (emoji ≠ source icon)
+
+| Location | Now | Should be |
+|---|---|---|
+| `game.js` ~974 Heavy Debt message | 💸 | 📜 (curse icon) |
+| `game.js` ~1016 Side Insurance message | 🛡️ | 🛟 (perk icon) |
+| `game.js` ~1165 Countess drain message | 💸 | 🧛 (boss icon) |
+| `game.js` ~1828 boss extra-loss message | 🦈 hardcoded | `${this.currentBoss.icon}` (any `multiplierLose` boss) |
+
+#### C. CUT — label decoration (word already says it)
+
+| Location | Now → After |
+|---|---|
+| Shuffle overlay | `🔀 SHUFFLING 🔀` → `SHUFFLING` |
+| Side panel headings | `🃏 CARDS`, `📊 SCOREBOARD` → `CARDS`, `SCOREBOARD` |
+| Main menu buttons | `🎲 START GAME`, `⚙️ OPTIONS`, `❓ HOW TO PLAY`, `📜 Changelog` → text only |
+| Menu screen titles | `📜 CHANGELOG`, `⚙️ OPTIONS`, `❓ HOW TO PLAY` → text only |
+| Options row labels | `🔊 Music`, `🎚️ Volume`, `🔉 SFX`, `🎵 Custom Music` → text only |
+| Upgrade popup | `🎁 CHOOSE YOUR PERK 🎁` → `CHOOSE YOUR PERK` |
+| Victory popup | `🏆 YOU DEFEATED SATAN! 🏆` → `YOU DEFEATED SATAN!`; `🎰 Play Again?` → `Play Again?` |
+| Boss fight button | `⚔️ FIGHT ⚔️` → `FIGHT` |
+| Map side-table button | `🃏 SIDE TABLE` → `SIDE TABLE` |
+| Event choice texts (`config.js` 443–543, 30 choices) | `🚶 Walk away`, `🙅 Pass`, `❌ Decline`, `💵 Pay $75…`… → text only (cost line already carries risk) |
+
+#### D. CUT — message noise (emoji not tied to an identifier)
+
+| Location | Examples |
+|---|---|
+| Trailing emoji on status lines (`game.js`) | `Dealing... 🃏`, `Dealer stands on 17. 🛑`, `Dealer must hit... 🎴`, `Dealer BUSTS at 23! 💥`, `Hand 1 BUSTS! 💥`, `Your move, genius. 🤔`, `Place your bet, if you dare... 💰`, `New run! … 🎰`, `Going all in? … 🎲`, `…going all in with $x! 💸`, `Bold move, cotton. 💀`, `Push! … 🤷` |
+| Generic leading emoji | `🎉 Purchased X!` → `Purchased ${perk.icon} X!`; `🎁 Gained perk: ${icon} X` / `🏆 Found relic: ${icon} X` / `💀 Cursed: ${icon} X` → drop the generic prefix (item icon stays); `💰 Gained $x`; `✨ Curse removed` / `✨ All curses purged`; `🙏 Blessing…` / `🙏 Blessed…`; `👻 Mimic…` (collides with Phantom elite); `💨 Empty chest`; `🧘 You meditated` (collides with Zen Mind perk); `🎉 Tournament…` |
+| Dead code | `audio.js` / `ui.js` 🔇/🔊 writes to `#music-toggle` (removed in Phase 4) → delete branches |
+| Leave alone | `MESSAGES` joke tables (`😈`, `👨‍🍳` are punchlines); `console.log` banners (dev only) |
+
+#### E. Follow-up (not part of the trim): identifier collisions
+
+The audit surfaced icons shared by *different* things, which undercuts recognition:
+
+- 🦈 Loan Shark (boss), Card Shark (elite), Card Shark (dealer perk), Card Shark (relic)
+- 🃏 Jester (boss), Trickster (elite), Card Gambler (event), Ace in the Hole (relic), normal room
+- 🎰 High Roller (elite), gamble room, Slot Machine, rest "Gamble", Three of a Kind
+- 💸 Tax Collector (dealer perk), Casino Tax (curse), DOUBLE button
+- 🪙 Coin Flip / Lucky Chip · 🪞 Mirror (elite) / Cursed Mirror · ⏰ Timekeeper / Impatient · 👛 Lost Wallet / Heavy Wallet · 🔥 Phoenix Feather / Hot Streak / Suited Trips · 🛡️ Iron Stance / Soul Shield · ⚔️ Aggressive Play / elite room · 💎 Greed / treasure room / Flush
+
+Recommendation: a separate pass to give each a unique icon (content change in `config.js` only).
+
 ---
 
 ## Smoke checklist (after every phase)
@@ -153,3 +224,6 @@ Goal: emoji only where it **carries meaning the text doesn't** (recognition, not
   - `VERSION` 2.1.0 + changelog entry; `?v=` bumps; AGENTS.md + BUILD_AND_TEST.md (HUD checklist).
   - **Open:** retake `screenshots/` (needs a browser session).
 - [ ] Phase 7 — Emoji audit
+  - [x] Inventory + keep/cut table (see "Phase 7 audit" above)
+  - [x] Review → trim pass (B fixes, C/D cuts) + `?v=` bumps — all approved and applied (29 event choices, not 30; also cut `🏆 Tournament won`, same category as D)
+  - [ ] Optional follow-up: unique icons for collisions (E)

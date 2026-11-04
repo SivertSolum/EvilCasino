@@ -630,7 +630,7 @@ Object.assign(EvilCasino.prototype, {
             this.grantRandomRelic();
         } else if (r.type === 'removeCurse') {
             this.activeCurses = [];
-            this.showMessage('✨ All curses purged!');
+            this.showMessage('All curses purged!');
         }
         this.updateDisplay();
     },
@@ -715,7 +715,7 @@ Object.assign(EvilCasino.prototype, {
         } else if (opt.effect === 'randomPerk') {
             this.grantRandomPerk('common');
         } else if (opt.effect === 'upgradePerk') {
-            this.showMessage('🧘 You meditated... (feeling slightly luckier)');
+            this.showMessage('You meditated... (feeling slightly luckier)');
             this.money += 50;
         } else if (opt.effect === 'gamble') {
             if (Math.random() < 0.5) {
@@ -752,9 +752,9 @@ Object.assign(EvilCasino.prototype, {
             msg = '💎 Found a relic!';
         } else if (picked.type === 'curse') {
             this.addRandomCurse();
-            msg = '👻 Mimic! You gained a curse!';
+            msg = 'Mimic! You gained a curse!';
         } else {
-            msg = '💨 Empty chest...';
+            msg = 'Empty chest...';
         }
         if (this.treasurePopup) {
             document.getElementById('treasure-result').textContent = msg;

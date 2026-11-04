@@ -588,7 +588,7 @@ class EvilCasino {
         this.dealBtn.disabled = false;
         
         if (amount === 'all') {
-            this.showMessage("Going all in? Bold. Stupid, but bold. 🎲");
+            this.showMessage("Going all in? Bold. Stupid, but bold.");
         } else {
             this.showMessage(`$${bet} on the line. The dealer is warming up...`);
         }
@@ -602,7 +602,7 @@ class EvilCasino {
         if (this.lastBet > this.money) {
             if (this.money > 0) {
                 this.currentBet = this.money;
-                this.showMessage(`Can't afford $${this.lastBet}, going all in with $${this.money}! 💸`);
+                this.showMessage(`Can't afford $${this.lastBet}, going all in with $${this.money}!`);
             } else {
                 this.showMessage("You're broke! No rebet for you!");
                 return;
@@ -971,7 +971,7 @@ class EvilCasino {
             const cost = 25;
             this.money -= cost;
             this.applyMoneyChange(-cost);
-            this.showMessage(`💸 Heavy Debt: -$${cost}`);
+            this.showMessage(`📜 Heavy Debt: -$${cost}`);
             this.updateDisplay();
         }
         
@@ -1013,7 +1013,7 @@ class EvilCasino {
         if (totalSideBets > 0) {
             this.money -= totalSideBets;
             if (sideBetDiscount > 0) {
-                this.showMessage(`🛡️ Side Insurance: Saved $${sideBetDiscount} on side bets!`);
+                this.showMessage(`🛟 Side Insurance: Saved $${sideBetDiscount} on side bets!`);
             }
         }
         this.applyMoneyChange(-(this.currentBet + totalSideBets));
@@ -1030,7 +1030,7 @@ class EvilCasino {
         this.dealerHandEl.innerHTML = '';
         this.playerHandEl.innerHTML = '';
 
-        this.showMessage("Dealing... 🃏");
+        this.showMessage("Dealing...");
 
         await this.delay(300);
         
@@ -1106,7 +1106,7 @@ class EvilCasino {
             this.bookieDeclaration = null;
         }
 
-        this.showMessage("Your move, genius. 🤔");
+        this.showMessage("Your move, genius.");
         this.updateScores(!(this.isBossFight && this.currentBoss?.hideCards));
         this.updateBustProbability();
     }
@@ -1162,7 +1162,7 @@ class EvilCasino {
         if (this.isBossFight && this.currentBoss?.hitCost) {
             this.money -= this.currentBoss.hitCost;
             this.applyMoneyChange(-this.currentBoss.hitCost);
-            this.showMessage(`💸 The Countess drains $${this.currentBoss.hitCost}!`, 'lose');
+            this.showMessage(`🧛 The Countess drains $${this.currentBoss.hitCost}!`, 'lose');
             this.updateDisplay();
         }
         
@@ -1243,7 +1243,7 @@ class EvilCasino {
         
         if (score > 21) {
             await this.delay(400);
-            this.showMessage(`Hand ${this.currentSplitHandIndex + 1} BUSTS! 💥`);
+            this.showMessage(`Hand ${this.currentSplitHandIndex + 1} BUSTS!`);
             await this.delay(500);
             
             // Move to next hand or resolve
@@ -1285,7 +1285,7 @@ class EvilCasino {
             doubleAmount = Math.floor(this.currentBet * 0.5);
             this.showMessage("🕵️ Double Agent: Only costs 50% extra! Bold move!");
         } else {
-            this.showMessage("Doubling down? Bold move, cotton. 💀");
+            this.showMessage("Doubling down? Bold move, cotton.");
         }
         
         this.money -= doubleAmount;
@@ -1308,7 +1308,7 @@ class EvilCasino {
             
             if (score > 21) {
                 playLoseSound();
-                this.showMessage(`Hand ${this.currentSplitHandIndex + 1} BUSTS on double! 💥 (2x pain!)`);
+                this.showMessage(`Hand ${this.currentSplitHandIndex + 1} BUSTS on double! (2x pain!)`);
                 await this.delay(500);
                 
                 // Move to next hand or resolve
@@ -1612,10 +1612,10 @@ class EvilCasino {
         const hitsSoft17 = this.isBossFight && this.currentBoss?.dealerHitsSoft17;
         
         if (dealerScore >= standThreshold && !(hitsSoft17 && dealerScore === 17 && this.isSoftScore(this.dealerHand))) {
-            this.showMessage("Dealer stands on " + dealerScore + ". 🛑");
+            this.showMessage("Dealer stands on " + dealerScore + ".");
             await this.delay(800);
         } else {
-            this.showMessage("Dealer must hit... 🎴");
+            this.showMessage("Dealer must hit...");
             await this.delay(600);
             
             while (true) {
@@ -1635,14 +1635,14 @@ class EvilCasino {
                 
                 const newScore = this.calculateScore(this.dealerHand);
                 if (newScore > 21) {
-                    this.showMessage("Dealer BUSTS at " + newScore + "! 💥");
+                    this.showMessage("Dealer BUSTS at " + newScore + "!");
                     await this.delay(400);
                     break;
                 }
             }
             const finalScore = this.calculateScore(this.dealerHand);
             if (finalScore <= 21) {
-                this.showMessage("Dealer stands on " + finalScore + ". 🛑");
+                this.showMessage("Dealer stands on " + finalScore + ".");
                 await this.delay(400);
             }
         }
@@ -1725,7 +1725,7 @@ class EvilCasino {
             await this.finishRoundWithBeat(true);
         } else {
             playChipSound();
-            this.showMessage("Push! The dealer considers this a moral victory. 🤷", 'lose');
+            this.showMessage("Push! The dealer considers this a moral victory.", 'lose');
             this.addToHistory(playerScore, dealerScore, 'push');
             this.money += this.currentBet;
             this.applyMoneyChange(this.currentBet);
@@ -1792,7 +1792,7 @@ class EvilCasino {
             if (this.blessingActive) {
                 payout *= 2;
                 this.blessingActive = false;
-                this.showMessage("🙏 Blessing activated! Double payout!");
+                this.showMessage("Blessing activated! Double payout!");
             }
             
             this.money += Math.floor(payout);
@@ -1811,7 +1811,7 @@ class EvilCasino {
                 this.tournamentWins++;
                 if (this.tournamentWins >= this.tournamentGoal) {
                     this.money += 500;
-                    this.showMessage("🏆 Tournament won! +$500!");
+                    this.showMessage("Tournament won! +$500!");
                     this.tournamentMode = false;
                     playSound('win');
                 }
@@ -1825,7 +1825,7 @@ class EvilCasino {
             if (this.isBossFight && this.currentBoss?.multiplierLose) {
                 const extra = Math.floor(this.currentBet * (this.currentBoss.multiplierLose - 1));
                 this.money = Math.max(0, this.money - extra);
-                this.showMessage(`🦈 Extra loss: -$${extra}!`, 'lose');
+                this.showMessage(`${this.currentBoss.icon} Extra loss: -$${extra}!`, 'lose');
             }
 
             if (this.jesterHandRule === 'flipPayout') {
@@ -1836,7 +1836,7 @@ class EvilCasino {
             
             // Reset tournament on loss
             if (this.tournamentMode) {
-                this.showMessage("🎉 Tournament failed...");
+                this.showMessage("Tournament failed...");
                 this.tournamentMode = false;
             }
             
@@ -2082,7 +2082,7 @@ class EvilCasino {
                     amount = Math.floor(Math.random() * (reward.max - reward.min + 1)) + reward.min;
                 }
                 this.money += amount;
-                this.showMessage(`💰 Gained $${amount}!`);
+                this.showMessage(`Gained $${amount}!`);
                 playSound('win');
                 break;
                 
@@ -2098,7 +2098,7 @@ class EvilCasino {
                 if (this.activeCurses && this.activeCurses.length > 0) {
                     const removedIndex = Math.floor(Math.random() * this.activeCurses.length);
                     const removed = this.activeCurses.splice(removedIndex, 1)[0];
-                    this.showMessage(`✨ Curse removed: ${removed.name}`);
+                    this.showMessage(`Curse removed: ${removed.name}`);
                     playSound('heal');
                 } else {
                     this.showMessage("No curses to remove... lucky you!");
@@ -2114,7 +2114,7 @@ class EvilCasino {
             case 'blessing':
                 // Temporary boost - next hand pays double
                 this.blessingActive = true;
-                this.showMessage("🙏 Blessed! Next win pays double!");
+                this.showMessage("Blessed! Next win pays double!");
                 playSound('heal');
                 break;
                 
@@ -2167,7 +2167,7 @@ class EvilCasino {
         const newPerk = { ...perk };
         if (newPerk.maxUses) newPerk.uses = newPerk.maxUses;
         this.activePerks.push(newPerk);
-        this.showMessage(`🎁 Gained perk: ${perk.icon} ${perk.name}!`);
+        this.showMessage(`Gained perk: ${perk.icon} ${perk.name}!`);
         playSound('upgrade');
     }
     
@@ -2188,7 +2188,7 @@ class EvilCasino {
         const relic = availableRelics[Math.floor(Math.random() * availableRelics.length)];
         if (!this.activeRelics) this.activeRelics = [];
         this.activeRelics.push({ ...relic });
-        this.showMessage(`🏆 Found relic: ${relic.icon} ${relic.name}!`);
+        this.showMessage(`Found relic: ${relic.icon} ${relic.name}!`);
         playSound('treasure');
     }
     
@@ -2204,7 +2204,7 @@ class EvilCasino {
         const curse = availableCurses[Math.floor(Math.random() * availableCurses.length)];
         if (!this.activeCurses) this.activeCurses = [];
         this.activeCurses.push({ ...curse });
-        this.showMessage(`💀 Cursed: ${curse.icon} ${curse.name}!`);
+        this.showMessage(`Cursed: ${curse.icon} ${curse.name}!`);
         playSound('curse');
     }
     
@@ -2305,7 +2305,7 @@ class EvilCasino {
         this.tournamentMode = true;
         this.tournamentWins = 0;
         this.tournamentGoal = 3;
-        this.showMessage("🎉 Tournament! Win 3 hands for $500 bonus!");
+        this.showMessage("Tournament! Win 3 hands for $500 bonus!");
     }
     
     // Check and potentially trigger random event (call after wins)
@@ -2389,7 +2389,7 @@ class EvilCasino {
         // Play sound
         if (typeof playChipSound === 'function') playChipSound();
         
-        this.showMessage(`🎉 Purchased ${perk.name}!`);
+        this.showMessage(`Purchased ${perk.icon} ${perk.name}!`);
     }
     
 
@@ -2678,7 +2678,7 @@ class EvilCasino {
                 this.showMessage(`Place your bet! (Last bet was $${totalRebet})`);
             }
         } else if (!this.isBossFight) {
-            this.showMessage("Place your bet, if you dare... 💰");
+            this.showMessage("Place your bet, if you dare...");
         }
         
         this.updateDisplay();
@@ -2841,7 +2841,7 @@ class EvilCasino {
         } else {
             this.resetForNewRound(true);
             this.updateRoguelikeDisplay();
-            this.showMessage("New run! Survive 7 floors and defeat Satan! 🎰");
+            this.showMessage("New run! Survive 7 floors and defeat Satan!");
         }
     }
 

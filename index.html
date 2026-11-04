@@ -23,7 +23,7 @@
     <!-- Shuffle Overlay -->
     <div class="shuffle-overlay hidden" id="shuffle-overlay">
         <div class="shuffle-message">
-            <h2>🔀 SHUFFLING 🔀</h2>
+            <h2>SHUFFLING</h2>
             <p>The dealer is "randomly" shuffling the deck...</p>
         </div>
     </div>
@@ -36,7 +36,7 @@
     
     <!-- Card Tracker (Left Side) -->
     <div class="card-tracker hidden" id="card-tracker">
-        <h3>🃏 CARDS</h3>
+        <h3>CARDS</h3>
         <button class="tracker-toggle" id="tracker-toggle" type="button">FULL GRID</button>
         <!-- Compact: remaining count per rank (what counting actually needs) -->
         <div class="tracker-compact" id="tracker-compact"></div>
@@ -142,19 +142,19 @@
             
             <div class="menu-buttons">
                 <button class="menu-btn start-btn" id="start-game-btn">
-                    🎲 START GAME
+                    START GAME
                 </button>
                 <button class="menu-btn options-btn" id="options-btn">
-                    ⚙️ OPTIONS
+                    OPTIONS
                 </button>
                 <button class="menu-btn how-to-btn" id="howto-btn">
-                    ❓ HOW TO PLAY
+                    HOW TO PLAY
                 </button>
             </div>
             
             <div class="menu-footer">
                 <p class="version-number" id="version-number">v1.0.6</p>
-                <button class="changelog-btn" id="changelog-btn">📜 Changelog</button>
+                <button class="changelog-btn" id="changelog-btn">Changelog</button>
                 <p>© 2024 Satan's Casino Inc.</p>
                 <p class="disclaimer">Warning: You WILL lose.</p>
             </div>
@@ -164,7 +164,7 @@
     <!-- Changelog Modal -->
     <div class="changelog-menu hidden" id="changelog-menu">
         <div class="changelog-content">
-            <h2>📜 CHANGELOG</h2>
+            <h2>CHANGELOG</h2>
             <div class="changelog-entries" id="changelog-entries">
                 <!-- Populated by JavaScript -->
             </div>
@@ -175,25 +175,25 @@
     <!-- Options Menu -->
     <div class="options-menu hidden" id="options-menu">
         <div class="options-content">
-            <h2>⚙️ OPTIONS</h2>
+            <h2>OPTIONS</h2>
             
             <div class="option-row">
-                <span class="option-label">🔊 Music</span>
+                <span class="option-label">Music</span>
                 <button class="toggle-btn" id="music-toggle-opt">ON</button>
             </div>
             
             <div class="option-row">
-                <span class="option-label">🎚️ Volume</span>
+                <span class="option-label">Volume</span>
                 <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="30">
             </div>
             
             <div class="option-row">
-                <span class="option-label">🔉 SFX</span>
+                <span class="option-label">SFX</span>
                 <button class="toggle-btn" id="sfx-toggle-opt">ON</button>
             </div>
             
             <div class="option-row file-option">
-                <span class="option-label">🎵 Custom Music</span>
+                <span class="option-label">Custom Music</span>
                 <input type="file" id="custom-music" accept="audio/mpeg,audio/ogg,audio/wav,audio/*" class="file-input">
                 <label for="custom-music" class="file-label">Choose File</label>
             </div>
@@ -205,7 +205,7 @@
     <!-- How To Play Menu -->
     <div class="howto-menu hidden" id="howto-menu">
         <div class="howto-content">
-            <h2>❓ HOW TO PLAY</h2>
+            <h2>HOW TO PLAY</h2>
             
             <div class="howto-text">
                 <section class="howto-section">
@@ -457,7 +457,7 @@
 
     <!-- Scoreboard -->
     <div class="scoreboard hidden" id="scoreboard">
-        <h3>📊 SCOREBOARD</h3>
+        <h3>SCOREBOARD</h3>
         <div class="scoreboard-entry dealer-entry">
             <div class="scoreboard-icon">
                 <div class="satan-container scoreboard-size">
@@ -552,7 +552,7 @@
     <!-- Upgrade Selection Popup -->
     <div class="popup hidden" id="upgrade-popup">
         <div class="popup-content upgrade-content">
-            <div class="popup-header"><h2>🎁 CHOOSE YOUR PERK 🎁</h2></div>
+            <div class="popup-header"><h2>CHOOSE YOUR PERK</h2></div>
             <p class="popup-sub upgrade-subtitle">You survived! Pick a reward:</p>
             <div class="popup-body upgrade-options" id="upgrade-options"></div>
         </div>
@@ -592,7 +592,7 @@
                     Path ended before the contract was done. Play a side table to finish it — or go broke trying.
                 </p>
                 <div class="popup-actions">
-                    <button class="btn btn--primary map-side-table-btn" id="map-side-table-btn">🃏 SIDE TABLE</button>
+                    <button class="btn btn--primary map-side-table-btn" id="map-side-table-btn">SIDE TABLE</button>
                 </div>
             </div>
         </div>
@@ -652,7 +652,7 @@
             <p class="boss-description" id="boss-description"></p>
             <p class="boss-warning hidden" id="boss-warning">⚠ Contract incomplete. Beat them anyway and you still forfeit.</p>
             <div class="popup-actions">
-                <button class="btn btn--primary btn--pulse" id="boss-fight-btn">⚔️ FIGHT ⚔️</button>
+                <button class="btn btn--primary btn--pulse" id="boss-fight-btn">FIGHT</button>
             </div>
         </div>
     </div>
@@ -695,11 +695,11 @@
     <!-- Victory Popup -->
     <div class="popup hidden" id="victory-popup">
         <div class="popup-content victory-content">
-            <div class="popup-header"><h2>🏆 YOU DEFEATED SATAN! 🏆</h2></div>
+            <div class="popup-header"><h2>YOU DEFEATED SATAN!</h2></div>
             <p class="popup-sub victory-message">Against all odds, you survived Hell's casino!</p>
             <div class="popup-body"><p class="victory-stats" id="victory-stats"></p></div>
             <div class="popup-actions">
-                <button class="btn btn--primary" id="victory-restart-btn">🎰 Play Again?</button>
+                <button class="btn btn--primary" id="victory-restart-btn">Play Again?</button>
             </div>
         </div>
     </div>
@@ -746,15 +746,15 @@
     </div><!-- End game-scale-wrapper -->
 
     <!-- Modular JavaScript -->
-    <script src="js/config.js?v=28"></script>
+    <script src="js/config.js?v=29"></script>
     <script src="js/map.js?v=1"></script>
     <script src="js/sprites.js?v=2"></script>
-    <script src="js/audio.js?v=22"></script>
-    <script src="js/ui.js?v=29"></script>
+    <script src="js/audio.js?v=23"></script>
+    <script src="js/ui.js?v=30"></script>
     <script src="js/animations.js?v=2"></script>
-    <script src="js/game.js?v=58"></script>
+    <script src="js/game.js?v=59"></script>
     <script src="js/game/hud.js?v=4"></script>
-    <script src="js/roguelike.js?v=6"></script>
+    <script src="js/roguelike.js?v=7"></script>
     <script src="js/main.js?v=24"></script>
 </body>
 </html>

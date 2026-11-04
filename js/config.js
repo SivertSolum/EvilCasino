@@ -18,7 +18,8 @@ const VERSION = {
                 'Compact card tracker with remaining counts per rank',
                 'History trimmed to the last 5 hands',
                 'Pause menu: restart and quit now ask first',
-                'Bigger dealer, smaller you. As it should be.'
+                'Bigger dealer, smaller you. As it should be.',
+                'Fewer decorative emoji: icons now mean something (perks, rooms, bosses)'
             ]
         },
         {
@@ -440,9 +441,9 @@ const EVENTS = [
         icon: '🕴️',
         desc: 'A cloaked figure approaches with a proposition...',
         choices: [
-            { text: '💰 Pay $100 for a secret', cost: 100, reward: { type: 'relic', value: 'random' } },
-            { text: '🚶 Walk away', cost: 0, reward: null },
-            { text: '🤝 Trade a perk', cost: 'perk', reward: { type: 'relic', value: 'random' } }
+            { text: 'Pay $100 for a secret', cost: 100, reward: { type: 'relic', value: 'random' } },
+            { text: 'Walk away', cost: 0, reward: null },
+            { text: 'Trade a perk', cost: 'perk', reward: { type: 'relic', value: 'random' } }
         ]
     },
     {
@@ -451,9 +452,9 @@ const EVENTS = [
         icon: '😈',
         desc: 'The devil offers you power... at a price.',
         choices: [
-            { text: '🩸 Take curse, gain rare perk', cost: 'curse', reward: { type: 'perk', value: 'rare' } },
-            { text: '💎 Take curse, gain $500', cost: 'curse', reward: { type: 'money', value: 500 } },
-            { text: '❌ Decline', cost: 0, reward: null }
+            { text: 'Take curse, gain rare perk', cost: 'curse', reward: { type: 'perk', value: 'rare' } },
+            { text: 'Take curse, gain $500', cost: 'curse', reward: { type: 'money', value: 500 } },
+            { text: 'Decline', cost: 0, reward: null }
         ]
     },
     {
@@ -462,9 +463,9 @@ const EVENTS = [
         icon: '👛',
         desc: 'You find a wallet on the ground!',
         choices: [
-            { text: '🤑 Take the money ($50-200)', cost: 0, reward: { type: 'money', value: 'random', min: 50, max: 200 } },
-            { text: '😇 Return it (karma)', cost: 0, reward: { type: 'removeCurse', value: 'random' } },
-            { text: '🔍 Search for owner', cost: 0, reward: { type: 'event', value: 'random' } }
+            { text: 'Take the money ($50-200)', cost: 0, reward: { type: 'money', value: 'random', min: 50, max: 200 } },
+            { text: 'Return it (karma)', cost: 0, reward: { type: 'removeCurse', value: 'random' } },
+            { text: 'Search for owner', cost: 0, reward: { type: 'event', value: 'random' } }
         ]
     },
     {
@@ -473,9 +474,9 @@ const EVENTS = [
         icon: '🃏',
         desc: '"Pick a card, any card! Win big or lose big!"',
         choices: [
-            { text: '🎴 High Card ($100 bet)', cost: 100, reward: { type: 'gamble', value: 'highCard' } },
-            { text: '🎴 Suit Match ($50 bet)', cost: 50, reward: { type: 'gamble', value: 'suitMatch' } },
-            { text: '🚫 No thanks', cost: 0, reward: null }
+            { text: 'High Card ($100 bet)', cost: 100, reward: { type: 'gamble', value: 'highCard' } },
+            { text: 'Suit Match ($50 bet)', cost: 50, reward: { type: 'gamble', value: 'suitMatch' } },
+            { text: 'No thanks', cost: 0, reward: null }
         ]
     },
     {
@@ -484,9 +485,9 @@ const EVENTS = [
         icon: '📦',
         desc: 'An ominous chest beckons you...',
         choices: [
-            { text: '🔓 Open it (risky)', cost: 0, reward: { type: 'cursedChest', value: true } },
-            { text: '🔥 Burn it', cost: 0, reward: { type: 'money', value: 25 } },
-            { text: '🚪 Leave it', cost: 0, reward: null }
+            { text: 'Open it (risky)', cost: 0, reward: { type: 'cursedChest', value: true } },
+            { text: 'Burn it', cost: 0, reward: { type: 'money', value: 25 } },
+            { text: 'Leave it', cost: 0, reward: null }
         ]
     },
     {
@@ -495,9 +496,9 @@ const EVENTS = [
         icon: '🔮',
         desc: '"I see your future... for a small fee."',
         choices: [
-            { text: '💵 Pay $75 - See boss ability', cost: 75, reward: { type: 'bossReveal', value: true } },
-            { text: '💵 Pay $50 - See next 3 cards', cost: 50, reward: { type: 'peekDeck', value: 3 } },
-            { text: '🙅 Pass', cost: 0, reward: null }
+            { text: 'Pay $75 - See boss ability', cost: 75, reward: { type: 'bossReveal', value: true } },
+            { text: 'Pay $50 - See next 3 cards', cost: 50, reward: { type: 'peekDeck', value: 3 } },
+            { text: 'Pass', cost: 0, reward: null }
         ]
     },
     {
@@ -506,9 +507,9 @@ const EVENTS = [
         icon: '🕳️',
         desc: 'Shady dealers offer forbidden wares...',
         choices: [
-            { text: '🗡️ Buy cursed relic ($0)', cost: 0, reward: { type: 'cursedRelic', value: true } },
-            { text: '💀 Sell health for relic', cost: 'health', costValue: 200, reward: { type: 'relic', value: 'random' } },
-            { text: '🚶 Leave', cost: 0, reward: null }
+            { text: 'Buy cursed relic ($0)', cost: 0, reward: { type: 'cursedRelic', value: true } },
+            { text: 'Sell health for relic', cost: 'health', costValue: 200, reward: { type: 'relic', value: 'random' } },
+            { text: 'Leave', cost: 0, reward: null }
         ]
     },
     {
@@ -517,9 +518,9 @@ const EVENTS = [
         icon: '⛩️',
         desc: 'A holy place untouched by the casino\'s corruption.',
         choices: [
-            { text: '🙏 Pray (remove curse)', cost: 0, reward: { type: 'removeCurse', value: 'random' } },
-            { text: '💝 Donate $100', cost: 100, reward: { type: 'blessing', value: true } },
-            { text: '😤 Defile it (gain $200, gain curse)', cost: 'curse', reward: { type: 'money', value: 200 } }
+            { text: 'Pray (remove curse)', cost: 0, reward: { type: 'removeCurse', value: 'random' } },
+            { text: 'Donate $100', cost: 100, reward: { type: 'blessing', value: true } },
+            { text: 'Defile it (gain $200, gain curse)', cost: 'curse', reward: { type: 'money', value: 200 } }
         ]
     },
     {
@@ -528,9 +529,9 @@ const EVENTS = [
         icon: '🍺',
         desc: '"*hic* I\'ll bet you anything!"',
         choices: [
-            { text: '🃏 Play him for $150', cost: 150, reward: { type: 'gamble', value: 'easyWin' } },
-            { text: '🤝 Help him home', cost: 0, reward: { type: 'perk', value: 'common' } },
-            { text: '👋 Ignore', cost: 0, reward: null }
+            { text: 'Play him for $150', cost: 150, reward: { type: 'gamble', value: 'easyWin' } },
+            { text: 'Help him home', cost: 0, reward: { type: 'perk', value: 'common' } },
+            { text: 'Ignore', cost: 0, reward: null }
         ]
     },
     {
@@ -539,8 +540,8 @@ const EVENTS = [
         icon: '📺',
         desc: 'The casino announces a special event!',
         choices: [
-            { text: '🎉 Join the tournament', cost: 0, reward: { type: 'tournament', value: true } },
-            { text: '📺 Just watch', cost: 0, reward: { type: 'money', value: 50 } }
+            { text: 'Join the tournament', cost: 0, reward: { type: 'tournament', value: true } },
+            { text: 'Just watch', cost: 0, reward: { type: 'money', value: 50 } }
         ]
     }
 ];

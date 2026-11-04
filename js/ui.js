@@ -92,11 +92,6 @@ function startGame() {
     // Try to start music on user interaction
     if (bgMusic && musicEnabled) {
         bgMusic.play().catch(e => console.log('Music autoplay blocked:', e));
-        const btn = document.getElementById('music-toggle');
-        if (btn) {
-            btn.textContent = '🔊';
-            btn.classList.add('playing');
-        }
     }
     
     if (!window.game) {
