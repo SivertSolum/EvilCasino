@@ -43,3 +43,15 @@ After animation changes, verify in browser:
 9. Split hands spread apart; active hand highlighted
 10. Card Counter bust % pulses on threshold cross
 11. `prefers-reduced-motion` — game still playable with animations skipped
+
+### HUD smoke checklist
+
+After UI/HUD changes (see `docs/UI_OVERHAUL_PLAN.md`):
+
+1. Status bar: floor, contract meter (pips / bar), money, bet, perk icons + tooltips
+2. Boss / elite rule banner appears on fight start and clears after
+3. Shop: rarity borders, passive vs uses pill, "too poor" stamp when broke
+4. Map: room colors, legend, contract box, ⚠ badge on boss while contract open
+5. Card tracker: compact counts update after each hand; FULL GRID toggle
+6. History: last 5 pips with score on hover
+7. ☰ MENU → resume / options / restart (confirm) / quit (confirm); ⚙ opens options in-game

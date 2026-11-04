@@ -523,7 +523,7 @@ Object.assign(EvilCasino.prototype, {
             this.upgradeOptionsEl.appendChild(card);
         });
         const skip = document.createElement('button');
-        skip.className = 'menu-btn';
+        skip.className = 'btn btn--secondary';
         skip.textContent = 'Skip Reward';
         skip.style.marginTop = '12px';
         skip.addEventListener('click', () => {

@@ -404,13 +404,15 @@ class EvilCasino {
             }
         });
         this.pendingPlayedCards = [];
+        if (typeof this.renderTrackerCompact === 'function') this.renderTrackerCompact();
     }
-    
+
     resetCardTracker() {
         document.querySelectorAll('.tracker-card').forEach(card => {
             card.classList.remove('played');
         });
         this.pendingPlayedCards = [];
+        if (typeof this.renderTrackerCompact === 'function') this.renderTrackerCompact();
     }
 
     // === CARD LOGIC ===
@@ -2996,23 +2998,8 @@ class EvilCasino {
         this.renderHistoryList();
     }
     
-    renderHistoryList() {
-        let html = '';
-        
-        for (let i = 0; i < this.roundHistory.length; i++) {
-            const h = this.roundHistory[i];
-            const roundNum = this.roundHistory.length - i;
-            html += `<span class="history-item ${h.result}">#${roundNum.toString().padStart(2, '0')} ${h.symbol}: ${h.player} vs ${h.dealer}</span>`;
-        }
-        
-        for (let i = this.roundHistory.length; i < 20; i++) {
-            const slotNum = 20 - i;
-            html += `<span class="history-item placeholder">#${slotNum.toString().padStart(2, '0')} --------</span>`;
-        }
-        
-        this.historyListEl.innerHTML = html;
-    }
-    
+    // renderHistoryList lives in js/game/hud.js
+
     clearScoreboard() {
         this.scoreboardPlayerEl.textContent = '--';
         this.scoreboardDealerEl.textContent = '--';

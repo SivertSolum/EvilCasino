@@ -67,7 +67,8 @@ Evil Casino/
         ├── deck.js         # Deck, draw, scores, card tracker UI
         ├── betting.js      # Min bet, place bet, same bet
         ├── perks.js        # Perks / relics / curses helpers
-        └── sidebets.js     # Perfect Pairs, 21+3, milestones
+        ├── sidebets.js     # Perfect Pairs, 21+3, milestones
+        └── hud.js          # LIVE: status bar, contract meter, perk badges, rule banner, shop cards, tracker, history
 ```
 
 **Architecture:**
@@ -87,7 +88,7 @@ flowchart LR
 
 | Module | Role |
 |--------|------|
-| `CONFIG`, `CONTRACTS`, `PERKS`, `BOSSES`, `EVENTS`, `MESSAGES`, … | Data tables in `config.js` (`VERSION.number` is `2.0.0`) |
+| `CONFIG`, `CONTRACTS`, `PERKS`, `BOSSES`, `EVENTS`, `MESSAGES`, … | Data tables in `config.js` (`VERSION.number` is `2.1.0`) |
 | `FloorMap` | STS-lite branching floor generation (`map.js`) |
 | `DealerSprites` | HTML builders for House Dealer + anomaly bosses (`sprites.js`) |
 | `EvilCasino` | Live class in `game.js`; extend via `js/game/*.js` only after wiring them |
@@ -128,7 +129,7 @@ No automated tests. Manual smoke checklist after relevant changes:
 5. One non-combat room (shop / event / rest / treasure / gamble)
 6. One boss special rule if boss logic changed
 7. Music / SFX toggles and volume
-8. Broke / game-over flow
+8. Broke / game-over flow, pause menu (restart / quit confirm)
 
 **After making changes:**
 

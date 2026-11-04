@@ -3,7 +3,7 @@
 Reference: [5 UI mistakes I made and the principles that fixed them](https://www.covyne.com/news/5-ui-mistakes-i-made-and-the-principles-that-fixed-them)
 (hierarchy · short is sweet · first glance · recognition over decoration · consistency).
 
-Seven phases, each shippable and testable on its own. **No balance numbers change in any phase.**
+Eight phases (0–7), each shippable and testable on its own. **No balance numbers change in any phase.**
 
 ## Ground rules (all phases)
 
@@ -84,6 +84,20 @@ Seven phases, each shippable and testable on its own. **No balance numbers chang
 - Update `AGENTS.md` load order / module table.
 - Retake `screenshots/`, update `README.md` if it describes the old HUD.
 
+## Phase 7 — Emoji audit (analysis first, then trim)
+
+Goal: emoji only where it **carries meaning the text doesn't** (recognition, not decoration).
+
+1. **Inventory** every emoji in `index.html`, `config.js` copy and JS-built strings (`showMessage`, popup titles, button labels). Tag each one:
+   - **Keep: identifier.** The icon *is* the thing's identity and is used for recognition elsewhere (perk icons, room icons on map + legend, boss icons, contract icons, chip/suit glyphs).
+   - **Keep: state signal.** Encodes status at a glance (⚠ contract risk, ✓ done, rule-banner icon).
+   - **Cut: label decoration.** Sits next to a word that already says it (`🎲 START GAME`, `⚙️ OPTIONS`, `❓ HOW TO PLAY`, `📜 Changelog`, `← BACK` arrows are fine, `✖ LEAVE SHOP`, `⚔️ FIGHT ⚔️`, `🎰 Play Again?`, section headings like `🎭 Perks:` / `🛒 PERK SHOP`).
+   - **Cut: message noise.** Leading emoji in `showMessage` strings that don't map to a recognized identifier.
+2. **Rules of thumb:** at most one emoji per control; never on both sides of a label; menu/system buttons (start, options, back, close, restart) get none; if an emoji appears in a tooltip/legend as the identifier for X, keep it consistent everywhere X appears.
+3. **Output:** a table (location → emoji → keep/cut → reason) appended here, reviewed before any removal, then a single trim pass + `?v=` bumps.
+
+**Verify:** menus, popups and messages still read clearly; identifiers (perks, rooms, bosses) unchanged.
+
 ---
 
 ## Smoke checklist (after every phase)
@@ -123,6 +137,19 @@ Seven phases, each shippable and testable on its own. **No balance numbers chang
   - Icons: Lucky 7s 🍀→7️⃣, Lucky Charm 🍀→🧿, Insurance Fraud 💰→🧾. `MESSAGES.tooPoor` stamps.
   - Map: per-room colors on every node, legend, contract goal + shared meter, ⚠ badge on boss while contract is open.
   - Boss intro: rule box first, flavor second, warning as its own line.
-- [ ] Phase 4 — Decoration diet
-- [ ] Phase 5 — Consistency
-- [ ] Phase 6 — Wrap-up
+- [x] Phase 4 — Decoration diet
+  - Tracker: compact per-rank pips + 10-value / total summary (default), FULL GRID toggle. Fixed latent bug: red-suit CSS used `nth-child` offset by the `<h3>`, coloring ♠/♥ red and ♦ black.
+  - History: last 5 pips + "LAST: x vs y"; `renderHistoryList` moved to `hud.js`.
+  - Pause menu (`☰ MENU`) with confirm for restart/quit; logic in `ui.js`, copy in `MESSAGES.pauseConfirm`.
+  - Audio: in-game toggle + slider replaced by ⚙ that opens the shared Options overlay.
+  - Dealer sprite 2× on the table (left-aligned, not centered — the rule banner owns the right side); player header shrunk.
+  - Not done: reclaiming the left column width for the table (tracker still occupies it, just quieter).
+- [x] Phase 5 — Consistency
+  - All popups on `.popup-header / .popup-sub / .popup-body / .popup-actions`, one `.btn--primary` each.
+  - Deleted legacy button CSS (`post-round-btn`, `restart-btn`, `boss-fight-btn`, `shop-close-btn`, `menu-btn-small`, `reset-btn`, `shop-btn*`, `shop-info`) and dead audio-slider CSS.
+  - Merged duplicate rules: `.event-content`, `.event-header`, `.event-icon`, `.event-content h2`, `.event-choices`, `.boss-portrait`, `.table.elite-mode`, `.action-btn` (kept values that actually rendered).
+  - Main menu / options / how-to / changelog keep `.menu-btn` (separate screen family). Remaining duplicate selectors: `.split-hand`, `.rebet-*`, `.side-bets-total` (legacy, not touched).
+- [x] Phase 6 — Wrap-up
+  - `VERSION` 2.1.0 + changelog entry; `?v=` bumps; AGENTS.md + BUILD_AND_TEST.md (HUD checklist).
+  - **Open:** retake `screenshots/` (needs a browser session).
+- [ ] Phase 7 — Emoji audit

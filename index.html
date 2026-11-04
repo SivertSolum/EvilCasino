@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVIL CASINO - The World's Most Fair Casino™</title>
-    <link rel="stylesheet" href="style.css?v=52">
+    <link rel="stylesheet" href="style.css?v=53">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -30,13 +30,17 @@
     
     <!-- Top Left Buttons -->
     <div class="top-left-buttons hidden" id="top-left-buttons">
-        <button class="reset-btn" id="reset-btn" title="Restart Game">RESET</button>
-        <button class="menu-btn-small" id="menu-btn" title="Back to Menu">MENU</button>
+        <!-- Run-ending actions live in the pause menu, behind a confirm -->
+        <button class="btn btn--secondary btn--sm" id="pause-btn" title="Pause menu">&#9776; MENU</button>
     </div>
     
     <!-- Card Tracker (Left Side) -->
     <div class="card-tracker hidden" id="card-tracker">
         <h3>🃏 CARDS</h3>
+        <button class="tracker-toggle" id="tracker-toggle" type="button">FULL GRID</button>
+        <!-- Compact: remaining count per rank (what counting actually needs) -->
+        <div class="tracker-compact" id="tracker-compact"></div>
+        <div class="tracker-full hidden" id="tracker-full">
         <div class="suit-section">
             <div class="suit-header spades">♠</div>
             <div class="suit-cards" id="spades-cards">
@@ -109,6 +113,7 @@
                 <span class="tracker-card" data-card="K♣">K</span>
             </div>
         </div>
+        </div><!-- /tracker-full -->
     </div>
     
     <!-- Main Menu -->
@@ -231,10 +236,8 @@
     
     <!-- Music Controls (in-game) -->
     <div class="music-controls hidden" id="music-controls">
-        <button class="music-btn" id="music-toggle" title="Toggle Music">🔇</button>
-        <div class="volume-slider-container" id="volume-container">
-            <input type="range" class="volume-slider-small" id="volume-slider-game" min="0" max="100" value="30">
-        </div>
+        <!-- Opens the shared Options overlay (music, volume, SFX) -->
+        <button class="music-btn" id="settings-btn" title="Audio settings">&#9881;</button>
     </div>
     
     <div class="game-container hidden" id="game-container">
@@ -541,7 +544,7 @@
             </div>
         </div>
         <div class="scoreboard-history">
-            <span class="history-label">History:</span>
+            <span class="history-label">LAST 5</span>
             <div class="history-list" id="history-list">-</div>
         </div>
     </div>
@@ -549,31 +552,34 @@
     <!-- Upgrade Selection Popup -->
     <div class="popup hidden" id="upgrade-popup">
         <div class="popup-content upgrade-content">
-            <h2>🎁 CHOOSE YOUR PERK 🎁</h2>
-            <p class="upgrade-subtitle">You survived! Pick a reward:</p>
-            <div class="upgrade-options" id="upgrade-options"></div>
+            <div class="popup-header"><h2>🎁 CHOOSE YOUR PERK 🎁</h2></div>
+            <p class="popup-sub upgrade-subtitle">You survived! Pick a reward:</p>
+            <div class="popup-body upgrade-options" id="upgrade-options"></div>
         </div>
     </div>
 
     <!-- Pre-Round Shop Popup -->
     <div class="popup hidden" id="pre-round-shop-popup">
         <div class="popup-content pre-round-shop-content">
-            <h2>🛒 PERK SHOP</h2>
-            <p class="shop-money">Your money: <span class="gold" id="pre-round-shop-money">$1000</span></p>
-            <p class="shop-info">Purchase power-ups to help your run!</p>
-            <div class="pre-round-shop-items" id="pre-round-shop-items"></div>
-            <div class="shop-active-perks">
-                <h3>Active Perks:</h3>
-                <div id="shop-active-perks-list">None yet...</div>
+            <div class="popup-header"><h2>🛒 PERK SHOP</h2></div>
+            <p class="popup-sub shop-money">Your money: <span class="gold" id="pre-round-shop-money">$1000</span></p>
+            <div class="popup-body">
+                <div class="pre-round-shop-items" id="pre-round-shop-items"></div>
+                <div class="shop-active-perks">
+                    <h3>OWNED</h3>
+                    <div id="shop-active-perks-list">None yet...</div>
+                </div>
             </div>
-            <button class="shop-close-btn menu-btn" id="pre-round-shop-close">✖ LEAVE SHOP</button>
+            <div class="popup-actions">
+                <button class="btn btn--primary btn--wide" id="pre-round-shop-close">LEAVE SHOP</button>
+            </div>
         </div>
     </div>
 
     <!-- Floor Map Overlay -->
     <div class="popup hidden" id="floor-map">
         <div class="popup-content floor-map-content">
-            <h2 id="floor-map-title">FLOOR 1 MAP</h2>
+            <div class="popup-header"><h2 id="floor-map-title">FLOOR 1 MAP</h2></div>
             <div class="map-contract" id="floor-map-contract-box">
                 <p class="floor-map-contract" id="floor-map-contract">Contract</p>
                 <div class="contract-progress" id="floor-map-contract-progress"></div>
@@ -585,7 +591,9 @@
                 <p class="map-side-table-msg" id="map-side-table-msg">
                     Path ended before the contract was done. Play a side table to finish it — or go broke trying.
                 </p>
-                <button class="menu-btn map-side-table-btn" id="map-side-table-btn">🃏 SIDE TABLE</button>
+                <div class="popup-actions">
+                    <button class="btn btn--primary map-side-table-btn" id="map-side-table-btn">🃏 SIDE TABLE</button>
+                </div>
             </div>
         </div>
     </div>
@@ -593,36 +601,38 @@
     <!-- Rest Site -->
     <div class="popup hidden" id="rest-popup">
         <div class="popup-content event-content">
-            <h2>😴 REST SITE</h2>
-            <p>Catch your breath before the next disaster.</p>
-            <div class="event-choices" id="rest-options"></div>
+            <div class="popup-header"><h2>😴 REST SITE</h2></div>
+            <p class="popup-sub">Catch your breath before the next disaster.</p>
+            <div class="popup-body event-choices" id="rest-options"></div>
         </div>
     </div>
 
     <!-- Treasure -->
     <div class="popup hidden" id="treasure-popup">
         <div class="popup-content event-content">
-            <h2>💎 TREASURE</h2>
-            <p id="treasure-result">Opening chest...</p>
-            <button class="menu-btn" id="treasure-continue-btn">CONTINUE</button>
+            <div class="popup-header"><h2>💎 TREASURE</h2></div>
+            <p class="popup-sub" id="treasure-result">Opening chest...</p>
+            <div class="popup-actions">
+                <button class="btn btn--primary" id="treasure-continue-btn">CONTINUE</button>
+            </div>
         </div>
     </div>
 
     <!-- Gamble Room -->
     <div class="popup hidden" id="gamble-popup">
         <div class="popup-content event-content">
-            <h2>🎰 GAMBLE ROOM</h2>
-            <p>High risk. Questionable reward.</p>
-            <div class="event-choices" id="gamble-options"></div>
+            <div class="popup-header"><h2>🎰 GAMBLE ROOM</h2></div>
+            <p class="popup-sub">High risk. Questionable reward.</p>
+            <div class="popup-body event-choices" id="gamble-options"></div>
         </div>
     </div>
 
     <!-- Bookie Declare -->
     <div class="popup hidden" id="declare-popup">
         <div class="popup-content event-content">
-            <h2>📒 THE BOOKIE</h2>
-            <p>Declare HIT or STAND before the deal.</p>
-            <div class="event-choices">
+            <div class="popup-header"><h2>📒 THE BOOKIE</h2></div>
+            <p class="popup-sub">Declare HIT or STAND before the deal.</p>
+            <div class="popup-body event-choices">
                 <button class="event-choice-btn" id="declare-hit-btn">👊 LOCK IN HIT</button>
                 <button class="event-choice-btn" id="declare-stand-btn">🛑 LOCK IN STAND</button>
             </div>
@@ -633,7 +643,7 @@
     <div class="popup hidden" id="boss-popup">
         <div class="popup-content boss-content">
             <div class="boss-portrait" id="boss-portrait"></div>
-            <h2 id="boss-name">BOSS FIGHT</h2>
+            <div class="popup-header"><h2 id="boss-name">BOSS FIGHT</h2></div>
             <!-- Rule first and loudest; flavor second -->
             <div class="boss-rule">
                 <span class="boss-rule-tag">BOSS RULE</span>
@@ -641,20 +651,43 @@
             </div>
             <p class="boss-description" id="boss-description"></p>
             <p class="boss-warning hidden" id="boss-warning">⚠ Contract incomplete. Beat them anyway and you still forfeit.</p>
-            <button class="boss-fight-btn" id="boss-fight-btn">⚔️ FIGHT ⚔️</button>
+            <div class="popup-actions">
+                <button class="btn btn--primary btn--pulse" id="boss-fight-btn">⚔️ FIGHT ⚔️</button>
+            </div>
         </div>
     </div>
 
     <!-- Event Popup -->
     <div class="popup hidden" id="event-popup">
         <div class="popup-content event-content">
-            <div class="event-header">
+            <div class="popup-header event-header">
                 <span class="event-icon" id="event-icon">🕴️</span>
                 <h2 id="event-name">Event Name</h2>
             </div>
-            <p class="event-description" id="event-description">Event description goes here...</p>
-            <div class="event-choices" id="event-choices">
+            <p class="popup-sub event-description" id="event-description">Event description goes here...</p>
+            <div class="popup-body event-choices" id="event-choices">
                 <!-- Event choice buttons will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Pause Menu -->
+    <div class="popup hidden" id="pause-popup">
+        <div class="popup-content pause-content">
+            <div class="popup-header"><h2>TIME OUT</h2></div>
+            <p class="popup-sub">The house never sleeps. You can.</p>
+            <div class="popup-body pause-options" id="pause-options">
+                <button class="btn btn--primary" id="pause-resume-btn">RESUME</button>
+                <button class="btn btn--secondary" id="pause-options-btn">OPTIONS</button>
+                <button class="btn btn--danger" id="reset-btn">RESTART RUN</button>
+                <button class="btn btn--danger" id="menu-btn">QUIT TO MENU</button>
+            </div>
+            <div class="pause-confirm hidden" id="pause-confirm">
+                <p class="pause-confirm-msg" id="pause-confirm-msg">Are you sure?</p>
+                <div class="popup-actions">
+                    <button class="btn btn--danger" id="pause-confirm-yes">YES, DO IT</button>
+                    <button class="btn btn--secondary" id="pause-confirm-no">NEVER MIND</button>
+                </div>
             </div>
         </div>
     </div>
@@ -662,29 +695,33 @@
     <!-- Victory Popup -->
     <div class="popup hidden" id="victory-popup">
         <div class="popup-content victory-content">
-            <h2>🏆 YOU DEFEATED SATAN! 🏆</h2>
-            <p class="victory-message">Against all odds, you survived Hell's casino!</p>
-            <p class="victory-stats" id="victory-stats"></p>
-            <button class="restart-btn" id="victory-restart-btn">🎰 Play Again?</button>
+            <div class="popup-header"><h2>🏆 YOU DEFEATED SATAN! 🏆</h2></div>
+            <p class="popup-sub victory-message">Against all odds, you survived Hell's casino!</p>
+            <div class="popup-body"><p class="victory-stats" id="victory-stats"></p></div>
+            <div class="popup-actions">
+                <button class="btn btn--primary" id="victory-restart-btn">🎰 Play Again?</button>
+            </div>
         </div>
     </div>
 
     <div class="popup hidden" id="broke-popup">
         <div class="popup-content">
-            <h2>YOU'RE BROKE</h2>
-            <p class="broke-message" id="broke-message"></p>
-            <button class="restart-btn" id="restart-btn">Try Again (Why Though?)</button>
+            <div class="popup-header"><h2>YOU'RE BROKE</h2></div>
+            <p class="popup-sub broke-message" id="broke-message"></p>
+            <div class="popup-actions">
+                <button class="btn btn--primary" id="restart-btn">Try Again (Why Though?)</button>
+            </div>
         </div>
     </div>
     
     <!-- Post-Round Choice Popup -->
     <div class="popup hidden" id="post-round-popup">
         <div class="popup-content post-round-content">
-            <h2>ROUND COMPLETE</h2>
-            <p class="post-round-stats" id="post-round-stats"></p>
-            <div class="post-round-buttons">
-                <button class="post-round-btn shop-btn" id="go-to-shop-btn">GO TO SHOP</button>
-                <button class="post-round-btn skip-btn" id="skip-shop-btn">CONTINUE</button>
+            <div class="popup-header"><h2>ROUND COMPLETE</h2></div>
+            <p class="popup-sub post-round-stats" id="post-round-stats"></p>
+            <div class="popup-actions">
+                <button class="btn btn--primary" id="skip-shop-btn">CONTINUE</button>
+                <button class="btn btn--secondary" id="go-to-shop-btn">GO TO SHOP</button>
             </div>
         </div>
     </div>
@@ -692,31 +729,33 @@
     <!-- Floor Complete Popup -->
     <div class="popup hidden" id="floor-complete-popup">
         <div class="popup-content floor-complete-content">
-            <h2 id="floor-complete-title">FLOOR COMPLETE</h2>
-            <p class="floor-complete-msg" id="floor-complete-msg"></p>
-            <div class="dealer-perk-reveal" id="dealer-perk-reveal">
+            <div class="popup-header"><h2 id="floor-complete-title">FLOOR COMPLETE</h2></div>
+            <p class="popup-sub floor-complete-msg" id="floor-complete-msg"></p>
+            <div class="popup-body dealer-perk-reveal" id="dealer-perk-reveal">
                 <h3>DEALER GAINS NEW POWER</h3>
                 <div class="dealer-perk-icon" id="dealer-perk-icon"></div>
                 <div class="dealer-perk-name" id="dealer-perk-name"></div>
                 <div class="dealer-perk-desc" id="dealer-perk-desc"></div>
             </div>
-            <button class="post-round-btn" id="next-floor-btn">ASCEND TO NEXT FLOOR</button>
+            <div class="popup-actions">
+                <button class="btn btn--primary" id="next-floor-btn">ASCEND TO NEXT FLOOR</button>
+            </div>
         </div>
     </div>
     
     </div><!-- End game-scale-wrapper -->
 
     <!-- Modular JavaScript -->
-    <script src="js/config.js?v=27"></script>
+    <script src="js/config.js?v=28"></script>
     <script src="js/map.js?v=1"></script>
     <script src="js/sprites.js?v=2"></script>
     <script src="js/audio.js?v=22"></script>
-    <script src="js/ui.js?v=28"></script>
+    <script src="js/ui.js?v=29"></script>
     <script src="js/animations.js?v=2"></script>
-    <script src="js/game.js?v=57"></script>
-    <script src="js/game/hud.js?v=3"></script>
-    <script src="js/roguelike.js?v=5"></script>
-    <script src="js/main.js?v=23"></script>
+    <script src="js/game.js?v=58"></script>
+    <script src="js/game/hud.js?v=4"></script>
+    <script src="js/roguelike.js?v=6"></script>
+    <script src="js/main.js?v=24"></script>
 </body>
 </html>
 

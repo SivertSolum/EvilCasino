@@ -67,33 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // In-game music controls
-    const musicToggle = document.getElementById('music-toggle');
-    const volumeSliderGame = document.getElementById('volume-slider-game');
-    
-    if (musicToggle) {
-        musicToggle.addEventListener('click', toggleMusic);
-    }
-    
-    if (volumeSliderGame) {
-        volumeSliderGame.addEventListener('input', (e) => setVolume(e.target.value));
-    }
-    
-    // Reset button
-    const resetBtn = document.getElementById('reset-btn');
-    if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-            if (window.game) {
-                window.game.restart();
-            }
-        });
-    }
-    
-    // Menu button
-    const menuBtn = document.getElementById('menu-btn');
-    if (menuBtn) {
-        menuBtn.addEventListener('click', backToMenu);
-    }
+    // In-game settings cog → shared Options overlay
+    const settingsBtn = document.getElementById('settings-btn');
+    if (settingsBtn) settingsBtn.addEventListener('click', showOptions);
+
+    // Pause menu
+    const on = (id, fn) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', fn);
+    };
+    on('pause-btn', showPauseMenu);
+    on('pause-resume-btn', hidePauseMenu);
+    on('pause-options-btn', showOptions);
+    on('reset-btn', () => askPauseConfirm('restart'));
+    on('menu-btn', () => askPauseConfirm('quit'));
+    on('pause-confirm-yes', confirmPauseAction);
+    on('pause-confirm-no', cancelPauseConfirm);
     
     console.log('%c🎰 EVIL CASINO LOADED 🎰', 'font-size: 24px; color: gold; background: purple;');
     console.log('%cNow with MORE ways to lose!', 'font-size: 12px; color: red;');

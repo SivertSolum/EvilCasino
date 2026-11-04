@@ -31,6 +31,45 @@ function backToMenu() {
     showMainMenu();
 }
 
+// === PAUSE MENU (restart / quit sit behind a confirm) ===
+let pendingPauseAction = null;
+
+function showPauseMenu() {
+    cancelPauseConfirm();
+    const popup = document.getElementById('pause-popup');
+    if (typeof GameAnimations !== 'undefined') GameAnimations.openPopup(popup);
+    else popup.classList.remove('hidden');
+}
+
+function hidePauseMenu() {
+    const popup = document.getElementById('pause-popup');
+    if (typeof GameAnimations !== 'undefined') GameAnimations.closePopup(popup);
+    else popup.classList.add('hidden');
+}
+
+function askPauseConfirm(action) {
+    pendingPauseAction = action;
+    const msgs = (typeof MESSAGES !== 'undefined' && MESSAGES.pauseConfirm) || {};
+    document.getElementById('pause-confirm-msg').textContent = msgs[action] || 'Are you sure?';
+    document.getElementById('pause-options').classList.add('hidden');
+    document.getElementById('pause-confirm').classList.remove('hidden');
+}
+
+function cancelPauseConfirm() {
+    pendingPauseAction = null;
+    document.getElementById('pause-options').classList.remove('hidden');
+    document.getElementById('pause-confirm').classList.add('hidden');
+}
+
+function confirmPauseAction() {
+    const action = pendingPauseAction;
+    cancelPauseConfirm();
+    // Hide instantly: the next screen should not share a frame with the menu
+    document.getElementById('pause-popup').classList.add('hidden');
+    if (action === 'restart' && window.game) window.game.restart();
+    if (action === 'quit') backToMenu();
+}
+
 function showOptions() {
     document.getElementById('options-menu').classList.remove('hidden');
 }

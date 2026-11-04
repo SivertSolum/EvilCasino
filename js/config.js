@@ -3,9 +3,24 @@
 
 // Version and Changelog
 const VERSION = {
-    number: '2.0.0',
-    date: '2026-07-31',
+    number: '2.1.0',
+    date: '2026-11-04',
     changelog: [
+        {
+            version: '2.1.0',
+            date: '2026-11-04',
+            title: 'The Readable Damnation Update',
+            changes: [
+                'One status bar: floor, contract progress, money, bet and perks up top',
+                'Boss and elite rules pinned to the table, so you can\'t "forget" them',
+                'Shop shows rarity, and stamps what you can\'t afford. Which is most of it.',
+                'Map rooms are color-coded with a legend',
+                'Compact card tracker with remaining counts per rank',
+                'History trimmed to the last 5 hands',
+                'Pause menu: restart and quit now ask first',
+                'Bigger dealer, smaller you. As it should be.'
+            ]
+        },
         {
             version: '2.0.0',
             date: '2026-07-31',
@@ -593,6 +608,12 @@ const ACTION_QUIPS = {
 const MESSAGES = {
     // Stamp on shop items the player can't afford
     tooPoor: ['TOO POOR', 'NICE TRY', 'IN YOUR DREAMS', 'LOL NO'],
+
+    // Pause menu confirmations (run-ending actions)
+    pauseConfirm: {
+        restart: 'Restart the run? The House keeps your soul either way.',
+        quit: 'Quit to menu? Your run (and dignity) will not be saved.'
+    },
 
     broke: [
         "The house always wins, and by 'house' we mean MY house. Thanks for the mortgage payment!",

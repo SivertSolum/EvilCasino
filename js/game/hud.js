@@ -12,6 +12,80 @@ Object.assign(EvilCasino.prototype, {
         this.ruleBannerTextEl = document.getElementById('rule-banner-text');
         this.ruleBannerWarnEl = document.getElementById('rule-banner-warn');
         this.setupActionQuips();
+        this.setupTrackerToggle();
+        this.renderTrackerCompact();
+    },
+
+    // DOM outlives game instances (menu → new run), so bind listeners once per element
+    bindOnce(el, key) {
+        if (!el || el.dataset[key]) return false;
+        el.dataset[key] = '1';
+        return true;
+    },
+
+    // === HISTORY (last 5 as pips; score on hover) ===
+    renderHistoryList() {
+        if (!this.historyListEl) return;
+        const shown = 5;
+        const recent = (this.roundHistory || []).slice(0, shown);
+        let pips = '';
+        for (let i = 0; i < shown; i++) {
+            const h = recent[i];
+            pips += h
+                ? `<span class="history-pip ${h.result}" title="${h.player} vs ${h.dealer}">${h.symbol}</span>`
+                : `<span class="history-pip placeholder"></span>`;
+        }
+        const last = recent[0];
+        const lastLine = last
+            ? `<span class="history-last ${last.result}">LAST: ${last.player} vs ${last.dealer}</span>`
+            : `<span class="history-last placeholder">No hands yet</span>`;
+        this.historyListEl.innerHTML = `<div class="history-pips">${pips}</div>${lastLine}`;
+    },
+
+    // === CARD TRACKER (compact rank counts by default, full grid on demand) ===
+    setupTrackerToggle() {
+        const btn = document.getElementById('tracker-toggle');
+        if (!this.bindOnce(btn, 'hudBound')) return;
+        btn.addEventListener('click', () => {
+            const full = document.getElementById('tracker-full');
+            const compact = document.getElementById('tracker-compact');
+            const showFull = full.classList.contains('hidden');
+            full.classList.toggle('hidden', !showFull);
+            compact.classList.toggle('hidden', showFull);
+            btn.textContent = showFull ? 'COMPACT' : 'FULL GRID';
+        });
+    },
+
+    renderTrackerCompact() {
+        const el = document.getElementById('tracker-compact');
+        if (!el || typeof CONFIG === 'undefined') return;
+        const perRank = CONFIG.SUITS.length;
+        const tens = ['10', 'J', 'Q', 'K'];
+        let totalLeft = 0;
+        let tensLeft = 0;
+        let rows = '';
+        CONFIG.VALUES.forEach(value => {
+            const cards = document.querySelectorAll(`.tracker-card[data-card^="${value}"]`);
+            let left = 0;
+            cards.forEach(c => {
+                // data-card^="1" would also match "10", so compare the rank exactly
+                if (c.dataset.card.slice(0, -1) === value && !c.classList.contains('played')) left++;
+            });
+            totalLeft += left;
+            if (tens.includes(value)) tensLeft += left;
+            let pips = '';
+            for (let i = 0; i < perRank; i++) {
+                pips += `<span class="tracker-row-pip${i < left ? ' left' : ''}"></span>`;
+            }
+            const cls = `tracker-row${tens.includes(value) ? ' tens' : ''}${left === 0 ? ' empty' : ''}`;
+            rows += `<div class="${cls}"><span>${value}</span><span class="tracker-row-pips">${pips}</span><span class="tracker-row-count">${left}</span></div>`;
+        });
+        const totalCards = CONFIG.VALUES.length * perRank;
+        rows += `<div class="tracker-summary">`
+            + `<span>10-VALUE <b>${tensLeft}/${tens.length * perRank}</b></span>`
+            + `<span>LEFT <b>${totalLeft}/${totalCards}</b></span>`
+            + `</div>`;
+        el.innerHTML = rows;
     },
 
     // === ACTION QUIPS (sarcasm on hover / disabled, never in the button label) ===
@@ -19,7 +93,7 @@ Object.assign(EvilCasino.prototype, {
         if (typeof ACTION_QUIPS === 'undefined') return;
         document.querySelectorAll('.action-btn[data-action]').forEach(btn => {
             const quips = ACTION_QUIPS[btn.dataset.action];
-            if (!quips) return;
+            if (!quips || !this.bindOnce(btn, 'quipBound')) return;
             if (quips.off) btn.dataset.quipOff = quips.off;
             const pick = () => {
                 const pool = quips.hover || [];

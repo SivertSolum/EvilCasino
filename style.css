@@ -1863,6 +1863,7 @@ body {
     transition: all 0.1s;
     flex: 1;
     text-align: center;
+    position: relative;
 }
 
 .action-btn:hover {
@@ -1876,10 +1877,6 @@ body {
 }
 
 /* Quips (ACTION_QUIPS): hover tag above the button, caption when disabled */
-.action-btn {
-    position: relative;
-}
-
 .action-btn:hover:not(:disabled)[data-quip]::after {
     content: attr(data-quip);
     position: absolute;
@@ -2166,6 +2163,113 @@ body {
     color: #ff6666;
 }
 
+.btn--sm {
+    font-size: var(--fs-xs);
+    padding: 8px 12px;
+}
+
+.btn--wide {
+    width: 100%;
+}
+
+/* Attention pulse for the one action that starts a fight */
+.btn--pulse:not(:disabled) {
+    animation: btnPulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes btnPulse {
+    from { box-shadow: 3px 3px 0px #000, 0 0 6px rgba(51, 255, 51, 0.3); }
+    to { box-shadow: 3px 3px 0px #000, 0 0 18px rgba(51, 255, 51, 0.7); }
+}
+
+/* ===== POPUP SHELL: header → sub → body → actions (one primary) ===== */
+.popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.popup-content .popup-header h2 {
+    margin-bottom: 0;
+}
+
+.popup-sub {
+    font-size: var(--fs-sm);
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.popup-body {
+    margin-bottom: 16px;
+}
+
+.popup-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.popup-actions .btn {
+    min-width: 180px;
+}
+
+/* ===== PAUSE MENU ===== */
+.pause-content {
+    border-color: var(--purple);
+    box-shadow: 0 0 40px rgba(107, 45, 107, 0.6);
+    min-width: 380px;
+}
+
+.popup-content.pause-content h2 {
+    color: var(--gold);
+    animation: none;
+}
+
+.pause-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pause-options .btn {
+    width: 100%;
+}
+
+.pause-confirm-msg {
+    font-size: var(--fs-sm);
+    color: var(--warn);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+/* ===== DEALER PRESENCE: bigger dealer, smaller player tag ===== */
+.dealer-section .section-header {
+    padding: 8px 12px;
+    gap: 16px;
+}
+
+.dealer-section .dealer-title {
+    font-size: var(--fs-md);
+    line-height: 1.5;
+}
+
+.player-section .section-header {
+    padding: 2px 8px;
+    gap: 6px;
+    align-self: flex-start;
+}
+
+.player-section .section-header .loser-container {
+    width: 34px;
+    height: 34px;
+    transform: scale(0.95);
+}
+
 /* Perk Tooltip Popup */
 .perk-tooltip {
     position: fixed;
@@ -2276,40 +2380,6 @@ body {
     line-height: 1.6;
 }
 
-.post-round-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.post-round-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: var(--fs-sm);
-    padding: 12px 20px;
-    border: 3px solid;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 3px 3px 0px #000;
-}
-
-.post-round-btn:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0px #000;
-}
-
-.post-round-btn.shop-btn {
-    background: linear-gradient(180deg, #198754 0%, #0d5c36 100%);
-    border-color: #28a745;
-    color: #fff;
-}
-
-.post-round-btn.skip-btn {
-    background: linear-gradient(180deg, #6c757d 0%, #495057 100%);
-    border-color: #adb5bd;
-    color: #fff;
-}
-
 /* Floor Complete Popup */
 .floor-complete-content {
     border-color: #ff4444;
@@ -2370,21 +2440,6 @@ body {
     margin-bottom: 20px;
     line-height: 1.8;
     color: #ccc;
-}
-
-.restart-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: var(--fs-md);
-    padding: 14px 24px;
-    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dark) 100%);
-    color: var(--black);
-    border: 3px solid var(--white);
-    cursor: pointer;
-    box-shadow: 3px 3px 0px #000;
-}
-
-.restart-btn:hover {
-    transform: scale(1.05);
 }
 
 /* Upgrade Popup */
@@ -2460,7 +2515,11 @@ body {
 
 .boss-portrait {
     font-size: 4rem;
-    margin-bottom: 15px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
     animation: bossFloat 2s ease-in-out infinite;
 }
 
@@ -2515,62 +2574,40 @@ body {
     animation: subtitlePulse 1s ease-in-out infinite;
 }
 
-.boss-fight-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: var(--fs-md);
-    padding: 15px 30px;
-    background: linear-gradient(180deg, #cc0000 0%, #880000 100%);
-    color: var(--white);
-    border: 3px solid var(--gold);
-    cursor: pointer;
-    box-shadow: 4px 4px 0px #000;
-    animation: fightPulse 0.5s ease-in-out infinite alternate;
-}
-
 @keyframes fightPulse {
     from { transform: scale(1); }
     to { transform: scale(1.05); }
 }
 
-.boss-fight-btn:hover {
-    background: linear-gradient(180deg, #ff0000 0%, #aa0000 100%);
-}
-
-/* Event Popup */
+/* Event Popup (merged: was defined twice; values = what actually rendered) */
 .event-content {
-    border-color: #9933ff !important;
-    box-shadow: 0 0 60px rgba(153, 51, 255, 0.6) !important;
-    animation: eventGlow 2s ease-in-out infinite alternate;
-    max-width: 450px;
-}
-
-@keyframes eventGlow {
-    from { box-shadow: 0 0 40px rgba(153, 51, 255, 0.4); }
-    to { box-shadow: 0 0 70px rgba(153, 51, 255, 0.8); }
+    border-color: #6666ff !important;
+    box-shadow: 0 0 40px rgba(100, 100, 255, 0.5) !important;
+    max-width: 500px;
 }
 
 .event-header {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .event-icon {
-    font-size: 3.5rem;
-    animation: eventIconFloat 3s ease-in-out infinite;
+    font-size: 3rem;
+    animation: eventFloat 2s ease-in-out infinite;
     filter: drop-shadow(0 0 10px rgba(153, 51, 255, 0.8));
 }
 
-@keyframes eventIconFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-8px) scale(1.05); }
+@keyframes eventFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .event-content h2 {
-    color: #cc99ff !important;
-    font-size: var(--fs-md);
+    color: #8888ff !important;
+    font-size: var(--fs-lg);
     text-shadow: 0 0 10px #9933ff;
     margin: 0;
 }
@@ -3119,23 +3156,6 @@ body {
     transform: scale(1.1);
 }
 
-.music-btn.playing {
-    animation: musicPulse 1s ease-in-out infinite;
-    border-color: var(--green);
-}
-
-@keyframes musicPulse {
-    0%, 100% { box-shadow: 0 0 5px var(--green); }
-    50% { box-shadow: 0 0 15px var(--green), 0 0 25px var(--green); }
-}
-
-.volume-slider-container {
-    background: linear-gradient(180deg, #3a2a5a 0%, #1a0a3a 100%);
-    border: 2px solid var(--gold);
-    padding: 8px 12px;
-    border-radius: 4px;
-}
-
 .volume-slider {
     width: 80px;
     height: 6px;
@@ -3162,24 +3182,6 @@ body {
     border-radius: 50%;
     cursor: pointer;
     border: none;
-}
-
-.volume-slider-small {
-    width: 60px;
-    height: 5px;
-    appearance: none;
-    background: #1a0a2a;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.volume-slider-small::-webkit-slider-thumb {
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    background: var(--gold);
-    border-radius: 50%;
-    cursor: pointer;
 }
 
 /* Menu Back Button */
@@ -3221,77 +3223,8 @@ body {
 }
 
 /* Reset Button */
-.reset-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: var(--fs-xs);
-    padding: 8px 12px;
-    background: linear-gradient(180deg, #8b0000 0%, #4a0000 100%);
-    color: var(--gold);
-    border: 3px solid var(--gold);
-    cursor: pointer;
-    box-shadow: 3px 3px 0px #000;
-    transition: all 0.2s ease;
-}
-
-.reset-btn:hover {
-    background: linear-gradient(180deg, #aa0000 0%, #6a0000 100%);
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #000;
-}
-
-.reset-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0px #000;
-}
-
 /* Menu Button (small) */
-.menu-btn-small {
-    font-family: 'Press Start 2P', monospace;
-    font-size: var(--fs-xs);
-    padding: 8px 12px;
-    background: linear-gradient(180deg, #4a2c7a 0%, #2a1a4a 100%);
-    color: var(--gold);
-    border: 3px solid var(--purple);
-    cursor: pointer;
-    box-shadow: 3px 3px 0px #000;
-    transition: all 0.2s ease;
-}
-
-.menu-btn-small:hover {
-    background: linear-gradient(180deg, #6a3c9a 0%, #3a2a5a 100%);
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #000;
-}
-
-.menu-btn-small:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0px #000;
-}
-
 /* Shop Button (small - top area) */
-.shop-btn-small {
-    font-family: 'Press Start 2P', monospace;
-    font-size: var(--fs-xs);
-    padding: 8px 12px;
-    background: linear-gradient(180deg, #198754 0%, #0d5c36 100%);
-    color: #fff;
-    border: 2px solid #3cb879;
-    cursor: pointer;
-    box-shadow: 3px 3px 0px #000;
-    transition: all 0.2s ease;
-}
-
-.shop-btn-small:hover {
-    background: linear-gradient(180deg, #28a745 0%, #1e7e34 100%);
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px #000;
-}
-
-.shop-btn-small:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0px #000;
-}
-
 /* Card Tracker (Left Side) */
 .card-tracker {
     position: absolute;
@@ -3370,14 +3303,93 @@ body {
 }
 
 /* Red suits */
-.suit-section:nth-child(2) .tracker-card,
-.suit-section:nth-child(3) .tracker-card {
+#hearts-cards .tracker-card,
+#diamonds-cards .tracker-card {
     color: #cc0000;
 }
 
-.suit-section:nth-child(2) .tracker-card.played,
-.suit-section:nth-child(3) .tracker-card.played {
+#hearts-cards .tracker-card.played,
+#diamonds-cards .tracker-card.played {
     color: #553333;
+}
+
+/* Compact tracker: one row per rank, pips = copies left */
+.tracker-toggle {
+    font-family: 'Press Start 2P', monospace;
+    font-size: var(--fs-xs);
+    padding: 5px 6px;
+    margin-bottom: 8px;
+    background: #2a1a4a;
+    border: 2px solid var(--purple);
+    color: #ccc;
+    cursor: pointer;
+}
+
+.tracker-toggle:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.tracker-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: var(--fs-xs);
+}
+
+.tracker-row {
+    display: grid;
+    grid-template-columns: 26px 1fr 14px;
+    align-items: center;
+    gap: 6px;
+    color: var(--white);
+}
+
+.tracker-row.empty {
+    color: #555;
+}
+
+.tracker-row-pips {
+    display: flex;
+    gap: 2px;
+}
+
+.tracker-row-pip {
+    width: 12px;
+    height: 10px;
+    background: #222;
+    border: 1px solid #444;
+}
+
+.tracker-row-pip.left {
+    background: var(--white);
+    border-color: #fff;
+}
+
+.tracker-row.tens .tracker-row-pip.left {
+    background: var(--gold);
+    border-color: #fff3a0;
+}
+
+.tracker-row-count {
+    text-align: right;
+    color: var(--gold);
+}
+
+.tracker-summary {
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 2px solid var(--purple);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #aaa;
+    line-height: 1.4;
+}
+
+.tracker-summary b {
+    color: var(--gold);
+    font-weight: normal;
 }
 
 .scoreboard {
@@ -3608,10 +3620,8 @@ body {
     margin-top: 10px;
     padding-top: 8px;
     border-top: 2px solid var(--purple);
-    flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
 .history-label {
@@ -3626,48 +3636,38 @@ body {
     font-family: 'Press Start 2P', monospace;
     font-size: var(--fs-xs);
     color: #aaa;
-    flex: 1;
-    overflow-y: auto;
-    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.history-list::-webkit-scrollbar {
-    width: 6px;
+.history-pips {
+    display: flex;
+    gap: 4px;
 }
 
-.history-list::-webkit-scrollbar-track {
-    background: #1a0a2a;
+/* Most recent on the left; hover a pip for the score */
+.history-pip {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #444;
+    background: #111;
+    color: #000;
+    cursor: help;
 }
 
-.history-list::-webkit-scrollbar-thumb {
-    background: var(--purple);
-    border-radius: 3px;
-}
+.history-pip.win { background: var(--good); border-color: #aaffaa; }
+.history-pip.loss { background: var(--bad); border-color: #ff9999; }
+.history-pip.push { background: var(--gold); border-color: #fff3a0; }
+.history-pip.placeholder { cursor: default; opacity: 0.4; }
 
-.history-list::-webkit-scrollbar-thumb:hover {
-    background: var(--gold);
-}
-
-.history-item {
-    display: block;
-}
-
-.history-item.win {
-    color: var(--green);
-}
-
-.history-item.loss {
-    color: var(--red);
-}
-
-.history-item.push {
-    color: var(--gold);
-}
-
-.history-item.placeholder {
-    color: #444;
-    opacity: 0.5;
-}
+.history-last.win { color: var(--good); }
+.history-last.loss { color: var(--bad); }
+.history-last.push { color: var(--gold); }
+.history-last.placeholder { color: #555; }
 
 /* ========================================
    ROGUELIKE UI ELEMENTS
@@ -3803,48 +3803,12 @@ body {
     border-radius: 4px;
 }
 
-/* Event Popup */
-.event-content {
-    border-color: #6666ff !important;
-    box-shadow: 0 0 40px rgba(100, 100, 255, 0.5) !important;
-    max-width: 500px;
-}
-
-.event-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.event-icon {
-    font-size: 3rem;
-    animation: eventFloat 2s ease-in-out infinite;
-}
-
-@keyframes eventFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.event-content h2 {
-    color: #8888ff !important;
-    font-size: var(--fs-lg);
-}
-
 .event-desc {
     font-size: var(--fs-sm);
     color: #ccc;
     margin-bottom: 25px;
     line-height: 1.6;
     text-align: center;
-}
-
-.event-choices {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 .choice-cost {
@@ -3935,29 +3899,6 @@ body {
 }
 
 /* Pre-Round Shop Button */
-.shop-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: var(--fs-md);
-    padding: 8px 16px;
-    background: linear-gradient(180deg, #4a2c7a 0%, #2a1a4a 100%);
-    border: 3px solid #8844cc;
-    color: #ffffff;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-shadow: 1px 1px 0 #000;
-}
-
-.shop-btn:hover {
-    background: linear-gradient(180deg, #6a3c9a 0%, #3a2a5a 100%);
-    border-color: #aa66ee;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(136, 68, 204, 0.4);
-}
-
-.shop-btn:active {
-    transform: translateY(0);
-}
-
 /* Pre-Round Shop Popup */
 .pre-round-shop-content {
     max-width: 850px;
@@ -3970,14 +3911,6 @@ body {
 
 .pre-round-shop-content .shop-money {
     margin-bottom: 5px;
-}
-
-.shop-info {
-    font-family: 'Press Start 2P', monospace;
-    font-size: var(--fs-xs);
-    color: #aaa;
-    margin-bottom: 12px;
-    text-align: center;
 }
 
 .pre-round-shop-items {
@@ -4136,17 +4069,6 @@ button.perk-shop-item {
     color: #fff;
 }
 
-.shop-close-btn {
-    width: 100%;
-    background: linear-gradient(180deg, #4a2a2a 0%, #2a1a1a 100%);
-    border-color: #aa4444;
-}
-
-.shop-close-btn:hover {
-    background: linear-gradient(180deg, #5a3a3a 0%, #3a2a2a 100%);
-    border-color: #cc6666;
-}
-
 .shop-empty {
     font-family: 'Press Start 2P', monospace;
     font-size: var(--fs-xs);
@@ -4160,10 +4082,7 @@ button.perk-shop-item {
 /* Elite Mode Table Styling */
 .table.elite-mode {
     border-color: #ff6600;
-    box-shadow: 
-        var(--pixel-shadow),
-        inset 0 0 40px rgba(255, 102, 0, 0.2),
-        0 0 20px rgba(255, 102, 0, 0.4);
+    box-shadow: 0 0 20px rgba(255, 120, 40, 0.45);
 }
 
 /* Rigged Effects */
@@ -4375,26 +4294,20 @@ button.perk-shop-item {
     filter: brightness(0.35);
     pointer-events: none;
 }
-.boss-portrait {
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-}
 .boss-portrait .dealer-sprite {
     transform: scale(1.8);
     margin: 16px;
-}
-.table.elite-mode {
-    box-shadow: 0 0 20px rgba(255, 120, 40, 0.45);
 }
 #dealer-sprite-mount {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 35px;
-    min-height: 35px;
+    /* Sprites are 35px; shown at 2x on the table (boss portrait uses 1.8x) */
+    min-width: 72px;
+    min-height: 72px;
+}
+#dealer-sprite-mount .dealer-sprite {
+    transform: scale(2);
 }
 #dealer-sprite-mount.elite-tint .house-dealer-container {
     filter: hue-rotate(-25deg) saturate(1.4) brightness(1.1);
