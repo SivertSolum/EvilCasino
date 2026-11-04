@@ -249,7 +249,7 @@ Object.assign(EvilCasino.prototype, {
         }
 
         if (this.contractComplete) {
-            this.showMessage(`📜 Contract complete! Survive the boss to clear the floor.`);
+            this.showMessage(`${IconSprites.html(this.contract?.icon || 'ui-contract')} Contract complete! Survive the boss to clear the floor.`);
         }
         this.updateRoguelikeDisplay();
     },
@@ -274,7 +274,7 @@ Object.assign(EvilCasino.prototype, {
 
     failContract(reason) {
         this.contractFailed = true;
-        this.showMessage(reason || '📜 Contract FAILED. Satan claims your soul...', 'lose');
+        this.showMessage(reason || '{i:ui-contract} Contract FAILED. Satan claims your soul...', 'lose');
         setTimeout(() => this.showBrokeScreen(), 1400);
     },
 
@@ -608,7 +608,7 @@ Object.assign(EvilCasino.prototype, {
         // Contract is judged after the boss is down
         if (!this.contractComplete) {
             this.failContract(
-                `📜 You beat ${boss?.name || 'the boss'}, but the contract was incomplete. Soul forfeited.`
+                `{i:ui-contract} You beat ${boss?.name || 'the boss'}, but the contract was incomplete. Soul forfeited.`
             );
             return;
         }
@@ -711,7 +711,7 @@ Object.assign(EvilCasino.prototype, {
     applyRestOption(opt) {
         if (opt.effect === 'heal') {
             this.money += opt.value;
-            this.showMessage(`😴 Restored $${opt.value}`);
+            this.showMessage(`${IconSprites.html(opt.icon)} Restored $${opt.value}`);
         } else if (opt.effect === 'randomPerk') {
             this.grantRandomPerk('common');
         } else if (opt.effect === 'upgradePerk') {
@@ -720,10 +720,10 @@ Object.assign(EvilCasino.prototype, {
         } else if (opt.effect === 'gamble') {
             if (Math.random() < 0.5) {
                 this.money += opt.win;
-                this.showMessage(`🎰 Won $${opt.win}!`);
+                this.showMessage(`${IconSprites.html(opt.icon)} Won $${opt.win}!`);
             } else {
                 this.money = Math.max(0, this.money - opt.lose);
-                this.showMessage(`🎰 Lost $${opt.lose}...`);
+                this.showMessage(`${IconSprites.html(opt.icon)} Lost $${opt.lose}...`);
             }
         }
         this.updateDisplay();
@@ -785,10 +785,10 @@ Object.assign(EvilCasino.prototype, {
             const bet = Math.min(50, this.money);
             if (Math.random() < 0.5) {
                 this.money += bet;
-                this.showMessage(`🎰 Won $${bet}!`);
+                this.showMessage(`{i:room-gamble} Won $${bet}!`);
             } else {
                 this.money -= bet;
-                this.showMessage(`🎰 Lost $${bet}`);
+                this.showMessage(`{i:room-gamble} Lost $${bet}`);
             }
             this.updateDisplay();
             this.finishCurrentRoom();
@@ -800,7 +800,7 @@ Object.assign(EvilCasino.prototype, {
             const btn = document.createElement('button');
             btn.className = 'event-choice-btn';
             const stake = Math.min(50 * this.currentFloor, Math.floor(this.money / 2) || 0);
-            btn.innerHTML = `${IconSprites.html(g.icon || '🎲')} ${g.name}<span class="choice-cost">Stake $${stake} — ${g.desc}</span>`;
+            btn.innerHTML = `${IconSprites.html(g.icon || 'game-dice-roll')} ${g.name}<span class="choice-cost">Stake $${stake} — ${g.desc}</span>`;
             btn.disabled = stake <= 0;
             btn.addEventListener('click', () => {
                 this.money -= stake;
@@ -808,9 +808,9 @@ Object.assign(EvilCasino.prototype, {
                 if (win) {
                     const payout = Math.floor(stake * (g.multiplier || 2));
                     this.money += payout;
-                    this.showMessage(`🎰 Won $${payout}!`);
+                    this.showMessage(`${IconSprites.html(g.icon || 'room-gamble')} Won $${payout}!`);
                 } else {
-                    this.showMessage(`🎰 Lost $${stake}`);
+                    this.showMessage(`${IconSprites.html(g.icon || 'room-gamble')} Lost $${stake}`);
                 }
                 if (typeof GameAnimations !== 'undefined') {
                     GameAnimations.closePopup(this.gamblePopup);

@@ -98,7 +98,7 @@ const CONTRACTS = [
         type: 'winsBeforeLosses',
         target: 3,
         failAt: 3,
-        icon: '🔥'
+        icon: 'contract-win-streak'
     },
     {
         id: 'bankroll',
@@ -106,7 +106,7 @@ const CONTRACTS = [
         desc: 'Net +${target} this floor',
         type: 'netGain',
         target: 150,
-        icon: '💰'
+        icon: 'contract-bankroll'
     },
     {
         id: 'eliteClear',
@@ -114,7 +114,7 @@ const CONTRACTS = [
         desc: 'Clear 1 elite room this floor',
         type: 'clearElite',
         target: 1,
-        icon: '⚔️'
+        icon: 'contract-elite-clear'
     },
     {
         id: 'blackjack',
@@ -122,7 +122,7 @@ const CONTRACTS = [
         desc: 'Win a hand with blackjack',
         type: 'winBlackjack',
         target: 1,
-        icon: '🃏'
+        icon: 'contract-blackjack'
     },
     {
         id: 'splitWin',
@@ -130,7 +130,7 @@ const CONTRACTS = [
         desc: 'Win a split hand',
         type: 'winSplit',
         target: 1,
-        icon: '✂️'
+        icon: 'contract-split-win'
     },
     {
         id: 'handsWon',
@@ -138,7 +138,7 @@ const CONTRACTS = [
         desc: 'Win {target} hands this floor',
         type: 'totalWins',
         target: 4,
-        icon: '🎯'
+        icon: 'contract-hands-won'
     }
 ];
 
@@ -148,7 +148,7 @@ const FLOOR_7_CONTRACT = {
     desc: 'Defeat Satan Himself',
     type: 'defeatBoss',
     target: 1,
-    icon: '👹'
+    icon: 'contract-defeat-satan'
 };
 
 // Room types and their weights per floor
@@ -450,7 +450,7 @@ const EVENTS = [
     {
         id: 'mysteriousStranger',
         name: 'Mysterious Stranger',
-        icon: '🕴️',
+        icon: 'event-mysterious-stranger',
         desc: 'A cloaked figure approaches with a proposition...',
         choices: [
             { text: 'Pay $100 for a secret', cost: 100, reward: { type: 'relic', value: 'random' } },
@@ -461,7 +461,7 @@ const EVENTS = [
     {
         id: 'devilDeal',
         name: "Devil's Deal",
-        icon: '😈',
+        icon: 'event-devil-deal',
         desc: 'The devil offers you power... at a price.',
         choices: [
             { text: 'Take curse, gain rare perk', cost: 'curse', reward: { type: 'perk', value: 'rare' } },
@@ -472,7 +472,7 @@ const EVENTS = [
     {
         id: 'lostWallet',
         name: 'Lost Wallet',
-        icon: '👛',
+        icon: 'event-lost-wallet',
         desc: 'You find a wallet on the ground!',
         choices: [
             { text: 'Take the money ($50-200)', cost: 0, reward: { type: 'money', value: 'random', min: 50, max: 200 } },
@@ -483,7 +483,7 @@ const EVENTS = [
     {
         id: 'cardGambler',
         name: 'Card Gambler',
-        icon: '🃏',
+        icon: 'event-card-gambler',
         desc: '"Pick a card, any card! Win big or lose big!"',
         choices: [
             { text: 'High Card ($100 bet)', cost: 100, reward: { type: 'gamble', value: 'highCard' } },
@@ -494,7 +494,7 @@ const EVENTS = [
     {
         id: 'cursedChest',
         name: 'Cursed Chest',
-        icon: '📦',
+        icon: 'event-cursed-chest',
         desc: 'An ominous chest beckons you...',
         choices: [
             { text: 'Open it (risky)', cost: 0, reward: { type: 'cursedChest', value: true } },
@@ -505,7 +505,7 @@ const EVENTS = [
     {
         id: 'fortuneTeller',
         name: 'Fortune Teller',
-        icon: '🔮',
+        icon: 'event-fortune-teller',
         desc: '"I see your future... for a small fee."',
         choices: [
             { text: 'Pay $75 - See boss ability', cost: 75, reward: { type: 'bossReveal', value: true } },
@@ -516,7 +516,7 @@ const EVENTS = [
     {
         id: 'blackMarket',
         name: 'Black Market',
-        icon: '🕳️',
+        icon: 'event-black-market',
         desc: 'Shady dealers offer forbidden wares...',
         choices: [
             { text: 'Buy cursed relic ($0)', cost: 0, reward: { type: 'cursedRelic', value: true } },
@@ -527,7 +527,7 @@ const EVENTS = [
     {
         id: 'blessedShrine',
         name: 'Blessed Shrine',
-        icon: '⛩️',
+        icon: 'event-blessed-shrine',
         desc: 'A holy place untouched by the casino\'s corruption.',
         choices: [
             { text: 'Pray (remove curse)', cost: 0, reward: { type: 'removeCurse', value: 'random' } },
@@ -538,7 +538,7 @@ const EVENTS = [
     {
         id: 'drunkGambler',
         name: 'Drunk Gambler',
-        icon: '🍺',
+        icon: 'event-drunk-gambler',
         desc: '"*hic* I\'ll bet you anything!"',
         choices: [
             { text: 'Play him for $150', cost: 150, reward: { type: 'gamble', value: 'easyWin' } },
@@ -549,7 +549,7 @@ const EVENTS = [
     {
         id: 'breakingNews',
         name: 'Breaking News!',
-        icon: '📺',
+        icon: 'event-breaking-news',
         desc: 'The casino announces a special event!',
         choices: [
             { text: 'Join the tournament', cost: 0, reward: { type: 'tournament', value: true } },
@@ -560,24 +560,24 @@ const EVENTS = [
 
 // Shop items (base prices, scaled by floor)
 const SHOP_ITEMS = {
-    healSmall: { name: 'First Aid', icon: '🩹', desc: 'Restore $100', type: 'heal', value: 100, baseCost: 75 },
-    healMedium: { name: 'Medical Kit', icon: '💊', desc: 'Restore $250', type: 'heal', value: 250, baseCost: 175 },
-    healLarge: { name: 'Surgery', icon: '🏥', desc: 'Restore $500', type: 'heal', value: 500, baseCost: 350 },
-    removeCurse: { name: 'Exorcism', icon: '✨', desc: 'Remove a curse', type: 'removeCurse', value: 1, baseCost: 150 },
-    randomPerk: { name: 'Mystery Perk', icon: '❓', desc: 'Random perk', type: 'randomPerk', value: 1, baseCost: 200 },
-    randomRelic: { name: 'Mystery Relic', icon: '🎁', desc: 'Random relic', type: 'randomRelic', value: 1, baseCost: 400 },
-    extraLife: { name: 'Phoenix Down', icon: '🔥', desc: 'Revive once if broke', type: 'extraLife', value: 1, baseCost: 500 },
-    deckPeek: { name: 'Marked Cards', icon: '👁️', desc: 'See next 5 cards', type: 'deckPeek', value: 5, baseCost: 100 },
-    reduceBet: { name: 'VIP Pass', icon: '🎫', desc: 'Halve min bet this floor', type: 'reduceBet', value: 0.5, baseCost: 100 },
-    refreshShop: { name: 'New Stock', icon: '🔄', desc: 'Refresh shop items', type: 'refresh', value: 1, baseCost: 50 }
+    healSmall: { name: 'First Aid', icon: 'shop-heal-small', desc: 'Restore $100', type: 'heal', value: 100, baseCost: 75 },
+    healMedium: { name: 'Medical Kit', icon: 'shop-heal-medium', desc: 'Restore $250', type: 'heal', value: 250, baseCost: 175 },
+    healLarge: { name: 'Surgery', icon: 'shop-heal-large', desc: 'Restore $500', type: 'heal', value: 500, baseCost: 350 },
+    removeCurse: { name: 'Exorcism', icon: 'shop-remove-curse', desc: 'Remove a curse', type: 'removeCurse', value: 1, baseCost: 150 },
+    randomPerk: { name: 'Mystery Perk', icon: 'shop-random-perk', desc: 'Random perk', type: 'randomPerk', value: 1, baseCost: 200 },
+    randomRelic: { name: 'Mystery Relic', icon: 'shop-random-relic', desc: 'Random relic', type: 'randomRelic', value: 1, baseCost: 400 },
+    extraLife: { name: 'Phoenix Down', icon: 'shop-extra-life', desc: 'Revive once if broke', type: 'extraLife', value: 1, baseCost: 500 },
+    deckPeek: { name: 'Marked Cards', icon: 'shop-deck-peek', desc: 'See next 5 cards', type: 'deckPeek', value: 5, baseCost: 100 },
+    reduceBet: { name: 'VIP Pass', icon: 'shop-reduce-bet', desc: 'Halve min bet this floor', type: 'reduceBet', value: 0.5, baseCost: 100 },
+    refreshShop: { name: 'New Stock', icon: 'shop-refresh', desc: 'Refresh shop items', type: 'refresh', value: 1, baseCost: 50 }
 };
 
 // Rest site options
 const REST_OPTIONS = [
-    { id: 'rest', name: 'Rest', icon: '😴', desc: 'Recover $150', effect: 'heal', value: 150 },
-    { id: 'meditate', name: 'Meditate', icon: '🧘', desc: 'Upgrade a random perk', effect: 'upgradePerk', value: 1 },
-    { id: 'train', name: 'Train', icon: '💪', desc: 'Gain a common perk', effect: 'randomPerk', value: 'common' },
-    { id: 'gamble', name: 'Gamble', icon: '🎰', desc: 'Win $300 or lose $100', effect: 'gamble', win: 300, lose: 100 }
+    { id: 'rest', name: 'Rest', icon: 'rest-rest', desc: 'Recover $150', effect: 'heal', value: 150 },
+    { id: 'meditate', name: 'Meditate', icon: 'rest-meditate', desc: 'Upgrade a random perk', effect: 'upgradePerk', value: 1 },
+    { id: 'train', name: 'Train', icon: 'rest-train', desc: 'Gain a common perk', effect: 'randomPerk', value: 'common' },
+    { id: 'gamble', name: 'Gamble', icon: 'rest-gamble', desc: 'Win $300 or lose $100', effect: 'gamble', win: 300, lose: 100 }
 ];
 
 // Treasure rewards
@@ -591,10 +591,10 @@ const TREASURE_REWARDS = [
 
 // Gamble room games
 const GAMBLE_GAMES = [
-    { id: 'coinFlip', name: 'Coin Flip', icon: '🪙', desc: '50/50 - Double or nothing', odds: 0.5 },
-    { id: 'diceRoll', name: 'Dice Roll', icon: '🎲', desc: 'Roll 4+ to win 1.5x', odds: 0.5, multiplier: 1.5 },
-    { id: 'wheelSpin', name: 'Wheel of Fortune', icon: '🎡', desc: 'Spin for prizes!', special: 'wheel' },
-    { id: 'slots', name: 'Slot Machine', icon: '🎰', desc: 'Match symbols to win big!', special: 'slots' }
+    { id: 'coinFlip', name: 'Coin Flip', icon: 'game-coin-flip', desc: '50/50 - Double or nothing', odds: 0.5 },
+    { id: 'diceRoll', name: 'Dice Roll', icon: 'game-dice-roll', desc: 'Roll 4+ to win 1.5x', odds: 0.5, multiplier: 1.5 },
+    { id: 'wheelSpin', name: 'Wheel of Fortune', icon: 'game-wheel-spin', desc: 'Spin for prizes!', special: 'wheel' },
+    { id: 'slots', name: 'Slot Machine', icon: 'game-slots', desc: 'Match symbols to win big!', special: 'slots' }
 ];
 
 // Action button quips: hover shows a random one; disabled buttons show `off`

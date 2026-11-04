@@ -2152,7 +2152,7 @@ class EvilCasino {
             case 'cursedRelic':
                 this.grantRandomRelic();
                 this.addRandomCurse();
-                this.showMessage("🗡️ Gained a relic... but at what cost?");
+                this.showMessage("{i:event-black-market} Gained a relic... but at what cost?");
                 break;
                 
             case 'blessing':
@@ -2260,10 +2260,10 @@ class EvilCasino {
                 // 50% chance to win $200, otherwise lose
                 if (roll > 0.5) {
                     this.money += 200;
-                    this.showMessage("🎴 High card wins! +$200!");
+                    this.showMessage("{i:event-card-gambler} High card wins! +$200!");
                     playSound('win');
                 } else {
-                    this.showMessage("🎴 Low card... you lose!");
+                    this.showMessage("{i:event-card-gambler} Low card... you lose!");
                     playSound('lose');
                 }
                 break;
@@ -2272,10 +2272,10 @@ class EvilCasino {
                 // 25% chance to win $150
                 if (roll > 0.75) {
                     this.money += 150;
-                    this.showMessage("♠️ Suit matched! +$150!");
+                    this.showMessage("{i:event-card-gambler} Suit matched! +$150!");
                     playSound('win');
                 } else {
-                    this.showMessage("♦️ Wrong suit!");
+                    this.showMessage("{i:event-card-gambler} Wrong suit!");
                     playSound('lose');
                 }
                 break;
@@ -2284,10 +2284,10 @@ class EvilCasino {
                 // 75% chance to win against drunk gambler
                 if (roll > 0.25) {
                     this.money += 300;
-                    this.showMessage("🍺 Easy money! +$300!");
+                    this.showMessage("{i:event-drunk-gambler} Easy money! +$300!");
                     playSound('win');
                 } else {
-                    this.showMessage("🍺 He got lucky!");
+                    this.showMessage("{i:event-drunk-gambler} He got lucky!");
                     playSound('lose');
                 }
                 break;
@@ -2310,16 +2310,16 @@ class EvilCasino {
         if (roll > 0.6) {
             // 40% - Great reward
             this.grantRandomRelic();
-            this.showMessage("📦 The chest contained treasure!");
+            this.showMessage("{i:event-cursed-chest} The chest contained treasure!");
         } else if (roll > 0.3) {
             // 30% - Decent reward + curse
             this.money += 200;
             this.addRandomCurse();
-            this.showMessage("📦 Gold and a curse!");
+            this.showMessage("{i:event-cursed-chest} Gold and a curse!");
         } else {
             // 30% - Mimic!
             this.money = Math.max(0, this.money - 150);
-            this.showMessage("📦 MIMIC! Lost $150!");
+            this.showMessage("{i:event-cursed-chest} MIMIC! Lost $150!");
             playSound('lose');
         }
     }
@@ -2327,21 +2327,21 @@ class EvilCasino {
     revealBossAbility() {
         const boss = this.currentFloorBoss || this.currentBoss;
         if (boss) {
-            this.showMessage(`🔮 Floor boss: ${boss.name} — ${boss.rule}`);
+            this.showMessage(`{i:event-fortune-teller} Floor boss: ${boss.name} — ${boss.rule}`);
         } else {
-            this.showMessage("🔮 The future is unclear...");
+            this.showMessage("{i:event-fortune-teller} The future is unclear...");
         }
     }
     
     peekAtDeck(count) {
         if (this.deck.length < count) {
-            this.showMessage(`🃏 Deck has only ${this.deck.length} cards left!`);
+            this.showMessage(`{i:shop-deck-peek} Deck has only ${this.deck.length} cards left!`);
             return;
         }
         
         const nextCards = this.deck.slice(0, count);
         const cardStr = nextCards.map(c => `${c.value}${IconSprites.suit(c.suit)}`).join(', ');
-        this.showMessage(`🃏 Next ${count} cards: ${cardStr}`);
+        this.showMessage(`{i:shop-deck-peek} Next ${count} cards: ${cardStr}`);
     }
     
     startMiniTournament() {

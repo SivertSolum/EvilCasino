@@ -399,6 +399,46 @@ IconSprites.define({
     'curse-taxed': 'coin inner dollar slash',
     'curse-paranoid': 'dark eye-l eye-r pupils brows',
     'curse-impatient': 'bell-l bell-r legs body face hand-h hand-m ring',
-    'curse-poor-eyesight': 'lens-l lens-r bridge crack'
+    'curse-poor-eyesight': 'lens-l lens-r bridge crack',
+    // Contracts
+    'contract-win-streak': 'flame core chip',
+    'contract-bankroll': 'tie bag roof house door',
+    'contract-elite-clear': 'paper title face text x-a x-b',
+    'contract-blackjack': 'card-k crown card-a ace pip',
+    'contract-split-win': 'half-l half-r pip-l pip-r',
+    'contract-hands-won': 'board tallies slash',
+    'contract-defeat-satan': 'sheet lines seal-horns seal seal-mark',
+    // Events
+    'event-mysterious-stranger': 'cloak hood eyes',
+    'event-devil-deal': 'spark sleeve-l hand sleeve-r claw nails',
+    'event-lost-wallet': 'wallet flap coins',
+    'event-card-gambler': 'card-1 card-2 card-3 pip hand thumb',
+    'event-cursed-chest': 'lid gap eyes body chain lock',
+    'event-fortune-teller': 'ball swirl stand',
+    'event-black-market': 'collar lining coat-l coat-r watch vial goods',
+    'event-blessed-shrine': 'glow top beam posts plaque',
+    'event-drunk-gambler': 'mug sheen handle foam bubbles',
+    'event-breaking-news': 'antenna-l antenna-r body screen image headline knobs',
+    // Shop items
+    'shop-heal-small': 'band pad holes',
+    'shop-heal-medium': 'left right shine',
+    'shop-heal-large': 'cross-v cross-h handle blade',
+    'shop-remove-curse': 'cork neck flask cross-v cross-h shine',
+    'shop-random-perk': 'box lid q-top q-right q-mid q-stem dot',
+    'shop-random-relic': 'bow-l bow-r box lid ribbon',
+    'shop-extra-life': 'cork vial glow tuft',
+    'shop-deck-peek': 'deck-back deck pip sheen',
+    'shop-reduce-bet': 'ticket stub star',
+    'shop-refresh': 'crate slats arc head',
+    // Rest options
+    'rest-rest': 'pillow crease z',
+    'rest-meditate': 'flame core wick wax drip',
+    'rest-train': 'bar plate-l inner-l plate-r inner-r',
+    'rest-gamble': 'chip inner q-top q-right q-mid q-stem dot',
+    // Gamble games
+    'game-coin-flip': 'arc coin edge lines',
+    'game-dice-roll': 'die shade pips',
+    'game-wheel-spin': 'wheel hub pointer',
+    'game-slots': 'frame windows bars stems'
 });
 // @gen:end
