@@ -337,8 +337,7 @@ body {
     box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-.deck-card::before {
-    content: '💀';
+.deck-card .px-icon {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -3021,10 +3020,14 @@ body {
 }
 
 .changelog-changes li::before {
-    content: '▸';
+    content: '';
     position: absolute;
-    left: 0;
-    color: var(--gold);
+    left: 2px;
+    top: 9px;
+    width: 6px;
+    height: 8px;
+    background: var(--gold);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
 /* Options Menu */
@@ -4266,19 +4269,24 @@ button.perk-shop-item {
     outline-offset: 3px;
 }
 .map-node.contract-risk::after {
-    content: '⚠';
+    /* Pixel warning sign: amber triangle from two gradients, black "!" on top */
+    content: '!';
     position: absolute;
     top: -9px;
     right: -9px;
     width: 18px;
     height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
+    box-sizing: border-box;
+    padding-top: 6px;
+    text-align: center;
+    background:
+        linear-gradient(to bottom right, transparent 48%, var(--warn) 50%) left 1px bottom 1px / 7px 11px no-repeat,
+        linear-gradient(to bottom left, transparent 48%, var(--warn) 50%) right 1px bottom 1px / 7px 11px no-repeat,
+        #000;
     border: 2px solid var(--warn);
-    color: var(--warn);
-    font-size: var(--fs-xs);
+    color: #000;
+    font-size: 6px;
+    line-height: 1;
 }
 .map-node.contract-risk.available {
     animation: mapPulseWarn 1.2s ease-in-out infinite;

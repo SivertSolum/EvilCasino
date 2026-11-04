@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVIL CASINO - The World's Most Fair Casino™</title>
-    <link rel="stylesheet" href="style.css?v=54">
-    <link rel="stylesheet" href="icons.css?v=1">
+    <link rel="stylesheet" href="style.css?v=55">
+    <link rel="stylesheet" href="icons.css?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -43,7 +43,7 @@
         <div class="tracker-compact" id="tracker-compact"></div>
         <div class="tracker-full hidden" id="tracker-full">
         <div class="suit-section">
-            <div class="suit-header spades">♠</div>
+            <div class="suit-header spades"><span data-icon="suit-spade"></span></div>
             <div class="suit-cards" id="spades-cards">
                 <span class="tracker-card" data-card="A♠">A</span>
                 <span class="tracker-card" data-card="2♠">2</span>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="suit-section">
-            <div class="suit-header hearts">♥</div>
+            <div class="suit-header hearts"><span data-icon="suit-heart"></span></div>
             <div class="suit-cards" id="hearts-cards">
                 <span class="tracker-card" data-card="A♥">A</span>
                 <span class="tracker-card" data-card="2♥">2</span>
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="suit-section">
-            <div class="suit-header diamonds">♦</div>
+            <div class="suit-header diamonds"><span data-icon="suit-diamond"></span></div>
             <div class="suit-cards" id="diamonds-cards">
                 <span class="tracker-card" data-card="A♦">A</span>
                 <span class="tracker-card" data-card="2♦">2</span>
@@ -97,7 +97,7 @@
             </div>
         </div>
         <div class="suit-section">
-            <div class="suit-header clubs">♣</div>
+            <div class="suit-header clubs"><span data-icon="suit-club"></span></div>
             <div class="suit-cards" id="clubs-cards">
                 <span class="tracker-card" data-card="A♣">A</span>
                 <span class="tracker-card" data-card="2♣">2</span>
@@ -169,7 +169,7 @@
             <div class="changelog-entries" id="changelog-entries">
                 <!-- Populated by JavaScript -->
             </div>
-            <button class="menu-btn back-btn" id="changelog-back-btn">← BACK</button>
+            <button class="menu-btn back-btn" id="changelog-back-btn"><span data-icon="ui-arrow-left"></span> BACK</button>
         </div>
     </div>
     
@@ -199,7 +199,7 @@
                 <label for="custom-music" class="file-label">Choose File</label>
             </div>
             
-            <button class="menu-btn back-btn" id="options-back-btn">← BACK</button>
+            <button class="menu-btn back-btn" id="options-back-btn"><span data-icon="ui-arrow-left"></span> BACK</button>
         </div>
     </div>
     
@@ -227,11 +227,11 @@
                 <section class="howto-section">
                     <h3>THE CATCH</h3>
                     <p><strong>Bosses</strong> bend the rules. Theirs is pinned to the table.</p>
-                    <p class="warning-text">⚠️ The dealer may or may not cheat. Probably will.</p>
+                    <p class="warning-text"><span data-icon="ui-warning"></span> The dealer may or may not cheat. Probably will.</p>
                 </section>
             </div>
             
-            <button class="menu-btn back-btn" id="howto-back-btn">← BACK</button>
+            <button class="menu-btn back-btn" id="howto-back-btn"><span data-icon="ui-arrow-left"></span> BACK</button>
         </div>
     </div>
     
@@ -312,7 +312,7 @@
                     <div class="rule-banner hidden" id="rule-banner">
                         <span class="rule-banner-tag" id="rule-banner-tag">BOSS RULE</span>
                         <span class="rule-banner-text" id="rule-banner-text"></span>
-                        <span class="rule-banner-warn hidden" id="rule-banner-warn">⚠ CONTRACT INCOMPLETE</span>
+                        <span class="rule-banner-warn hidden" id="rule-banner-warn"><span data-icon="ui-warning"></span> CONTRACT INCOMPLETE</span>
                     </div>
                 </div>
                 <div class="hand" id="dealer-hand"></div>
@@ -651,7 +651,7 @@
                 <span class="boss-rule-text" id="boss-rule"></span>
             </div>
             <p class="boss-description" id="boss-description"></p>
-            <p class="boss-warning hidden" id="boss-warning">⚠ Contract incomplete. Beat them anyway and you still forfeit.</p>
+            <p class="boss-warning hidden" id="boss-warning"><span data-icon="ui-warning"></span> Contract incomplete. Beat them anyway and you still forfeit.</p>
             <div class="popup-actions">
                 <button class="btn btn--primary btn--pulse" id="boss-fight-btn">FIGHT</button>
             </div>
@@ -749,11 +749,11 @@
     <!-- Modular JavaScript -->
     <script src="js/config.js?v=30"></script>
     <script src="js/map.js?v=1"></script>
-    <script src="js/sprites.js?v=3"></script>
+    <script src="js/sprites.js?v=4"></script>
     <script src="js/audio.js?v=23"></script>
     <script src="js/ui.js?v=30"></script>
-    <script src="js/animations.js?v=3"></script>
-    <script src="js/game.js?v=61"></script>
+    <script src="js/animations.js?v=4"></script>
+    <script src="js/game.js?v=62"></script>
     <script src="js/game/hud.js?v=6"></script>
     <script src="js/game/curses.js?v=2"></script>
     <script src="js/roguelike.js?v=8"></script>

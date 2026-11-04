@@ -146,9 +146,9 @@ const GameAnimations = {
         const isRed = ['♥', '♦'].includes(card.suit);
         return {
             html: `
-                <div class="card-corner">${card.value}<span class="card-suit">${card.suit}</span></div>
-                <div class="card-center"><span class="card-suit">${card.suit}</span></div>
-                <div class="card-corner bottom">${card.value}<span class="card-suit">${card.suit}</span></div>
+                <div class="card-corner">${card.value}<span class="card-suit">${IconSprites.suit(card.suit)}</span></div>
+                <div class="card-center"><span class="card-suit">${IconSprites.suit(card.suit)}</span></div>
+                <div class="card-corner bottom">${card.value}<span class="card-suit">${IconSprites.suit(card.suit)}</span></div>
             `,
             colorClass: isRed ? 'red' : 'black'
         };

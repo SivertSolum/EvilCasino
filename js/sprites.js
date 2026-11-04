@@ -293,3 +293,19 @@ const IconSprites = {
         return `<span class="px-icon px-icon--missing" title="${String(key).replace(/"/g, '')}" aria-hidden="true"></span>`;
     }
 };
+
+// Icon registry: key -> part names (art lives in icons.css)
+// @gen:start
+IconSprites.define({
+    // Glyphs: card suits (currentColor, no outline, 1em box so they sit in card text)
+    'suit-spade': 'point lobe-l lobe-r stem',
+    'suit-heart': 'lobe-l lobe-r tip',
+    'suit-diamond': 'gem',
+    'suit-club': 'top left right core stem',
+    // Glyphs: UI
+    'ui-warning': 'sign shade bar dot',
+    'ui-arrow-left': 'head shaft',
+    'ui-contract': 'roll-top sheet lines roll-bottom seal',
+    'ui-deck-skull': 'cranium jaw eye-l eye-r nose teeth'
+});
+// @gen:end

@@ -81,3 +81,46 @@
     --mint: #3ddc97;
     --pink: #ff8fab;
 }
+
+/* ===== Icon art (one block per icon; parts listed in IconSprites.define) ===== */
+/* @gen:start */
+
+/* --- Glyphs: card suits (currentColor, no outline, 1em box so they sit in card text) --- */
+.px-icon--suit-spade { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
+.px-icon--suit-spade .point { --x:1;--y:0;--w:14;--h:11;--c:currentColor;--clip:polygon(50% 0%, 100% 72%, 0% 72%) }
+.px-icon--suit-spade .lobe-l { --x:1;--y:6;--w:7;--h:7;--c:currentColor;border-radius:50% }
+.px-icon--suit-spade .lobe-r { --x:8;--y:6;--w:7;--h:7;--c:currentColor;border-radius:50% }
+.px-icon--suit-spade .stem { --x:5;--y:10;--w:6;--h:6;--c:currentColor;--clip:polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%) }
+.px-icon--suit-heart { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
+.px-icon--suit-heart .lobe-l { --x:1;--y:2;--w:7;--h:7;--c:currentColor;border-radius:50% }
+.px-icon--suit-heart .lobe-r { --x:8;--y:2;--w:7;--h:7;--c:currentColor;border-radius:50% }
+.px-icon--suit-heart .tip { --x:1;--y:5;--w:14;--h:10;--c:currentColor;--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
+.px-icon--suit-diamond { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
+.px-icon--suit-diamond .gem { --x:2;--y:0;--w:12;--h:16;--c:currentColor;--clip:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%) }
+.px-icon--suit-club { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
+.px-icon--suit-club .top { --x:5;--y:1;--w:6;--h:6;--c:currentColor;border-radius:50% }
+.px-icon--suit-club .left { --x:1;--y:6;--w:6;--h:6;--c:currentColor;border-radius:50% }
+.px-icon--suit-club .right { --x:9;--y:6;--w:6;--h:6;--c:currentColor;border-radius:50% }
+.px-icon--suit-club .core { --x:6;--y:5;--w:4;--h:5;--c:currentColor }
+.px-icon--suit-club .stem { --x:5;--y:9;--w:6;--h:7;--c:currentColor;--clip:polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%) }
+
+/* --- Glyphs: UI --- */
+.px-icon--ui-warning .sign { --x:0;--y:1;--w:16;--h:15;--c:var(--flame);--clip:polygon(50% 0%, 100% 100%, 0% 100%) }
+.px-icon--ui-warning .shade { --x:0;--y:9;--w:16;--h:7;--c:#e08a00;--clip:polygon(23% 0%, 77% 0%, 100% 100%, 0% 100%) }
+.px-icon--ui-warning .bar { --x:7;--y:5;--w:2;--h:6;--c:var(--ink) }
+.px-icon--ui-warning .dot { --x:7;--y:12;--w:2;--h:2;--c:var(--ink) }
+.px-icon--ui-arrow-left { filter:none;width:1em;height:1em;--u:calc(1em / 16);vertical-align:-0.1em }
+.px-icon--ui-arrow-left .head { --x:0;--y:2;--w:8;--h:12;--c:currentColor;--clip:polygon(0% 50%, 100% 0%, 100% 100%) }
+.px-icon--ui-arrow-left .shaft { --x:7;--y:6;--w:8;--h:4;--c:currentColor }
+.px-icon--ui-contract .roll-top { --x:2;--y:1;--w:12;--h:3;--c:var(--bone-dk);--r:1 }
+.px-icon--ui-contract .sheet { --x:3;--y:3;--w:10;--h:10;--c:var(--bone) }
+.px-icon--ui-contract .lines { --x:5;--y:5;--w:6;--h:1;--c:#8b6b4a;--sh:0 calc(2 * var(--u)) 0 #8b6b4a, calc(-1 * var(--u)) calc(4 * var(--u)) 0 #8b6b4a }
+.px-icon--ui-contract .roll-bottom { --x:2;--y:12;--w:12;--h:3;--c:var(--bone-dk);--r:1 }
+.px-icon--ui-contract .seal { --x:9;--y:9;--w:5;--h:5;--c:var(--blood);border-radius:50%;--b:1;--bc:var(--blood-dk) }
+.px-icon--ui-deck-skull .cranium { --x:2;--y:1;--w:12;--h:10;--c:var(--bone);border-radius:50% 50% 40% 40% }
+.px-icon--ui-deck-skull .jaw { --x:4;--y:9;--w:8;--h:5;--c:var(--bone);--r:1 }
+.px-icon--ui-deck-skull .eye-l { --x:4;--y:5;--w:3;--h:3;--c:var(--blood-dk);--r:1 }
+.px-icon--ui-deck-skull .eye-r { --x:9;--y:5;--w:3;--h:3;--c:var(--blood-dk);--r:1 }
+.px-icon--ui-deck-skull .nose { --x:7;--y:8;--w:2;--h:2;--c:var(--ink) }
+.px-icon--ui-deck-skull .teeth { --x:5;--y:12;--w:1;--h:2;--c:var(--ink);--sh:calc(2 * var(--u)) 0 0 var(--ink),calc(4 * var(--u)) 0 0 var(--ink),calc(6 * var(--u)) 0 0 var(--ink) }
+/* @gen:end */

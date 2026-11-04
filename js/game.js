@@ -369,6 +369,7 @@ class EvilCasino {
         for (let i = 0; i < cardsToShow; i++) {
             const cardEl = document.createElement('div');
             cardEl.className = 'deck-card';
+            cardEl.innerHTML = IconSprites.html('ui-deck-skull');
             
             const rotation = (Math.random() - 0.5) * 30;
             const offsetX = (Math.random() - 0.5) * 15;
@@ -547,9 +548,9 @@ class EvilCasino {
 
         // .card-suit spans let the Poor Eyesight curse hide suits via CSS
         cardEl.innerHTML = `
-            <div class="card-corner">${card.value}<span class="card-suit">${card.suit}</span></div>
-            <div class="card-center"><span class="card-suit">${card.suit}</span></div>
-            <div class="card-corner bottom">${card.value}<span class="card-suit">${card.suit}</span></div>
+            <div class="card-corner">${card.value}<span class="card-suit">${IconSprites.suit(card.suit)}</span></div>
+            <div class="card-center"><span class="card-suit">${IconSprites.suit(card.suit)}</span></div>
+            <div class="card-corner bottom">${card.value}<span class="card-suit">${IconSprites.suit(card.suit)}</span></div>
         `;
 
         return cardEl;
@@ -997,14 +998,14 @@ class EvilCasino {
         // Widow: burn top card
         if (this.isBossFight && this.currentBoss?.burnCard) {
             const burned = this.drawCard();
-            const burnedSuit = this.hasCurse('poorEyesight') ? '?' : burned.suit;
+            const burnedSuit = this.hasCurse('poorEyesight') ? '?' : IconSprites.suit(burned.suit);
             this.showMessage(`🕷️ Black Widow burns ${burned.value}${burnedSuit}...`);
             if (typeof GameAnimations !== 'undefined' && this.deckAreaEl) {
                 const burnEl = document.createElement('div');
                 burnEl.className = 'card burn-card-temp anim-boss-burn';
                 const isRed = ['♥', '♦'].includes(burned.suit);
                 burnEl.classList.add(isRed ? 'red' : 'black');
-                burnEl.innerHTML = `<div class="card-center">${burned.value}<span class="card-suit">${burned.suit}</span></div>`;
+                burnEl.innerHTML = `<div class="card-center">${burned.value}<span class="card-suit">${IconSprites.suit(burned.suit)}</span></div>`;
                 this.deckAreaEl.appendChild(burnEl);
                 setTimeout(() => burnEl.remove(), 600);
             }
@@ -1776,9 +1777,9 @@ class EvilCasino {
                 const isRed = ['♥', '♦'].includes(card.suit);
                 faceDownCard.classList.add(isRed ? 'red' : 'black', 'rigged');
                 faceDownCard.innerHTML = `
-                    <div class="card-corner">${card.value}<span class="card-suit">${card.suit}</span></div>
-                    <div class="card-center"><span class="card-suit">${card.suit}</span></div>
-                    <div class="card-corner bottom">${card.value}<span class="card-suit">${card.suit}</span></div>
+                    <div class="card-corner">${card.value}<span class="card-suit">${IconSprites.suit(card.suit)}</span></div>
+                    <div class="card-center"><span class="card-suit">${IconSprites.suit(card.suit)}</span></div>
+                    <div class="card-corner bottom">${card.value}<span class="card-suit">${IconSprites.suit(card.suit)}</span></div>
                 `;
             }
         }
@@ -2339,7 +2340,7 @@ class EvilCasino {
         }
         
         const nextCards = this.deck.slice(0, count);
-        const cardStr = nextCards.map(c => `${c.value}${c.suit}`).join(', ');
+        const cardStr = nextCards.map(c => `${c.value}${IconSprites.suit(c.suit)}`).join(', ');
         this.showMessage(`🃏 Next ${count} cards: ${cardStr}`);
     }
     
