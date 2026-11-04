@@ -2476,19 +2476,43 @@ body {
 }
 
 .boss-description {
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     color: #ff9999;
-    margin: 15px 0;
+    margin: 10px 0;
     font-style: italic;
+    opacity: 0.85;
 }
 
 .boss-rule {
-    font-size: var(--fs-sm);
-    color: var(--gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     background: rgba(255, 0, 0, 0.2);
-    padding: 10px;
-    border: 2px solid #ff3333;
-    margin: 15px 0;
+    padding: 12px 14px;
+    border: 3px solid #ff3333;
+    box-shadow: 3px 3px 0px #000, 0 0 14px rgba(255, 51, 51, 0.35);
+    margin: 14px 0 10px;
+}
+
+.boss-rule-tag {
+    font-size: var(--fs-xs);
+    color: #ff9a9a;
+    letter-spacing: 2px;
+}
+
+.boss-rule-text {
+    font-size: var(--fs-md);
+    color: var(--gold);
+    line-height: 1.5;
+}
+
+.boss-warning {
+    font-size: var(--fs-xs);
+    color: var(--warn);
+    line-height: 1.6;
+    margin: 0 0 14px;
+    animation: subtitlePulse 1s ease-in-out infinite;
 }
 
 .boss-fight-btn {
@@ -3964,54 +3988,94 @@ body {
     justify-content: center;
 }
 
+/* Shop card: rarity = border color, top tag = rarity, pill = passive vs uses.
+   Read order: icon → name → kind → effect → price. */
 button.perk-shop-item {
+    --card-accent: var(--rarity-common);
     font-family: 'Press Start 2P', monospace;
     background: linear-gradient(180deg, #2a2a3a 0%, #1a1a2a 100%);
-    border: 3px solid #4466aa;
-    padding: 18px 15px;
+    border: 3px solid var(--card-accent);
+    box-shadow: 3px 3px 0px #000, inset 0 0 18px color-mix(in srgb, var(--card-accent) 25%, transparent);
+    padding: 26px 15px 18px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
     position: relative;
     width: 250px;
-    min-height: 220px;
+    min-height: 230px;
     text-align: center;
     color: inherit;
     flex-shrink: 0;
 }
 
-.perk-shop-item:hover:not(.unaffordable):not(.owned) {
-    border-color: var(--gold);
+.perk-shop-item.rarity-uncommon { --card-accent: var(--rarity-uncommon); }
+.perk-shop-item.rarity-rare { --card-accent: var(--rarity-rare); }
+.perk-shop-item.rarity-legendary { --card-accent: var(--rarity-legendary); }
+
+.perk-shop-item:hover:not(:disabled) {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 6px 0px #000, 0 0 16px var(--card-accent);
 }
 
-.perk-shop-item.unaffordable {
-    opacity: 0.5;
-    cursor: not-allowed;
-    border-color: #333;
-}
-
-.perk-shop-item.owned {
-    opacity: 0.7;
-    cursor: default;
-    border-color: var(--green);
-    background: linear-gradient(180deg, #1a3a1a 0%, #0a2a0a 100%);
-}
-
-.perk-shop-item.owned::after {
-    content: '✓ OWNED';
+.perk-rarity {
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 100, 0, 0.9);
-    color: var(--green);
-    padding: 4px 8px;
+    padding: 3px 8px;
+    background: #000;
+    border: 2px solid var(--card-accent);
+    color: var(--card-accent);
     font-size: var(--fs-xs);
-    border: 2px solid var(--green);
+    letter-spacing: 1px;
+}
+
+.perk-kind {
+    font-size: var(--fs-xs);
+    padding: 3px 6px;
+    border: 1px solid #555;
+    color: #aaa;
+}
+
+.perk-kind.uses {
+    border-color: var(--warn);
+    color: var(--warn);
+}
+
+/* Dim the contents, not the card, so the stamp stays loud */
+.perk-shop-item.cannot-afford {
+    cursor: not-allowed;
+    box-shadow: 3px 3px 0px #000;
+}
+
+.perk-shop-item.cannot-afford > span {
+    opacity: 0.45;
+    filter: grayscale(0.85);
+}
+
+.perk-shop-item.cannot-afford > .perk-cost {
+    opacity: 1;
+    filter: none;
+    color: var(--bad);
+}
+
+.perk-shop-item.cannot-afford[data-stamp]::after {
+    content: attr(data-stamp);
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    padding: 6px 10px;
+    background: rgba(40, 0, 0, 0.9);
+    border: 3px solid var(--bad);
+    color: var(--bad);
+    font-size: var(--fs-md);
+    letter-spacing: 2px;
+    white-space: nowrap;
+    box-shadow: 2px 2px 0px #000;
 }
 
 .perk-icon {
@@ -4030,13 +4094,14 @@ button.perk-shop-item {
     color: #bbb;
     text-align: center;
     line-height: 1.6;
+    flex: 1;
 }
 
 .perk-cost {
-    font-size: var(--fs-md);
-    color: var(--green);
+    align-self: stretch;
+    font-size: var(--fs-lg);
+    color: var(--good);
     text-align: center;
-    margin-top: 10px;
     padding-top: 10px;
     border-top: 1px solid #333;
 }
@@ -4181,9 +4246,21 @@ button.perk-shop-item {
     font-size: var(--fs-xl);
     padding: 0 2px;
 }
+/* Each room type owns a color (border + glow); icons + color = recognition */
+.map-node { --room: #553; }
+.map-node[data-type="normal"] { --room: var(--room-normal); }
+.map-node[data-type="elite"] { --room: var(--room-elite); }
+.map-node[data-type="event"] { --room: var(--room-event); }
+.map-node[data-type="shop"] { --room: var(--room-shop); }
+.map-node[data-type="rest"] { --room: var(--room-rest); }
+.map-node[data-type="treasure"] { --room: var(--room-treasure); }
+.map-node[data-type="gamble"] { --room: var(--room-gamble); }
+.map-node[data-type="boss"] { --room: var(--room-boss); }
+.map-node[data-type="start"] { --room: var(--room-start); }
+
 .map-node {
     background: #221018;
-    border: 2px solid #553;
+    border: 2px solid color-mix(in srgb, var(--room) 55%, #222);
     color: #ccc;
     font-family: "Press Start 2P", monospace;
     font-size: var(--fs-xs);
@@ -4199,10 +4276,11 @@ button.perk-shop-item {
 .map-node-icon { font-size: var(--fs-lg); line-height: 1; }
 .map-node-label { text-align: center; line-height: 1.3; max-width: 80px; }
 .map-node.available {
-    border-color: #ffd700;
+    border-color: var(--room);
+    border-width: 3px;
     color: #fff;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.35);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--room) 40%, transparent);
     animation: mapPulse 1.6s ease-in-out infinite;
 }
 .map-node.available:hover {
@@ -4220,19 +4298,77 @@ button.perk-shop-item {
     opacity: 0.35;
     filter: grayscale(0.8);
 }
-.map-node[data-type="boss"].available {
-    border-color: #ff2222;
-    box-shadow: 0 0 14px rgba(255, 0, 0, 0.5);
+/* Boss while the contract is unfinished: warning outline + badge, visible even when locked */
+.map-node.contract-risk {
+    position: relative;
+    outline: 2px dashed var(--warn);
+    outline-offset: 3px;
 }
-.map-node[data-type="boss"].contract-risk.available {
-    border-color: #ff8800;
-    box-shadow: 0 0 12px rgba(255, 140, 0, 0.45);
+.map-node.contract-risk::after {
+    content: '⚠';
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border: 2px solid var(--warn);
+    color: var(--warn);
+    font-size: var(--fs-xs);
 }
-.map-node[data-type="shop"].available { border-color: #4af; }
-.map-node[data-type="elite"].available { border-color: #f84; }
+.map-node.contract-risk.available {
+    animation: mapPulseWarn 1.2s ease-in-out infinite;
+}
 @keyframes mapPulse {
-    0%, 100% { box-shadow: 0 0 6px rgba(255, 215, 0, 0.25); }
-    50% { box-shadow: 0 0 14px rgba(255, 215, 0, 0.55); }
+    0%, 100% { box-shadow: 0 0 6px color-mix(in srgb, var(--room) 25%, transparent); }
+    50% { box-shadow: 0 0 16px color-mix(in srgb, var(--room) 60%, transparent); }
+}
+@keyframes mapPulseWarn {
+    0%, 100% { box-shadow: 0 0 6px rgba(255, 170, 0, 0.3); }
+    50% { box-shadow: 0 0 18px rgba(255, 170, 0, 0.75); }
+}
+
+/* Map header: contract box + legend */
+.map-contract {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0 6px;
+    padding: 8px 14px;
+    background: #000;
+    border: 2px solid var(--warn);
+}
+.map-contract.complete { border-color: var(--good); }
+.map-contract.complete .contract-pip.filled,
+.map-contract.complete .contract-bar-fill { background: var(--good); }
+.map-contract.complete .contract-count { color: var(--good); }
+.map-contract .floor-map-contract { margin: 0; }
+
+.map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 14px;
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid #3a1a22;
+    font-size: var(--fs-xs);
+    color: #aaa;
+}
+.map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.map-legend-swatch {
+    width: 10px;
+    height: 10px;
+    background: var(--room);
+    box-shadow: 1px 1px 0 #000;
 }
 .game-container.map-focus .table,
 .game-container.map-focus .controls {

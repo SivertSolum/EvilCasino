@@ -2358,37 +2358,8 @@ class EvilCasino {
         this.shopInventory = shuffled.slice(0, 3);
     }
     
-    renderPreRoundShopItems() {
-        if (!this.preRoundShopItems) return;
-        
-        this.preRoundShopItems.innerHTML = '';
-        
-        if (!this.shopInventory || this.shopInventory.length === 0) {
-            this.preRoundShopItems.innerHTML = '<p class="shop-empty">No perks available!</p>';
-            return;
-        }
-        
-        this.shopInventory.forEach((perk, index) => {
-            const canAfford = this.money >= perk.cost;
-            const btn = document.createElement('button');
-            btn.className = `perk-shop-item ${canAfford ? '' : 'cannot-afford'}`;
-            btn.innerHTML = `
-                <span class="perk-icon">${perk.icon}</span>
-                <span class="perk-name">${perk.name}</span>
-                <span class="perk-desc">${perk.desc}</span>
-                <span class="perk-cost ${canAfford ? 'affordable' : 'expensive'}">$${perk.cost}</span>
-            `;
-            
-            if (canAfford) {
-                btn.addEventListener('click', () => this.buyPerkFromShop(index));
-            } else {
-                btn.disabled = true;
-            }
-            
-            this.preRoundShopItems.appendChild(btn);
-        });
-    }
-    
+    // renderPreRoundShopItems + renderActivePerksInShop live in js/game/hud.js
+
     buyPerkFromShop(index) {
         const perk = this.shopInventory[index];
         if (!perk || this.money < perk.cost) return;
@@ -2419,24 +2390,6 @@ class EvilCasino {
         this.showMessage(`🎉 Purchased ${perk.name}!`);
     }
     
-    renderActivePerksInShop() {
-        if (!this.shopActivePerksListEl) return;
-        
-        if (this.activePerks.length === 0) {
-            this.shopActivePerksListEl.innerHTML = 'None yet...';
-        } else {
-            this.shopActivePerksListEl.innerHTML = this.activePerks.map(p => 
-                `<span class="perk-badge" data-perk-id="${p.id}" data-perk-name="${p.icon} ${p.name}" data-perk-desc="${p.desc}">${p.icon} ${p.name}</span>`
-            ).join(' ');
-            
-            // Add hover listeners for tooltips in shop
-            const perkBadges = this.shopActivePerksListEl.querySelectorAll('.perk-badge[data-perk-id]');
-            perkBadges.forEach(badge => {
-                badge.addEventListener('mouseenter', (e) => this.showPerkTooltip(e, badge));
-                badge.addEventListener('mouseleave', () => this.hidePerkTooltip());
-            });
-        }
-    }
 
     // === SPLIT FUNCTIONALITY ===
     

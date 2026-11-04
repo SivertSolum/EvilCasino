@@ -69,8 +69,8 @@ Object.assign(EvilCasino.prototype, {
         if (this.escapeGoalEl) {
             const c = this.contract;
             this.escapeGoalEl.textContent = c ? `${c.icon} ${c.name}` : `$${this.escapeGoal}`;
-            if (c && typeof this.getContractLabel === 'function') {
-                this.escapeGoalEl.title = this.getContractLabel();
+            if (c && typeof this.getContractGoalText === 'function') {
+                this.escapeGoalEl.title = this.getContractGoalText();
             }
         }
 
@@ -117,19 +117,75 @@ Object.assign(EvilCasino.prototype, {
             this.activeUpgradesEl.innerHTML = '<span class="perks-empty">None yet...</span>';
             return;
         }
-        this.activeUpgradesEl.innerHTML = this.activePerks.map(p => {
-            const uses = p.maxUses ? `<sup class="perk-uses">${p.uses}</sup>` : '';
-            const spent = p.maxUses && p.uses <= 0 ? ' spent' : '';
-            const kind = p.milestone ? ' side-bet' : '';
-            return `<span class="perk-badge icon-only${kind}${spent}" data-perk-id="${p.id}" data-perk-name="${p.icon} ${p.name}" data-perk-desc="${p.desc}">${p.icon}${uses}</span>`;
-        }).join('');
+        this.activeUpgradesEl.innerHTML = this.activePerks.map(p => this.buildPerkBadgeHtml(p)).join('');
         this.setupPerkTooltips();
     },
 
-    setupPerkTooltips() {
-        if (!this.perkTooltip) return;
+    // One badge look everywhere (status bar, shop strip)
+    buildPerkBadgeHtml(p) {
+        const uses = p.maxUses ? `<sup class="perk-uses">${p.uses}</sup>` : '';
+        const spent = p.maxUses && p.uses <= 0 ? ' spent' : '';
+        const kind = p.milestone ? ' side-bet' : '';
+        return `<span class="perk-badge icon-only${kind}${spent}" data-perk-id="${p.id}" data-perk-name="${p.icon} ${p.name}" data-perk-desc="${p.desc}">${p.icon}${uses}</span>`;
+    },
 
-        const perkBadges = this.activeUpgradesEl.querySelectorAll('.perk-badge[data-perk-id]');
+    // === SHOP ===
+    renderPreRoundShopItems() {
+        if (!this.preRoundShopItems) return;
+
+        this.preRoundShopItems.innerHTML = '';
+
+        if (!this.shopInventory || this.shopInventory.length === 0) {
+            this.preRoundShopItems.innerHTML = '<p class="shop-empty">No perks available!</p>';
+            return;
+        }
+
+        const stamps = (typeof MESSAGES !== 'undefined' && MESSAGES.tooPoor) || ['TOO POOR'];
+
+        this.shopInventory.forEach((perk, index) => {
+            const canAfford = this.money >= perk.cost;
+            const rarity = perk.rarity || 'common';
+            const kindBadge = perk.maxUses
+                ? `<span class="perk-kind uses" title="Limited uses, refills each floor">${perk.maxUses}× / FLOOR</span>`
+                : `<span class="perk-kind passive" title="Always on">∞ PASSIVE</span>`;
+
+            const btn = document.createElement('button');
+            btn.className = `perk-shop-item rarity-${rarity}${canAfford ? '' : ' cannot-afford'}`;
+            if (!canAfford) btn.dataset.stamp = stamps[Math.floor(Math.random() * stamps.length)];
+            btn.innerHTML = `
+                <span class="perk-rarity">${rarity.toUpperCase()}</span>
+                <span class="perk-icon">${perk.icon}</span>
+                <span class="perk-name">${perk.name}</span>
+                ${kindBadge}
+                <span class="perk-desc">${perk.desc}</span>
+                <span class="perk-cost ${canAfford ? 'affordable' : 'expensive'}">$${perk.cost}</span>
+            `;
+
+            if (canAfford) {
+                btn.addEventListener('click', () => this.buyPerkFromShop(index));
+            } else {
+                btn.disabled = true;
+            }
+
+            this.preRoundShopItems.appendChild(btn);
+        });
+    },
+
+    renderActivePerksInShop() {
+        if (!this.shopActivePerksListEl) return;
+
+        if (!this.activePerks || this.activePerks.length === 0) {
+            this.shopActivePerksListEl.innerHTML = '<span class="perks-empty">None yet...</span>';
+            return;
+        }
+        this.shopActivePerksListEl.innerHTML = this.activePerks.map(p => this.buildPerkBadgeHtml(p)).join('');
+        this.setupPerkTooltips(this.shopActivePerksListEl);
+    },
+
+    setupPerkTooltips(container = this.activeUpgradesEl) {
+        if (!this.perkTooltip || !container) return;
+
+        const perkBadges = container.querySelectorAll('.perk-badge[data-perk-id]');
         perkBadges.forEach(badge => {
             badge.addEventListener('mouseenter', (e) => this.showPerkTooltip(e, badge));
             badge.addEventListener('mouseleave', () => this.hidePerkTooltip());

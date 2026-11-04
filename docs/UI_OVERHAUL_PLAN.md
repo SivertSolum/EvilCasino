@@ -117,7 +117,12 @@ Seven phases, each shippable and testable on its own. **No balance numbers chang
   - Subtexts were already hidden by CSS; removed the dead spans. `ACTION_QUIPS` (config.js) drive a hover tag and a disabled caption (fixed padding, so the bar never resizes).
   - How to Play → THE RUN / THE HAND / THE CATCH (added SPLIT, which was missing).
   - Tightened: Perfect Streak, X-Ray Vision, Card Shark descs; Bookie and Black Widow boss rules (same effects).
-- [ ] Phase 3 — First glance
+- [x] Phase 3 — First glance
+  - Fixed latent bug: JS added `cannot-afford` but CSS styled `.unaffordable`, so unaffordable perks never looked different.
+  - Shop rendering (`renderPreRoundShopItems`, `renderActivePerksInShop`) moved to `hud.js`; shared `buildPerkBadgeHtml`.
+  - Icons: Lucky 7s 🍀→7️⃣, Lucky Charm 🍀→🧿, Insurance Fraud 💰→🧾. `MESSAGES.tooPoor` stamps.
+  - Map: per-room colors on every node, legend, contract goal + shared meter, ⚠ badge on boss while contract is open.
+  - Boss intro: rule box first, flavor second, warning as its own line.
 - [ ] Phase 4 — Decoration diet
 - [ ] Phase 5 — Consistency
 - [ ] Phase 6 — Wrap-up

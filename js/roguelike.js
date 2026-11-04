@@ -154,6 +154,27 @@ Object.assign(EvilCasino.prototype, {
         return `${c.icon} ${desc}`;
     },
 
+    // Goal sentence without progress numbers (e.g. "Win 3 hands before 3 losses")
+    getContractGoalText() {
+        const c = this.contract;
+        if (!c) return '';
+        if (c.type === 'netGain') return `Net +$${c.target} this floor`;
+        return c.desc
+            .replace('{target}', c.target)
+            .replace('{fail}', c.failAt || 3)
+            .replace('${target}', `$${c.target}`);
+    },
+
+    renderMapLegend() {
+        const legend = document.getElementById('map-legend');
+        if (!legend || legend.childElementCount || typeof ROOM_ICONS === 'undefined') return;
+        legend.innerHTML = Object.keys(ROOM_ICONS)
+            .filter(type => type !== 'start')
+            .map(type => `<span class="map-legend-item" style="--room: var(--room-${type})">`
+                + `<span class="map-legend-swatch"></span>${ROOM_ICONS[type]} ${type.toUpperCase()}</span>`)
+            .join('');
+    },
+
     // Numeric progress for the HUD meter: { current, target, text, extra, complete, failed }
     getContractProgress() {
         const c = this.contract;
@@ -264,11 +285,20 @@ Object.assign(EvilCasino.prototype, {
         if (this.floorMapTitleEl) {
             this.floorMapTitleEl.textContent = `FLOOR ${this.currentFloor} MAP`;
         }
-        if (this.floorMapContractEl) {
-            const status = this.contractComplete ? '✓ DONE — ' : '⚠ Must finish before boss clear — ';
-            this.floorMapContractEl.textContent = status + this.getContractLabel();
+        if (this.floorMapContractEl && this.contract) {
+            // Goal as text; progress as the shared meter below it
+            const c = this.contract;
+            this.floorMapContractEl.textContent = `${c.icon} ${c.name}: ${this.getContractGoalText()}`;
             this.floorMapContractEl.classList.toggle('anim-contract-done', this.contractComplete);
         }
+        const contractBox = document.getElementById('floor-map-contract-box');
+        if (contractBox) contractBox.classList.toggle('complete', !!this.contractComplete);
+        const mapProgress = document.getElementById('floor-map-contract-progress');
+        if (mapProgress && typeof this.buildContractProgressHtml === 'function') {
+            const p = this.getContractProgress();
+            mapProgress.innerHTML = p ? this.buildContractProgressHtml(p) : '';
+        }
+        this.renderMapLegend();
         this.renderFloorMap();
         if (typeof GameAnimations !== 'undefined') {
             GameAnimations.openPopup(this.floorMapEl);
@@ -522,14 +552,15 @@ Object.assign(EvilCasino.prototype, {
         }
         if (this.bossNameEl) this.bossNameEl.textContent = boss.name;
         if (this.bossDescEl) this.bossDescEl.textContent = boss.desc;
-        let rule = `RULE: ${boss.rule}`;
-        if (!this.contractComplete && this.contract?.type !== 'defeatBoss') {
-            rule += `\n⚠ Contract incomplete — beat them anyway and you still forfeit.`;
+        if (this.bossRuleEl) this.bossRuleEl.textContent = `${boss.icon || '🔥'} ${boss.rule}`;
+        const warningEl = document.getElementById('boss-warning');
+        if (warningEl) {
+            const atRisk = !this.contractComplete && this.contract?.type !== 'defeatBoss';
+            warningEl.classList.toggle('hidden', !atRisk);
         }
-        if (this.bossRuleEl) this.bossRuleEl.textContent = rule;
         if (typeof GameAnimations !== 'undefined') {
             GameAnimations.openPopup(this.bossPopup);
-            GameAnimations.staggerPopupContent(this.bossPopup, '.boss-portrait, .boss-content h2, .boss-description, .boss-rule, #boss-fight-btn', 'anim-popup-enter', 60);
+            GameAnimations.staggerPopupContent(this.bossPopup, '.boss-portrait, .boss-content h2, .boss-rule, .boss-description, .boss-warning, #boss-fight-btn', 'anim-popup-enter', 60);
         } else {
             this.bossPopup.classList.remove('hidden');
         }

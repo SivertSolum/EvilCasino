@@ -138,10 +138,10 @@ const ROOM_WEIGHTS = {
 // Perks - can be purchased or selected after wins
 const PERKS = [
     { id: 'peek', name: 'X-Ray Vision', icon: '👁️', desc: "See dealer's hidden card once per floor", uses: 1, maxUses: 1, cost: 320, rarity: 'rare' },
-    { id: 'lucky7', name: 'Lucky 7s', icon: '🍀', desc: '7s count as 8 for you', passive: true, cost: 240, rarity: 'common' },
-    { id: 'insurance', name: 'Insurance Fraud', icon: '💰', desc: '30% chance to get bet back on loss', passive: true, cost: 400, rarity: 'uncommon' },
+    { id: 'lucky7', name: 'Lucky 7s', icon: '7️⃣', desc: '7s count as 8 for you', passive: true, cost: 240, rarity: 'common' },
+    { id: 'insurance', name: 'Insurance Fraud', icon: '🧾', desc: '30% chance to get bet back on loss', passive: true, cost: 400, rarity: 'uncommon' },
     { id: 'counter', name: 'Card Counter', icon: '🧠', desc: 'Shows bust probability', passive: true, cost: 160, rarity: 'common' },
-    { id: 'luckyCharm', name: 'Lucky Charm', icon: '🍀', desc: '+5% chance to win ties', passive: true, cost: 480, rarity: 'rare' },
+    { id: 'luckyCharm', name: 'Lucky Charm', icon: '🧿', desc: '+5% chance to win ties', passive: true, cost: 480, rarity: 'rare' },
     { id: 'secondChance', name: 'Second Chance', icon: '🔄', desc: 'Undo last hit once per floor', uses: 1, maxUses: 1, cost: 320, rarity: 'uncommon' },
     { id: 'doubleOrNothing', name: 'High Roller', icon: '🎲', desc: 'Wins pay 1.3x', passive: true, cost: 560, rarity: 'rare' },
     { id: 'shield', name: 'Soul Shield', icon: '🛡️', desc: 'Survive one bust per floor', uses: 1, maxUses: 1, cost: 400, rarity: 'uncommon' },
@@ -591,6 +591,9 @@ const ACTION_QUIPS = {
 
 // Messages
 const MESSAGES = {
+    // Stamp on shop items the player can't afford
+    tooPoor: ['TOO POOR', 'NICE TRY', 'IN YOUR DREAMS', 'LOL NO'],
+
     broke: [
         "The house always wins, and by 'house' we mean MY house. Thanks for the mortgage payment!",
         "Your wallet called. It filed for divorce.",

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVIL CASINO - The World's Most Fair Casino™</title>
-    <link rel="stylesheet" href="style.css?v=51">
+    <link rel="stylesheet" href="style.css?v=52">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -574,9 +574,13 @@
     <div class="popup hidden" id="floor-map">
         <div class="popup-content floor-map-content">
             <h2 id="floor-map-title">FLOOR 1 MAP</h2>
-            <p class="floor-map-contract" id="floor-map-contract">Contract</p>
-            <p class="floor-map-hint">Choose your path. Finish the contract before clearing the boss — or forfeit after the fight.</p>
+            <div class="map-contract" id="floor-map-contract-box">
+                <p class="floor-map-contract" id="floor-map-contract">Contract</p>
+                <div class="contract-progress" id="floor-map-contract-progress"></div>
+            </div>
+            <p class="floor-map-hint">Pick a path. Finish the contract before you clear the boss.</p>
             <div class="floor-map-nodes" id="floor-map-nodes"></div>
+            <div class="map-legend" id="map-legend"></div>
             <div class="map-side-table hidden" id="map-side-table">
                 <p class="map-side-table-msg" id="map-side-table-msg">
                     Path ended before the contract was done. Play a side table to finish it — or go broke trying.
@@ -630,8 +634,13 @@
         <div class="popup-content boss-content">
             <div class="boss-portrait" id="boss-portrait"></div>
             <h2 id="boss-name">BOSS FIGHT</h2>
+            <!-- Rule first and loudest; flavor second -->
+            <div class="boss-rule">
+                <span class="boss-rule-tag">BOSS RULE</span>
+                <span class="boss-rule-text" id="boss-rule"></span>
+            </div>
             <p class="boss-description" id="boss-description"></p>
-            <p class="boss-rule" id="boss-rule"></p>
+            <p class="boss-warning hidden" id="boss-warning">⚠ Contract incomplete. Beat them anyway and you still forfeit.</p>
             <button class="boss-fight-btn" id="boss-fight-btn">⚔️ FIGHT ⚔️</button>
         </div>
     </div>
@@ -698,15 +707,15 @@
     </div><!-- End game-scale-wrapper -->
 
     <!-- Modular JavaScript -->
-    <script src="js/config.js?v=26"></script>
+    <script src="js/config.js?v=27"></script>
     <script src="js/map.js?v=1"></script>
     <script src="js/sprites.js?v=2"></script>
     <script src="js/audio.js?v=22"></script>
     <script src="js/ui.js?v=28"></script>
     <script src="js/animations.js?v=2"></script>
-    <script src="js/game.js?v=56"></script>
-    <script src="js/game/hud.js?v=2"></script>
-    <script src="js/roguelike.js?v=4"></script>
+    <script src="js/game.js?v=57"></script>
+    <script src="js/game/hud.js?v=3"></script>
+    <script src="js/roguelike.js?v=5"></script>
     <script src="js/main.js?v=23"></script>
 </body>
 </html>
