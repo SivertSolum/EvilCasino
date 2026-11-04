@@ -348,7 +348,7 @@ Object.assign(EvilCasino.prototype, {
                 }
                 if (node.id === map.currentNodeId) btn.classList.add('current');
 
-                const icon = (typeof ROOM_ICONS !== 'undefined' && ROOM_ICONS[node.type]) ? IconSprites.html(ROOM_ICONS[node.type]) : '•';
+                const icon = (typeof ROOM_ICONS !== 'undefined' && ROOM_ICONS[node.type]) ? IconSprites.html(ROOM_ICONS[node.type]) : '';
                 const label = node.type === 'boss'
                     ? (this.currentFloorBoss?.name || 'BOSS')
                     : node.type.toUpperCase();

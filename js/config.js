@@ -3,9 +3,20 @@
 
 // Version and Changelog
 const VERSION = {
-    number: '2.1.1',
+    number: '2.2.0',
     date: '2026-11-05',
     changelog: [
+        {
+            version: '2.2.0',
+            date: '2026-11-05',
+            title: 'The Hand-Drawn Damnation Update',
+            changes: [
+                'Every emoji replaced with custom pixel art, built the same way as the dealers',
+                'Each perk, relic, curse, boss, room and event now has its own icon. No more four sharks sharing one face.',
+                'Card suits, warnings and buttons drawn by hand. Well, by CSS. Same thing.',
+                'The punchlines kept their faces'
+            ]
+        },
         {
             version: '2.1.1',
             date: '2026-11-05',

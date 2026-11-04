@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     on('pause-confirm-yes', confirmPauseAction);
     on('pause-confirm-no', cancelPauseConfirm);
     
-    console.log('%c🎰 EVIL CASINO LOADED 🎰', 'font-size: 24px; color: gold; background: purple;');
+    console.log('%cEVIL CASINO LOADED', 'font-size: 24px; color: gold; background: purple;');
     console.log('%cNow with MORE ways to lose!', 'font-size: 12px; color: red;');
 });
 

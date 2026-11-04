@@ -47,6 +47,7 @@ Until a given method is migrated and wired, **`game.js` is the live source of tr
 Evil Casino/
 ├── index.html              # DOM shell + script tags (?v= cache bust)
 ├── style.css               # Retro UI + CSS dealer sprites
+├── icons.css               # CSS pixel icons (IconSprites art, 16-unit grid)
 ├── AGENTS.md               # This file
 ├── README.md               # Player-facing rules
 ├── BUILD_AND_TEST.md       # Human run/test checklist
@@ -56,7 +57,7 @@ Evil Casino/
 └── js/
     ├── config.js           # VERSION, CONFIG, CONTRACTS, PERKS, BOSSES, EVENTS, MESSAGES, …
     ├── map.js              # FloorMap — branching floor generator
-    ├── sprites.js          # DealerSprites — CSS sprite HTML builders
+    ├── sprites.js          # DealerSprites + IconSprites — CSS sprite / icon HTML builders
     ├── audio.js            # Music + Web Audio SFX helpers
     ├── ui.js               # Menus, changelog, startGame wiring
     ├── game.js             # LIVE monolithic EvilCasino (migrate away; still ships)
@@ -89,9 +90,10 @@ flowchart LR
 
 | Module | Role |
 |--------|------|
-| `CONFIG`, `CONTRACTS`, `PERKS`, `BOSSES`, `EVENTS`, `MESSAGES`, … | Data tables in `config.js` (`VERSION.number` is `2.1.1`) |
+| `CONFIG`, `CONTRACTS`, `PERKS`, `BOSSES`, `EVENTS`, `MESSAGES`, … | Data tables in `config.js` (`VERSION.number` is `2.2.0`) |
 | `FloorMap` | STS-lite branching floor generation (`map.js`) |
 | `DealerSprites` | HTML builders for House Dealer + anomaly bosses (`sprites.js`) |
+| `IconSprites` | Pixel icon builder (`sprites.js`): `html(key)`, `suit(ch)`, `{i:key}` message tokens, `data-icon` placeholders; art in `icons.css` |
 | `EvilCasino` | Live class in `game.js`; extend via `js/game/*.js` only after wiring them |
 | `roguelike.js` | Floors, rooms, contracts, boss rules (`Object.assign` on prototype) |
 | `audio.js` / `ui.js` / `main.js` | SFX/music, menus, bootstrap |
@@ -179,6 +181,7 @@ Object.assign(EvilCasino.prototype, {
 - Content first in `config.js` (new perk/boss/event/contract/message + stable `id`), then wire the `id` in logic
 - Match existing message tone (`MESSAGES`, shop/event copy) — dry, mocking, casino-from-hell
 - Sprites: HTML string builders in `sprites.js` + matching CSS in `style.css` (follow House Dealer / Satan patterns)
+- Icons: no emoji in UI. Add a key (`<table>-<id>`) to the `IconSprites.define` registry in `sprites.js`, draw its parts in `icons.css`, set `icon: '<key>'` in `config.js`. Messages use `{i:key}`; static HTML uses `<span data-icon="key"></span>`. Check it in `docs/icon-gallery.html` (unknown keys render as a magenta box)
 - Audio: reuse `playSound(type)` and existing synth helpers in `audio.js` — no heavy audio libraries
 - Viewport: UI is designed for a ~1200×800 stage scaled by `updateGameScale()` in `main.js`
 

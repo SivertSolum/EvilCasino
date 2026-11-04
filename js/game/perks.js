@@ -51,7 +51,7 @@ EvilCasino.prototype.addRandomCurse = function() {
     if (availableCurses.length > 0) {
         const curse = availableCurses[Math.floor(Math.random() * availableCurses.length)];
         this.activeCurses.push({ ...curse });
-        this.showMessage(`💀 Cursed: ${curse.icon} ${curse.name} - ${curse.desc}`, 'lose');
+        this.showMessage(`Cursed: ${IconSprites.html(curse.icon)} ${curse.name} - ${curse.desc}`, 'lose');
         this.updateRoguelikeDisplay();
     }
 };

@@ -276,7 +276,7 @@ function loadCustomMusic(file) {
         bgMusic.play().catch(e => console.log('Custom audio play failed:', e));
     }
     
-    console.log('%c🎵 Custom music loaded: ' + file.name, 'color: gold;');
+    console.log('%cCustom music loaded: ' + file.name, 'color: gold;');
 }
 
 // ===== ADDITIONAL SOUND EFFECTS =====

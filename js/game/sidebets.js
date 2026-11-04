@@ -52,7 +52,7 @@ EvilCasino.prototype.checkPerfectPairs = function(hand) {
         return {
             type: 'perfectPair',
             name: 'PERFECT PAIR',
-            emoji: '👯',
+            icon: 'hand-perfect-pair',
             payout: this.sideBetPayouts.perfectPair
         };
     }
@@ -66,7 +66,7 @@ EvilCasino.prototype.checkPerfectPairs = function(hand) {
         return {
             type: 'coloredPair',
             name: 'COLORED PAIR',
-            emoji: '🎨',
+            icon: 'hand-colored-pair',
             payout: this.sideBetPayouts.coloredPair
         };
     }
@@ -75,7 +75,7 @@ EvilCasino.prototype.checkPerfectPairs = function(hand) {
     return {
         type: 'mixedPair',
         name: 'MIXED PAIR',
-        emoji: '👫',
+        icon: 'hand-mixed-pair',
         payout: this.sideBetPayouts.mixedPair
     };
 };
@@ -100,19 +100,19 @@ EvilCasino.prototype.check21Plus3 = function(playerHand, dealerHand) {
     const isStraight = isSequential || isLowStraight || isHighStraight;
     
     if (allSameValue && allSameSuit) {
-        return { type: 'suitedTrips', name: 'SUITED TRIPS', emoji: '🔥', payout: this.sideBetPayouts.suitedTrips };
+        return { type: 'suitedTrips', name: 'SUITED TRIPS', icon: 'hand-suited-trips', payout: this.sideBetPayouts.suitedTrips };
     }
     if (isStraight && allSameSuit) {
-        return { type: 'straightFlush', name: 'STRAIGHT FLUSH', emoji: '🌟', payout: this.sideBetPayouts.straightFlush };
+        return { type: 'straightFlush', name: 'STRAIGHT FLUSH', icon: 'hand-straight-flush', payout: this.sideBetPayouts.straightFlush };
     }
     if (allSameValue) {
-        return { type: 'threeOfAKind', name: 'THREE OF A KIND', emoji: '🎰', payout: this.sideBetPayouts.threeOfAKind };
+        return { type: 'threeOfAKind', name: 'THREE OF A KIND', icon: 'hand-three-of-a-kind', payout: this.sideBetPayouts.threeOfAKind };
     }
     if (isStraight) {
-        return { type: 'straight', name: 'STRAIGHT', emoji: '📈', payout: this.sideBetPayouts.straight };
+        return { type: 'straight', name: 'STRAIGHT', icon: 'hand-straight', payout: this.sideBetPayouts.straight };
     }
     if (allSameSuit) {
-        return { type: 'flush', name: 'FLUSH', emoji: '💎', payout: this.sideBetPayouts.flush };
+        return { type: 'flush', name: 'FLUSH', icon: 'hand-flush', payout: this.sideBetPayouts.flush };
     }
     
     return null;
@@ -173,7 +173,7 @@ EvilCasino.prototype.evaluateSideBets = async function() {
         if (Math.random() < 0.25) {
             const refund = Math.floor((this.sideBetPP + this.sideBet21Plus3) * 1);
             totalWinnings += refund;
-            this.showMessage(`🎪 Side Show: Side bet refunded! +$${refund}`, 'win');
+            this.showMessage(`{i:sbperk-side-show} Side Show: Side bet refunded! +$${refund}`, 'win');
         }
     }
     
@@ -201,7 +201,7 @@ EvilCasino.prototype.showSideBetResults = async function(results) {
             const popup = document.createElement('div');
             popup.className = 'side-bet-result win';
             popup.innerHTML = `
-                <div class="side-bet-result-title">${result.result.emoji} ${result.bet} WINS!</div>
+                <div class="side-bet-result-title">${IconSprites.html(result.result.icon)} ${result.bet} WINS!</div>
                 <div class="side-bet-result-detail">${result.result.name} (${result.result.payout}:1)</div>
                 <div class="side-bet-result-payout">+$${result.won}</div>
             `;
@@ -245,7 +245,7 @@ EvilCasino.prototype.showSideBetPerkUnlock = function(perk) {
     const popup = document.createElement('div');
     popup.className = 'side-bet-perk-unlock';
     popup.innerHTML = `
-        <div class="perk-unlock-title">🎰 SIDE BET PERK UNLOCKED!</div>
+        <div class="perk-unlock-title">SIDE BET PERK UNLOCKED!</div>
         <div class="perk-unlock-icon">${perk.icon}</div>
         <div class="perk-unlock-name">${perk.name}</div>
         <div class="perk-unlock-desc">${perk.desc}</div>

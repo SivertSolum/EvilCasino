@@ -418,3 +418,19 @@ python -I -X utf8 -c "import re,glob;p=re.compile('[\U0001F000-\U0001FFFF☀-➿
 - **`card.suit` stays a character.** Flush/straight detection, `isRed` checks and `data-card` lookups depend on it. Only rendering changes.
 - **Poor Eyesight / curses (fixed in 2.1.1):** none of the curses had any effect in the live game, because `hasCurse` lived only in the unshipped `game/perks.js`. `js/game/curses.js` now implements all eight. Card faces wrap suits in `.card-suit` spans; when suit icons replace those glyphs, keep the wrapper so `.curse-hidden-suits` keeps working.
 - No balance, payout or economy numbers change.
+
+---
+
+## Status (2026-11-05)
+
+All phases are done: 0 through 8, one commit each.
+
+- **142 icon keys** in `IconSprites`: the 141 in §3, plus `ui-menu` and `ui-cog` for the ☰ / ⚙ buttons, which used HTML entities and were missed by the first scan. `ui-bullet` never became a key; the changelog bullet is drawn directly in CSS.
+- **Part classes are `p-<part>`.** Bare names like `.hand` collided with page CSS (the player's hand), so every part is prefixed.
+- **`IconSprites.STRICT` is on.** An unknown key renders a magenta box and logs a `console.warn`.
+- **Deck backs carry a real `ui-deck-skull` icon**, not pseudo-element art, because `updateDeckDisplay` builds them in JS anyway.
+- **The map `contract-risk` badge is drawn in CSS**: an amber triangle from two gradients with a `!`.
+- **Unshipped `js/game/*.js` modules** (`sidebets.js`, `perks.js`, `betting.js`) were updated too, so wiring them later doesn't bring the emoji back.
+- **Remaining glyphs (intended):** suit characters used as card data (`card.suit`, `data-card`, `SUITS`, red-suit checks), arrows in code comments, and `∞` in the shop's `∞ PASSIVE` tag (a maths symbol, not an emoji).
+- **Not done:** retaking `screenshots/`.
+- **Found:** relics and curses have no HUD badge row (only perks show), so active curses are invisible after the pick-up message.

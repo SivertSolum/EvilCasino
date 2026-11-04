@@ -49,7 +49,7 @@ EvilCasino.prototype.placeBet = function(btn) {
     this.dealBtn.disabled = false;
     
     if (amount === 'all') {
-        this.showMessage("Going all in? Bold. Stupid, but bold. 🎲");
+        this.showMessage("Going all in? Bold. Stupid, but bold.");
     } else {
         this.showMessage(`$${bet} on the line. The dealer is warming up...`);
     }
@@ -65,7 +65,7 @@ EvilCasino.prototype.sameBet = function() {
     if (betAmount > this.money) {
         if (this.money > 0) {
             this.currentBet = this.money;
-            this.showMessage(`Can't afford $${betAmount}, going all in with $${this.money}! 💸`);
+            this.showMessage(`Can't afford $${betAmount}, going all in with $${this.money}!`);
         } else {
             this.showMessage("You're broke! No rebet for you!");
             return;

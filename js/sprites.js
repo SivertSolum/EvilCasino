@@ -244,8 +244,8 @@ const IconSprites = {
 
     SUIT_KEYS: { '♠': 'suit-spade', '♥': 'suit-heart', '♦': 'suit-diamond', '♣': 'suit-club' },
 
-    // false while emoji are still being migrated: unknown keys pass through as text
-    STRICT: false,
+    // Unknown keys render a magenta box + console.warn so missing art is obvious
+    STRICT: true,
     _warned: {},
 
     // Parts are listed as space-separated names
@@ -294,8 +294,7 @@ const IconSprites = {
     }
 };
 
-// Icon registry: key -> part names (art lives in icons.css)
-// @gen:start
+// Icon registry: key -> part names (art lives in icons.css, one rule per part)
 IconSprites.define({
     // Glyphs: card suits (currentColor, no outline, 1em box so they sit in card text)
     'suit-spade': 'point lobe-l lobe-r stem',
@@ -307,6 +306,8 @@ IconSprites.define({
     'ui-arrow-left': 'head shaft',
     'ui-contract': 'roll-top sheet lines roll-bottom seal',
     'ui-deck-skull': 'cranium jaw eye-l eye-r nose teeth',
+    'ui-menu': 'bars',
+    'ui-cog': 'body tooth-v tooth-h tooth-a tooth-b',
     // Actions
     'action-hit': 'sleeve hand fingers thumb knuckle',
     'action-stand': 'thumb fingers palm seps crease',
@@ -456,4 +457,3 @@ IconSprites.define({
     'react-bullseye': 'ring-1 ring-2 ring-3 center shaft flights',
     'react-chef': 'puff band band-line face mustache kiss'
 });
-// @gen:end
