@@ -352,6 +352,31 @@ IconSprites.define({
     'dperk-fast-hands': 'streaks glove seps cuff',
     'dperk-tax-collector': 'coin tin slot label dollar',
     'dperk-house-edge': 'cliff grass house roof door',
-    'dperk-card-shark': 'back deck fin'
+    'dperk-card-shark': 'back deck fin',
+    // Perks
+    'perk-peek': 'card eye iris pupil glint',
+    'perk-lucky7': 'tile bar stem',
+    'perk-insurance': 'paper lines stamp stamp-bar',
+    'perk-counter': 'brain fold curls plus-h plus-v minus',
+    'perk-lucky-charm': 'outer white light pupil',
+    'perk-second-chance': 'arc head card pip',
+    'perk-double-or-nothing': 'die-a pips-a die-b pip-b',
+    'perk-shield': 'shield inner flame core',
+    'perk-thief': 'coin palm finger-top finger-bottom',
+    'perk-meditation': 'coin petal-l petal-r petal-m base',
+    'perk-quick-draw': 'card bolt',
+    'perk-greed': 'gem top core shine',
+    'perk-vampiric': 'jaw fang-l fang-r drop drop-2',
+    'perk-last-stand': 'upper fore bicep fist bandage spot',
+    'perk-double-down': 'brim crown band face glasses glint',
+    // Side-bet perks
+    'sbperk-pair-hunter': 'card-a card-b pip-a pip-b handle glass',
+    'sbperk-poker-face': 'strap mask eyes mouth',
+    'sbperk-side-show': 'pole flag tent door',
+    'sbperk-side-master': 'handle-l handle-r cup shine stem base',
+    'sbperk-lucky-start': 'trail star',
+    'sbperk-side-insurance': 'ring',
+    'sbperk-double-down-21': 'point lobe-l lobe-r stem digits',
+    'sbperk-perfect-streak': 'chip-1 chip-2 chip-3 star-a star-b star-c'
 });
 // @gen:end

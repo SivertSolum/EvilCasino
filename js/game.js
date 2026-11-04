@@ -494,7 +494,7 @@ class EvilCasino {
         
         const probability = this.calculateBustProbability();
         const prevRisk = this._lastBustRisk || 0;
-        this.bustProbabilityEl.innerHTML = `🧠 Bust: ${probability}%`;
+        this.bustProbabilityEl.innerHTML = `${IconSprites.html('perk-counter')} Bust: ${probability}%`;
         this.bustProbabilityEl.classList.remove('hidden', 'low-risk', 'medium-risk', 'high-risk');
         
         if (probability <= 30) {
@@ -923,10 +923,10 @@ class EvilCasino {
                 // Add free side bet if player hasn't placed any
                 if (Math.random() < 0.5) {
                     this.sideBetPP = 10;
-                    this.showMessage("🌟 Lucky Start: Free $10 Perfect Pairs bet!");
+                    this.showMessage("{i:sbperk-lucky-start} Lucky Start: Free $10 Perfect Pairs bet!");
                 } else {
                     this.sideBet21Plus3 = 10;
-                    this.showMessage("🌟 Lucky Start: Free $10 21+3 bet!");
+                    this.showMessage("{i:sbperk-lucky-start} Lucky Start: Free $10 21+3 bet!");
                 }
                 if (this.updateSideBetsDisplay) this.updateSideBetsDisplay();
             }
@@ -989,7 +989,7 @@ class EvilCasino {
         if (this.hasPerk && this.hasPerk('meditation')) {
             this.money += 30;
             this.applyMoneyChange(30);
-            this.showMessage("🧘 Zen Mind: +$30");
+            this.showMessage("{i:perk-meditation} Zen Mind: +$30");
             this.updateDisplay();
         }
 
@@ -1024,7 +1024,7 @@ class EvilCasino {
         if (totalSideBets > 0) {
             this.money -= totalSideBets;
             if (sideBetDiscount > 0) {
-                this.showMessage(`🛟 Side Insurance: Saved $${sideBetDiscount} on side bets!`);
+                this.showMessage(`{i:sbperk-side-insurance} Side Insurance: Saved $${sideBetDiscount} on side bets!`);
             }
         }
         this.applyMoneyChange(-(this.currentBet + totalSideBets));
@@ -1195,7 +1195,7 @@ class EvilCasino {
                 this.playerHand.pop();
                 this.playerHandEl.removeChild(cardEl);
                 this.updateScores(true);
-                this.showMessage("⚡ Quick Draw saved you from busting! (First hit protection)", 'win');
+                this.showMessage("{i:perk-quick-draw} Quick Draw saved you from busting! (First hit protection)", 'win');
                 this.isProcessingAction = false;
                 this.hitBtn.disabled = false;
                 return;
@@ -1209,7 +1209,7 @@ class EvilCasino {
                 this.playerHandEl.removeChild(cardEl);
                 this.updateScores(true);
                 this.updateRoguelikeDisplay();
-                this.showMessage("🛡️ Soul Shield saved you from busting!", 'win');
+                this.showMessage("{i:perk-shield} Soul Shield saved you from busting!", 'win');
                 this.isProcessingAction = false;
                 this.hitBtn.disabled = false;
                 return;
@@ -1299,7 +1299,7 @@ class EvilCasino {
         let doubleAmount = this.currentBet;
         if (this.hasPerk('doubleDown')) {
             doubleAmount = Math.floor(this.currentBet * 0.5);
-            this.showMessage("🕵️ Double Agent: Only costs 50% extra! Bold move!");
+            this.showMessage("{i:perk-double-down} Double Agent: Only costs 50% extra! Bold move!");
         } else {
             this.showMessage("Doubling down? Bold move, cotton.");
         }
@@ -1733,7 +1733,7 @@ class EvilCasino {
             if (this.hasPerk('thief')) {
                 this.money += 75;
                 this.applyMoneyChange(75);
-                this.showMessage(this.getRandomMessage(this.winMessages) + " 🤏 Pickpocket: +$75!", 'win');
+                this.showMessage(this.getRandomMessage(this.winMessages) + " {i:perk-thief} Pickpocket: +$75!", 'win');
             } else {
                 this.showMessage(this.getRandomMessage(this.winMessages), 'win');
             }
@@ -1841,7 +1841,7 @@ class EvilCasino {
             // Vampiric perk: Heal $25 on wins
             if (this.hasPerk('vampiric')) {
                 this.money += 25;
-                this.showMessage("🧛 Vampiric Touch: +$25!");
+                this.showMessage("{i:perk-vampiric} Vampiric Touch: +$25!");
             }
             
             this.winStreak++;

@@ -165,35 +165,35 @@ const ROOM_WEIGHTS = {
 
 // Perks - can be purchased or selected after wins
 const PERKS = [
-    { id: 'peek', name: 'X-Ray Vision', icon: '👁️', desc: "See dealer's hidden card once per floor", uses: 1, maxUses: 1, cost: 320, rarity: 'rare' },
-    { id: 'lucky7', name: 'Lucky 7s', icon: '7️⃣', desc: '7s count as 8 for you', passive: true, cost: 240, rarity: 'common' },
-    { id: 'insurance', name: 'Insurance Fraud', icon: '🧾', desc: '30% chance to get bet back on loss', passive: true, cost: 400, rarity: 'uncommon' },
-    { id: 'counter', name: 'Card Counter', icon: '🧠', desc: 'Shows bust probability', passive: true, cost: 160, rarity: 'common' },
-    { id: 'luckyCharm', name: 'Lucky Charm', icon: '🧿', desc: '+5% chance to win ties', passive: true, cost: 480, rarity: 'rare' },
-    { id: 'secondChance', name: 'Second Chance', icon: '🔄', desc: 'Undo last hit once per floor', uses: 1, maxUses: 1, cost: 320, rarity: 'uncommon' },
-    { id: 'doubleOrNothing', name: 'High Roller', icon: '🎲', desc: 'Wins pay 1.3x', passive: true, cost: 560, rarity: 'rare' },
-    { id: 'shield', name: 'Soul Shield', icon: '🛡️', desc: 'Survive one bust per floor', uses: 1, maxUses: 1, cost: 400, rarity: 'uncommon' },
-    { id: 'thief', name: 'Pickpocket', icon: '🤏', desc: 'Steal $75 on dealer bust', passive: true, cost: 240, rarity: 'common' },
-    { id: 'meditation', name: 'Zen Mind', icon: '🧘', desc: 'Gain $30 at start of each hand', passive: true, cost: 320, rarity: 'uncommon' },
-    { id: 'quickDraw', name: 'Quick Draw', icon: '⚡', desc: 'First hit each hand can\'t bust you', passive: true, cost: 640, rarity: 'rare' },
-    { id: 'greed', name: 'Greed', icon: '💎', desc: 'Blackjack pays 3x instead of 2.5x', passive: true, cost: 480, rarity: 'uncommon' },
-    { id: 'vampiric', name: 'Vampiric Touch', icon: '🧛', desc: 'Heal $25 on wins', passive: true, cost: 320, rarity: 'common' },
-    { id: 'lastStand', name: 'Last Stand', icon: '💪', desc: 'Win rate +20% when under $200', passive: true, cost: 240, rarity: 'common' },
-    { id: 'doubleDown', name: 'Double Agent', icon: '🕵️', desc: 'Double down costs only 50% extra', passive: true, cost: 400, rarity: 'uncommon' }
+    { id: 'peek', name: 'X-Ray Vision', icon: 'perk-peek', desc: "See dealer's hidden card once per floor", uses: 1, maxUses: 1, cost: 320, rarity: 'rare' },
+    { id: 'lucky7', name: 'Lucky 7s', icon: 'perk-lucky7', desc: '7s count as 8 for you', passive: true, cost: 240, rarity: 'common' },
+    { id: 'insurance', name: 'Insurance Fraud', icon: 'perk-insurance', desc: '30% chance to get bet back on loss', passive: true, cost: 400, rarity: 'uncommon' },
+    { id: 'counter', name: 'Card Counter', icon: 'perk-counter', desc: 'Shows bust probability', passive: true, cost: 160, rarity: 'common' },
+    { id: 'luckyCharm', name: 'Lucky Charm', icon: 'perk-lucky-charm', desc: '+5% chance to win ties', passive: true, cost: 480, rarity: 'rare' },
+    { id: 'secondChance', name: 'Second Chance', icon: 'perk-second-chance', desc: 'Undo last hit once per floor', uses: 1, maxUses: 1, cost: 320, rarity: 'uncommon' },
+    { id: 'doubleOrNothing', name: 'High Roller', icon: 'perk-double-or-nothing', desc: 'Wins pay 1.3x', passive: true, cost: 560, rarity: 'rare' },
+    { id: 'shield', name: 'Soul Shield', icon: 'perk-shield', desc: 'Survive one bust per floor', uses: 1, maxUses: 1, cost: 400, rarity: 'uncommon' },
+    { id: 'thief', name: 'Pickpocket', icon: 'perk-thief', desc: 'Steal $75 on dealer bust', passive: true, cost: 240, rarity: 'common' },
+    { id: 'meditation', name: 'Zen Mind', icon: 'perk-meditation', desc: 'Gain $30 at start of each hand', passive: true, cost: 320, rarity: 'uncommon' },
+    { id: 'quickDraw', name: 'Quick Draw', icon: 'perk-quick-draw', desc: 'First hit each hand can\'t bust you', passive: true, cost: 640, rarity: 'rare' },
+    { id: 'greed', name: 'Greed', icon: 'perk-greed', desc: 'Blackjack pays 3x instead of 2.5x', passive: true, cost: 480, rarity: 'uncommon' },
+    { id: 'vampiric', name: 'Vampiric Touch', icon: 'perk-vampiric', desc: 'Heal $25 on wins', passive: true, cost: 320, rarity: 'common' },
+    { id: 'lastStand', name: 'Last Stand', icon: 'perk-last-stand', desc: 'Win rate +20% when under $200', passive: true, cost: 240, rarity: 'common' },
+    { id: 'doubleDown', name: 'Double Agent', icon: 'perk-double-down', desc: 'Double down costs only 50% extra', passive: true, cost: 400, rarity: 'uncommon' }
 ];
 
 // Side Bet Perks - unlocked via side bet milestones
 const SIDE_BET_PERKS = [
     // Wins-based unlocks
-    { id: 'pairHunter', name: 'Pair Hunter', icon: '👯', desc: 'Perfect Pairs pay +25% more', passive: true, milestone: 'wins', threshold: 3, rarity: 'common' },
-    { id: 'pokerFace', name: 'Poker Face', icon: '🎭', desc: '21+3 bets pay +25% more', passive: true, milestone: 'wins', threshold: 7, rarity: 'uncommon' },
-    { id: 'sideShow', name: 'Side Show', icon: '🎪', desc: 'Side bet losses refunded 25% of the time', passive: true, milestone: 'wins', threshold: 12, rarity: 'rare' },
-    { id: 'sideMaster', name: 'Side Bet Master', icon: '🏆', desc: 'All side bets pay +50% more', passive: true, milestone: 'wins', threshold: 20, rarity: 'legendary' },
+    { id: 'pairHunter', name: 'Pair Hunter', icon: 'sbperk-pair-hunter', desc: 'Perfect Pairs pay +25% more', passive: true, milestone: 'wins', threshold: 3, rarity: 'common' },
+    { id: 'pokerFace', name: 'Poker Face', icon: 'sbperk-poker-face', desc: '21+3 bets pay +25% more', passive: true, milestone: 'wins', threshold: 7, rarity: 'uncommon' },
+    { id: 'sideShow', name: 'Side Show', icon: 'sbperk-side-show', desc: 'Side bet losses refunded 25% of the time', passive: true, milestone: 'wins', threshold: 12, rarity: 'rare' },
+    { id: 'sideMaster', name: 'Side Bet Master', icon: 'sbperk-side-master', desc: 'All side bets pay +50% more', passive: true, milestone: 'wins', threshold: 20, rarity: 'legendary' },
     // Earnings-based unlocks
-    { id: 'luckyStart', name: 'Lucky Start', icon: '🌟', desc: 'Free $10 side bet each hand', passive: true, milestone: 'earnings', threshold: 200, rarity: 'common' },
-    { id: 'sideInsurance', name: 'Side Insurance', icon: '🛟', desc: 'Side bets cost 20% less', passive: true, milestone: 'earnings', threshold: 500, rarity: 'uncommon' },
-    { id: 'doubleDown21', name: 'Double Down 21', icon: '♠️', desc: '21+3 Straight Flush pays 3x more', passive: true, milestone: 'earnings', threshold: 1000, rarity: 'rare' },
-    { id: 'perfectStreak', name: 'Perfect Streak', icon: '✨', desc: 'Side bet win streaks add +10% each', passive: true, milestone: 'earnings', threshold: 2500, rarity: 'legendary' }
+    { id: 'luckyStart', name: 'Lucky Start', icon: 'sbperk-lucky-start', desc: 'Free $10 side bet each hand', passive: true, milestone: 'earnings', threshold: 200, rarity: 'common' },
+    { id: 'sideInsurance', name: 'Side Insurance', icon: 'sbperk-side-insurance', desc: 'Side bets cost 20% less', passive: true, milestone: 'earnings', threshold: 500, rarity: 'uncommon' },
+    { id: 'doubleDown21', name: 'Double Down 21', icon: 'sbperk-double-down-21', desc: '21+3 Straight Flush pays 3x more', passive: true, milestone: 'earnings', threshold: 1000, rarity: 'rare' },
+    { id: 'perfectStreak', name: 'Perfect Streak', icon: 'sbperk-perfect-streak', desc: 'Side bet win streaks add +10% each', passive: true, milestone: 'earnings', threshold: 2500, rarity: 'legendary' }
 ];
 
 // Relics - permanent powerful effects found during runs
