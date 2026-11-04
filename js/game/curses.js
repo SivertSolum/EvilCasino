@@ -29,7 +29,7 @@ Object.assign(EvilCasino.prototype, {
         const extra = Math.min(badLuck.value, this.money);
         if (extra <= 0) return;
         this.money -= extra;
-        this.showMessage(`${badLuck.icon} Bad Luck: -$${extra} extra!`, 'lose');
+        this.showMessage(`${IconSprites.html(badLuck.icon)} Bad Luck: -$${extra} extra!`, 'lose');
     },
 
     // Casino Tax: shrink a win payout (same convention as High Roller's multiplier)

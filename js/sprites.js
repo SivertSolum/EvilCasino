@@ -235,3 +235,61 @@ const DealerSprites = {
         return `HOUSE DEALER<br><span class="satan-subtitle">DEFINITELY FAIR</span>`;
     }
 };
+
+// EVIL CASINO - CSS pixel icons (same idea as DealerSprites, inline-sized)
+// Each key maps to named parts; icons.css draws them on a 16×16 unit grid.
+// Keys are `<table>-<id>` in kebab-case, e.g. `perk-greed`, `boss-satan`.
+const IconSprites = {
+    PARTS: {},
+
+    SUIT_KEYS: { '♠': 'suit-spade', '♥': 'suit-heart', '♦': 'suit-diamond', '♣': 'suit-club' },
+
+    // false while emoji are still being migrated: unknown keys pass through as text
+    STRICT: false,
+    _warned: {},
+
+    // Parts are listed as space-separated names
+    define(map) {
+        for (const key of Object.keys(map)) this.PARTS[key] = map[key].split(' ');
+    },
+
+    has(key) {
+        return !!this.PARTS[key];
+    },
+
+    html(key, extraClass = '') {
+        if (key == null || key === '') return '';
+        const parts = this.PARTS[key];
+        if (!parts) return this.missing(key);
+        const cls = extraClass ? ` ${extraClass}` : '';
+        return `<span class="px-icon px-icon--${key}${cls}" aria-hidden="true">`
+            + parts.map(p => `<i class="${p}"></i>`).join('')
+            + `</span>`;
+    },
+
+    suit(ch) {
+        const key = this.SUIT_KEYS[ch];
+        return key && this.PARTS[key] ? this.html(key) : ch;
+    },
+
+    // `{i:key}` tokens inside message strings → icon HTML
+    expand(str) {
+        return String(str).replace(/\{i:([a-z0-9-]+)\}/g, (_, k) => this.html(k));
+    },
+
+    // Fill static placeholders: <span data-icon="action-hit"></span>
+    hydrate(root = document) {
+        root.querySelectorAll('[data-icon]').forEach(el => {
+            el.outerHTML = this.html(el.getAttribute('data-icon'), el.className);
+        });
+    },
+
+    missing(key) {
+        if (!this.STRICT) return String(key);
+        if (!this._warned[key]) {
+            this._warned[key] = true;
+            console.warn(`IconSprites: no icon for "${key}"`);
+        }
+        return `<span class="px-icon px-icon--missing" title="${String(key).replace(/"/g, '')}" aria-hidden="true"></span>`;
+    }
+};

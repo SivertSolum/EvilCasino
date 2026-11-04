@@ -101,7 +101,7 @@ Object.assign(EvilCasino.prototype, {
         this.floorMap = FloorMap.generate(floor);
         this.setDealerSprite('house');
         this.updateRoguelikeDisplay();
-        this.showMessage(`Floor ${floor}: ${this.contract.icon} ${this.contract.name}`);
+        this.showMessage(`Floor ${floor}: ${IconSprites.html(this.contract.icon)} ${this.contract.name}`);
         this.showFloorMap();
     },
 
@@ -136,22 +136,22 @@ Object.assign(EvilCasino.prototype, {
             .replace('${target}', `$${c.target}`);
         if (c.type === 'netGain') desc = `Net +$${c.target} this floor`;
         if (c.type === 'winsBeforeLosses') {
-            return `${c.icon} ${c.name}: ${this.floorWins}/${c.target} wins (${this.floorLosses}/${c.failAt} losses)`;
+            return `${IconSprites.html(c.icon)} ${c.name}: ${this.floorWins}/${c.target} wins (${this.floorLosses}/${c.failAt} losses)`;
         }
         if (c.type === 'netGain') {
             const net = this.money - this.floorMoneyStart;
-            return `${c.icon} ${c.name}: $${net} / $${c.target}`;
+            return `${IconSprites.html(c.icon)} ${c.name}: $${net} / $${c.target}`;
         }
         if (c.type === 'clearElite') {
-            return `${c.icon} ${c.name}: ${this.floorEliteClears}/${c.target}`;
+            return `${IconSprites.html(c.icon)} ${c.name}: ${this.floorEliteClears}/${c.target}`;
         }
         if (c.type === 'totalWins') {
-            return `${c.icon} ${c.name}: ${this.floorWins}/${c.target}`;
+            return `${IconSprites.html(c.icon)} ${c.name}: ${this.floorWins}/${c.target}`;
         }
         if (c.type === 'winBlackjack' || c.type === 'winSplit' || c.type === 'defeatBoss') {
-            return `${c.icon} ${c.name}: ${this.contractComplete ? 'DONE' : '0/1'}`;
+            return `${IconSprites.html(c.icon)} ${c.name}: ${this.contractComplete ? 'DONE' : '0/1'}`;
         }
-        return `${c.icon} ${desc}`;
+        return `${IconSprites.html(c.icon)} ${desc}`;
     },
 
     // Goal sentence without progress numbers (e.g. "Win 3 hands before 3 losses")
@@ -171,7 +171,7 @@ Object.assign(EvilCasino.prototype, {
         legend.innerHTML = Object.keys(ROOM_ICONS)
             .filter(type => type !== 'start')
             .map(type => `<span class="map-legend-item" style="--room: var(--room-${type})">`
-                + `<span class="map-legend-swatch"></span>${ROOM_ICONS[type]} ${type.toUpperCase()}</span>`)
+                + `<span class="map-legend-swatch"></span>${IconSprites.html(ROOM_ICONS[type])} ${type.toUpperCase()}</span>`)
             .join('');
     },
 
@@ -288,7 +288,7 @@ Object.assign(EvilCasino.prototype, {
         if (this.floorMapContractEl && this.contract) {
             // Goal as text; progress as the shared meter below it
             const c = this.contract;
-            this.floorMapContractEl.textContent = `${c.icon} ${c.name}: ${this.getContractGoalText()}`;
+            this.floorMapContractEl.innerHTML = `${IconSprites.html(c.icon)} ${c.name}: ${this.getContractGoalText()}`;
             this.floorMapContractEl.classList.toggle('anim-contract-done', this.contractComplete);
         }
         const contractBox = document.getElementById('floor-map-contract-box');
@@ -348,7 +348,7 @@ Object.assign(EvilCasino.prototype, {
                 }
                 if (node.id === map.currentNodeId) btn.classList.add('current');
 
-                const icon = (typeof ROOM_ICONS !== 'undefined' && ROOM_ICONS[node.type]) || '•';
+                const icon = (typeof ROOM_ICONS !== 'undefined' && ROOM_ICONS[node.type]) ? IconSprites.html(ROOM_ICONS[node.type]) : '•';
                 const label = node.type === 'boss'
                     ? (this.currentFloorBoss?.name || 'BOSS')
                     : node.type.toUpperCase();
@@ -504,7 +504,7 @@ Object.assign(EvilCasino.prototype, {
             const card = document.createElement('div');
             card.className = 'upgrade-card';
             card.innerHTML = `
-                <div class="upgrade-icon">${perk.icon}</div>
+                <div class="upgrade-icon">${IconSprites.html(perk.icon)}</div>
                 <div class="upgrade-name">${perk.name}</div>
                 <div class="upgrade-desc">${perk.desc}</div>
             `;
@@ -552,7 +552,7 @@ Object.assign(EvilCasino.prototype, {
         }
         if (this.bossNameEl) this.bossNameEl.textContent = boss.name;
         if (this.bossDescEl) this.bossDescEl.textContent = boss.desc;
-        if (this.bossRuleEl) this.bossRuleEl.textContent = `${boss.icon || '🔥'} ${boss.rule}`;
+        if (this.bossRuleEl) this.bossRuleEl.innerHTML = `${IconSprites.html(boss.icon || '🔥')} ${boss.rule}`;
         const warningEl = document.getElementById('boss-warning');
         if (warningEl) {
             const atRisk = !this.contractComplete && this.contract?.type !== 'defeatBoss';
@@ -689,7 +689,7 @@ Object.assign(EvilCasino.prototype, {
         (REST_OPTIONS || []).forEach(opt => {
             const btn = document.createElement('button');
             btn.className = 'event-choice-btn';
-            btn.innerHTML = `${opt.icon} ${opt.name}<span class="choice-cost">${opt.desc}</span>`;
+            btn.innerHTML = `${IconSprites.html(opt.icon)} ${opt.name}<span class="choice-cost">${opt.desc}</span>`;
             btn.addEventListener('click', () => {
                 this.applyRestOption(opt);
                 if (typeof GameAnimations !== 'undefined') {
@@ -800,7 +800,7 @@ Object.assign(EvilCasino.prototype, {
             const btn = document.createElement('button');
             btn.className = 'event-choice-btn';
             const stake = Math.min(50 * this.currentFloor, Math.floor(this.money / 2) || 0);
-            btn.innerHTML = `${g.icon || '🎲'} ${g.name}<span class="choice-cost">Stake $${stake} — ${g.desc}</span>`;
+            btn.innerHTML = `${IconSprites.html(g.icon || '🎲')} ${g.name}<span class="choice-cost">Stake $${stake} — ${g.desc}</span>`;
             btn.disabled = stake <= 0;
             btn.addEventListener('click', () => {
                 this.money -= stake;

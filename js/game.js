@@ -493,7 +493,7 @@ class EvilCasino {
         
         const probability = this.calculateBustProbability();
         const prevRisk = this._lastBustRisk || 0;
-        this.bustProbabilityEl.textContent = `🧠 Bust: ${probability}%`;
+        this.bustProbabilityEl.innerHTML = `🧠 Bust: ${probability}%`;
         this.bustProbabilityEl.classList.remove('hidden', 'low-risk', 'medium-risk', 'high-risk');
         
         if (probability <= 30) {
@@ -1446,7 +1446,7 @@ class EvilCasino {
         if (value1 !== value2) return null;
         
         if (card1.suit === card2.suit) {
-            return { type: 'perfectPair', name: 'PERFECT PAIR', emoji: '👯', payout: this.sideBetPayouts.perfectPair };
+            return { type: 'perfectPair', name: 'PERFECT PAIR', icon: '👯', payout: this.sideBetPayouts.perfectPair };
         }
         
         const redSuits = ['♥', '♦'];
@@ -1454,10 +1454,10 @@ class EvilCasino {
         const isCard2Red = redSuits.includes(card2.suit);
         
         if (isCard1Red === isCard2Red) {
-            return { type: 'coloredPair', name: 'COLORED PAIR', emoji: '🎨', payout: this.sideBetPayouts.coloredPair };
+            return { type: 'coloredPair', name: 'COLORED PAIR', icon: '🎨', payout: this.sideBetPayouts.coloredPair };
         }
         
-        return { type: 'mixedPair', name: 'MIXED PAIR', emoji: '👫', payout: this.sideBetPayouts.mixedPair };
+        return { type: 'mixedPair', name: 'MIXED PAIR', icon: '👫', payout: this.sideBetPayouts.mixedPair };
     }
     
     check21Plus3(playerHand, dealerHand) {
@@ -1477,11 +1477,11 @@ class EvilCasino {
         const isHighStraight = sortedValues[0] === 0 && sortedValues[1] === 11 && sortedValues[2] === 12;
         const isStraight = isSequential || isLowStraight || isHighStraight;
         
-        if (allSameValue && allSameSuit) return { type: 'suitedTrips', name: 'SUITED TRIPS', emoji: '🔥', payout: this.sideBetPayouts.suitedTrips };
-        if (isStraight && allSameSuit) return { type: 'straightFlush', name: 'STRAIGHT FLUSH', emoji: '🌟', payout: this.sideBetPayouts.straightFlush };
-        if (allSameValue) return { type: 'threeOfAKind', name: 'THREE OF A KIND', emoji: '🎰', payout: this.sideBetPayouts.threeOfAKind };
-        if (isStraight) return { type: 'straight', name: 'STRAIGHT', emoji: '📈', payout: this.sideBetPayouts.straight };
-        if (allSameSuit) return { type: 'flush', name: 'FLUSH', emoji: '💎', payout: this.sideBetPayouts.flush };
+        if (allSameValue && allSameSuit) return { type: 'suitedTrips', name: 'SUITED TRIPS', icon: '🔥', payout: this.sideBetPayouts.suitedTrips };
+        if (isStraight && allSameSuit) return { type: 'straightFlush', name: 'STRAIGHT FLUSH', icon: '🌟', payout: this.sideBetPayouts.straightFlush };
+        if (allSameValue) return { type: 'threeOfAKind', name: 'THREE OF A KIND', icon: '🎰', payout: this.sideBetPayouts.threeOfAKind };
+        if (isStraight) return { type: 'straight', name: 'STRAIGHT', icon: '📈', payout: this.sideBetPayouts.straight };
+        if (allSameSuit) return { type: 'flush', name: 'FLUSH', icon: '💎', payout: this.sideBetPayouts.flush };
         
         return null;
     }
@@ -1552,7 +1552,7 @@ class EvilCasino {
                 const popup = document.createElement('div');
                 popup.className = 'side-bet-result win';
                 popup.innerHTML = `
-                    <div class="side-bet-result-title">${result.result.emoji} ${result.bet} WINS!</div>
+                    <div class="side-bet-result-title">${IconSprites.html(result.result.icon)} ${result.bet} WINS!</div>
                     <div class="side-bet-result-detail">${result.result.name} (${result.result.payout}:1)</div>
                     <div class="side-bet-result-payout">+$${result.won}</div>
                 `;
@@ -1865,7 +1865,7 @@ class EvilCasino {
             if (this.isBossFight && this.currentBoss?.multiplierLose) {
                 const extra = Math.floor(this.currentBet * (this.currentBoss.multiplierLose - 1));
                 this.money = Math.max(0, this.money - extra);
-                this.showMessage(`${this.currentBoss.icon} Extra loss: -$${extra}!`, 'lose');
+                this.showMessage(`${IconSprites.html(this.currentBoss.icon)} Extra loss: -$${extra}!`, 'lose');
             }
 
             if (this.jesterHandRule === 'flipPayout') {
@@ -1964,7 +1964,7 @@ class EvilCasino {
             const card = document.createElement('div');
             card.className = 'upgrade-card';
             card.innerHTML = `
-                <div class="upgrade-icon">${perk.icon}</div>
+                <div class="upgrade-icon">${IconSprites.html(perk.icon)}</div>
                 <div class="upgrade-name">${perk.name}</div>
                 <div class="upgrade-desc">${perk.desc}</div>
             `;
@@ -2023,7 +2023,7 @@ class EvilCasino {
         this.currentEvent = event;
         
         // Populate the popup
-        this.eventIcon.textContent = event.icon;
+        this.eventIcon.innerHTML = IconSprites.html(event.icon);
         this.eventName.textContent = event.name;
         this.eventDescription.textContent = event.desc;
         
@@ -2083,7 +2083,7 @@ class EvilCasino {
             // Remove a random perk
             const removedIndex = Math.floor(Math.random() * this.activePerks.length);
             const removedPerk = this.activePerks.splice(removedIndex, 1)[0];
-            this.showMessage(`Lost perk: ${removedPerk.icon} ${removedPerk.name}`);
+            this.showMessage(`Lost perk: ${IconSprites.html(removedPerk.icon)} ${removedPerk.name}`);
         } else if (choice.cost === 'curse') {
             this.addRandomCurse();
         } else if (choice.cost === 'health') {
@@ -2210,7 +2210,7 @@ class EvilCasino {
         const newPerk = { ...perk };
         if (newPerk.maxUses) newPerk.uses = newPerk.maxUses;
         this.activePerks.push(newPerk);
-        this.showMessage(`Gained perk: ${perk.icon} ${perk.name}!`);
+        this.showMessage(`Gained perk: ${IconSprites.html(perk.icon)} ${perk.name}!`);
         playSound('upgrade');
     }
     
@@ -2231,7 +2231,7 @@ class EvilCasino {
         const relic = availableRelics[Math.floor(Math.random() * availableRelics.length)];
         if (!this.activeRelics) this.activeRelics = [];
         this.activeRelics.push({ ...relic });
-        this.showMessage(`Found relic: ${relic.icon} ${relic.name}!`);
+        this.showMessage(`Found relic: ${IconSprites.html(relic.icon)} ${relic.name}!`);
         playSound('treasure');
     }
     
@@ -2247,7 +2247,7 @@ class EvilCasino {
         const curse = availableCurses[Math.floor(Math.random() * availableCurses.length)];
         if (!this.activeCurses) this.activeCurses = [];
         this.activeCurses.push({ ...curse });
-        this.showMessage(`Cursed: ${curse.icon} ${curse.name}!`);
+        this.showMessage(`Cursed: ${IconSprites.html(curse.icon)} ${curse.name}!`);
         playSound('curse');
     }
     
@@ -2432,7 +2432,7 @@ class EvilCasino {
         // Play sound
         if (typeof playChipSound === 'function') playChipSound();
         
-        this.showMessage(`Purchased ${perk.icon} ${perk.name}!`);
+        this.showMessage(`Purchased ${IconSprites.html(perk.icon)} ${perk.name}!`);
     }
     
 
@@ -2775,7 +2775,7 @@ class EvilCasino {
         
         if (newPerk) {
             this.dealerPerkReveal.style.display = 'block';
-            this.dealerPerkIcon.textContent = newPerk.icon;
+            this.dealerPerkIcon.innerHTML = IconSprites.html(newPerk.icon);
             this.dealerPerkName.textContent = newPerk.name;
             this.dealerPerkDesc.textContent = newPerk.desc;
         } else {
@@ -3059,7 +3059,7 @@ class EvilCasino {
     }
 
     showMessage(msg, type = '') {
-        this.messageEl.innerHTML = `<p>${msg}</p>`;
+        this.messageEl.innerHTML = `<p>${IconSprites.expand(msg)}</p>`;
         this.messageEl.classList.remove('win', 'lose');
         if (type) {
             this.messageEl.classList.add(type);

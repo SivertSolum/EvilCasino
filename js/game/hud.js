@@ -143,7 +143,7 @@ Object.assign(EvilCasino.prototype, {
     renderContractStatus() {
         if (this.escapeGoalEl) {
             const c = this.contract;
-            this.escapeGoalEl.textContent = c ? `${c.icon} ${c.name}` : `$${this.escapeGoal}`;
+            this.escapeGoalEl.innerHTML = c ? `${IconSprites.html(c.icon)} ${c.name}` : `$${this.escapeGoal}`;
             if (c && typeof this.getContractGoalText === 'function') {
                 this.escapeGoalEl.title = this.getContractGoalText();
             }
@@ -201,7 +201,7 @@ Object.assign(EvilCasino.prototype, {
         const uses = p.maxUses ? `<sup class="perk-uses">${p.uses}</sup>` : '';
         const spent = p.maxUses && p.uses <= 0 ? ' spent' : '';
         const kind = p.milestone ? ' side-bet' : '';
-        return `<span class="perk-badge icon-only${kind}${spent}" data-perk-id="${p.id}" data-perk-name="${p.icon} ${p.name}" data-perk-desc="${p.desc}">${p.icon}${uses}</span>`;
+        return `<span class="perk-badge icon-only${kind}${spent}" data-perk-id="${p.id}" data-perk-icon="${p.icon}" data-perk-name="${p.name}" data-perk-desc="${p.desc}">${IconSprites.html(p.icon)}${uses}</span>`;
     },
 
     // === SHOP ===
@@ -229,7 +229,7 @@ Object.assign(EvilCasino.prototype, {
             if (!canAfford) btn.dataset.stamp = stamps[Math.floor(Math.random() * stamps.length)];
             btn.innerHTML = `
                 <span class="perk-rarity">${rarity.toUpperCase()}</span>
-                <span class="perk-icon">${perk.icon}</span>
+                <span class="perk-icon">${IconSprites.html(perk.icon)}</span>
                 <span class="perk-name">${perk.name}</span>
                 ${kindBadge}
                 <span class="perk-desc">${perk.desc}</span>
@@ -273,7 +273,7 @@ Object.assign(EvilCasino.prototype, {
         const name = badge.getAttribute('data-perk-name');
         const desc = badge.getAttribute('data-perk-desc');
 
-        this.perkTooltipName.textContent = name;
+        this.perkTooltipName.innerHTML = `${IconSprites.html(badge.getAttribute('data-perk-icon'))} ${name}`;
         this.perkTooltipDesc.textContent = desc;
         this.perkTooltip.classList.remove('hidden');
 
@@ -328,11 +328,11 @@ Object.assign(EvilCasino.prototype, {
         let kind = '';
         if (this.isBossFight && this.currentBoss) {
             tag = this.currentBoss.id === 'satan' ? 'FINAL RULE' : 'BOSS RULE';
-            rule = `${this.currentBoss.icon || '🔥'} ${this.currentBoss.rule}`;
+            rule = `${IconSprites.html(this.currentBoss.icon || '🔥')} ${this.currentBoss.rule}`;
             kind = 'boss';
         } else if (this.isEliteFight && this.currentElite) {
             tag = 'ELITE RULE';
-            rule = `⚔️ ${this.currentElite.rule}`;
+            rule = `${IconSprites.html(this.currentElite.icon || '⚔️')} ${this.currentElite.rule}`;
             kind = 'elite';
         }
 
@@ -344,7 +344,7 @@ Object.assign(EvilCasino.prototype, {
         this.ruleBannerEl.classList.remove('hidden', 'boss', 'elite');
         this.ruleBannerEl.classList.add(kind);
         if (this.ruleBannerTagEl) this.ruleBannerTagEl.textContent = tag;
-        if (this.ruleBannerTextEl) this.ruleBannerTextEl.textContent = rule;
+        if (this.ruleBannerTextEl) this.ruleBannerTextEl.innerHTML = rule;
         if (this.ruleBannerWarnEl) {
             const atRisk = kind === 'boss'
                 && !this.contractComplete

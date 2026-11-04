@@ -30,6 +30,9 @@ function updateGameScale() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Static <span data-icon="..."> placeholders -> CSS pixel icons
+    if (typeof IconSprites !== 'undefined') IconSprites.hydrate();
+
     // Initialize viewport scaling
     updateGameScale();
     window.addEventListener('resize', updateGameScale);

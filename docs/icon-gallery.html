@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evil Casino - Icon Gallery (dev)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../icons.css">
+    <style>
+        /* Dev-only page: every IconSprites key at in-game sizes, plus config icons with no art */
+        body { overflow: auto; height: auto; display: block; padding: 16px; background: #0d0614; color: #eee; font-family: 'Press Start 2P', monospace; }
+        h1 { font-size: 14px; color: var(--gold); margin: 0 0 8px; }
+        h2 { font-size: 11px; color: var(--gold); margin: 18px 0 8px; border-bottom: 2px solid #3c096c; padding-bottom: 4px; }
+        .note { font-size: 8px; color: #aaa; line-height: 1.6; margin-bottom: 8px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+        .cell { background: #1a0a2e; border: 2px solid #3c096c; padding: 6px; }
+        .cell .sizes { display: flex; align-items: flex-end; gap: 8px; height: 52px; }
+        .cell .felt { background: #1f6b35; padding: 2px 4px; }
+        .cell .key { font-size: 6px; color: #bbb; margin-top: 6px; word-break: break-all; line-height: 1.4; }
+        .cell .was { float: right; font-size: 12px; }
+        .s16 { font-size: 13px; } .s24 { font-size: 19px; } .s48 { font-size: 38px; }
+        .missing li { font-size: 8px; line-height: 1.8; color: #ff8fab; }
+        .ok { font-size: 8px; color: #3ddc97; }
+        .inline-demo { font-size: 10px; background: #000; padding: 8px; border: 2px solid var(--gold); margin-top: 8px; line-height: 2; }
+    </style>
+</head>
+<body>
+    <h1>ICON GALLERY</h1>
+    <p class="note">Dev-only. Each icon at about 16 / 24 / 48px; the last sample sits on felt. Grouped by key prefix.</p>
+    <div id="missing"></div>
+    <div id="gallery"></div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/sprites.js"></script>
+    <script>
+        (function () {
+            const groups = {};
+            Object.keys(IconSprites.PARTS).forEach(key => {
+                const prefix = key.split('-')[0];
+                (groups[prefix] = groups[prefix] || []).push(key);
+            });
+
+            const gallery = document.getElementById('gallery');
+            Object.keys(groups).forEach(prefix => {
+                const h = document.createElement('h2');
+                h.textContent = `${prefix.toUpperCase()} (${groups[prefix].length})`;
+                gallery.appendChild(h);
+                const grid = document.createElement('div');
+                grid.className = 'grid';
+                groups[prefix].forEach(key => {
+                    const icon = IconSprites.html(key);
+                    grid.insertAdjacentHTML('beforeend', `
+                        <div class="cell">
+                            <div class="sizes">
+                                <span class="s16">${icon}</span>
+                                <span class="s24">${icon}</span>
+                                <span class="s48">${icon}</span>
+                                <span class="s24 felt">${icon}</span>
+                            </div>
+                            <div class="key">${key}</div>
+                        </div>`);
+                });
+                gallery.appendChild(grid);
+            });
+
+            const demo = document.createElement('div');
+            demo.className = 'inline-demo';
+            const sample = Object.keys(IconSprites.PARTS).slice(0, 6).map(k => IconSprites.html(k) + ' ' + k).join(' · ');
+            demo.innerHTML = 'Inline in a message: ' + (sample || '(no icons yet)');
+            gallery.appendChild(demo);
+
+            // Config icons that have no art yet
+            const tables = {
+                CONTRACTS, FLOOR_7_CONTRACT: [FLOOR_7_CONTRACT], PERKS, SIDE_BET_PERKS, RELICS, CURSES, ELITES,
+                DEALER_PERKS, BOSSES, SATAN_BOSS: [SATAN_BOSS], EVENTS, SHOP_ITEMS: Object.values(SHOP_ITEMS),
+                REST_OPTIONS, GAMBLE_GAMES,
+                ROOM_ICONS: Object.keys(ROOM_ICONS).map(k => ({ id: k, icon: ROOM_ICONS[k] }))
+            };
+            const missing = [];
+            Object.keys(tables).forEach(t => tables[t].forEach(item => {
+                if (!IconSprites.has(item.icon)) missing.push(`${t}: ${item.id || item.name} → ${item.icon}`);
+            }));
+            const box = document.getElementById('missing');
+            box.innerHTML = missing.length
+                ? `<h2>CONFIG ICONS WITHOUT ART (${missing.length})</h2><ul class="missing">${missing.map(m => `<li>${m}</li>`).join('')}</ul>`
+                : `<p class="ok">Every config icon has art.</p>`;
+        })();
+    </script>
+</body>
+</html>

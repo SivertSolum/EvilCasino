@@ -1,0 +1,83 @@
+/* EVIL CASINO - CSS pixel icons
+ * Markup comes from IconSprites (js/sprites.js): <span class="px-icon px-icon--KEY"><i class="part"></i>…</span>
+ * Every icon is drawn on a 16×16 unit grid; 1 unit = --u, so icons scale with font-size.
+ *
+ * Each part is positioned with custom properties instead of raw rules:
+ *   --x --y --w --h   box in units          --c     fill (colour or gradient)
+ *   --r               radius in units       --clip  clip-path shape
+ *   --b --bc          inner border          --t     transform
+ *   --sh              box-shadow (use for pixel clusters: calc(n * var(--u)))
+ * The whole silhouette gets a 1-unit dark outline from the drop-shadow filter on .px-icon,
+ * so parts normally need no border of their own.
+ */
+
+.px-icon {
+    --u: calc(1.25em / 16);
+    --ink: #140a18;
+
+    /* Part defaults (reset here so page variables never leak in) */
+    --x: 0; --y: 0; --w: 16; --h: 16;
+    --c: transparent; --r: 0; --clip: none; --t: none;
+    --b: 0; --bc: var(--ink); --sh: none;
+
+    display: inline-block;
+    position: relative;
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: -0.25em;
+    flex-shrink: 0;
+    line-height: 0;
+    filter:
+        drop-shadow(var(--u) 0 0 var(--ink))
+        drop-shadow(calc(-1 * var(--u)) 0 0 var(--ink))
+        drop-shadow(0 var(--u) 0 var(--ink))
+        drop-shadow(0 calc(-1 * var(--u)) 0 var(--ink));
+}
+
+.px-icon > i {
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    left: calc(var(--x) * var(--u));
+    top: calc(var(--y) * var(--u));
+    width: calc(var(--w) * var(--u));
+    height: calc(var(--h) * var(--u));
+    background: var(--c);
+    border: calc(var(--b) * var(--u)) solid var(--bc);
+    border-radius: calc(var(--r) * var(--u));
+    clip-path: var(--clip);
+    transform: var(--t);
+    box-shadow: var(--sh);
+}
+
+/* Unknown key (only rendered once IconSprites.STRICT is on) */
+.px-icon--missing {
+    background: repeating-conic-gradient(#f0f 0 25%, #000 0 50%) 0 0 / 50% 50%;
+}
+
+/* Palette shared by all icons (hell-casino, matches dealer sprites) */
+.px-icon {
+    --gold: #ffd700;
+    --gold-dk: #b8860b;
+    --blood: #c8102e;
+    --blood-dk: #7a0a1c;
+    --hell: #ff5a1f;
+    --flame: #ffb020;
+    --felt: #1f7a3a;
+    --felt-dk: #0f4a22;
+    --bone: #f2ead3;
+    --bone-dk: #c9bd97;
+    --card: #fafafa;
+    --steel: #a8b3c2;
+    --steel-dk: #5d6878;
+    --wood: #8b5a2b;
+    --wood-dk: #5a3518;
+    --skin: #e8b88a;
+    --skin-dk: #b5835a;
+    --purple: #7b2cbf;
+    --purple-dk: #3c096c;
+    --ghost: #e6f0ff;
+    --sky: #4fc3f7;
+    --mint: #3ddc97;
+    --pink: #ff8fab;
+}
