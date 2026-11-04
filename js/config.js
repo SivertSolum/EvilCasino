@@ -226,14 +226,14 @@ const CURSES = [
 
 // Elite dealers - mini-bosses
 const ELITES = [
-    { id: 'cardShark', name: 'THE CARD SHARK', icon: '🦈', desc: '"I smell fear..."', rule: 'Draws from bottom of deck', ability: 'bottomDraw' },
-    { id: 'timekeeper', name: 'THE TIMEKEEPER', icon: '⏰', desc: '"Time is money, literally."', rule: 'You have 10 seconds per decision', ability: 'timer', value: 10 },
-    { id: 'collector', name: 'THE COLLECTOR', icon: '🏺', desc: '"Your relics... give them."', rule: 'Lose a random relic if you lose', ability: 'stealRelic' },
-    { id: 'mirror', name: 'THE MIRROR', icon: '🪞', desc: '"I am you, but better."', rule: 'Copies your hand values', ability: 'mirrorHand' },
-    { id: 'highRoller', name: 'HIGH ROLLER', icon: '🎰', desc: '"Go big or go home!"', rule: 'Minimum bet is $300', ability: 'minBet', value: 300 },
-    { id: 'trickster', name: 'THE TRICKSTER', icon: '🃏', desc: '"Nothing is what it seems!"', rule: 'Card values randomly shift ±1', ability: 'shiftValues' },
-    { id: 'banker', name: 'THE BANKER', icon: '🏦', desc: '"Interest compounds quickly."', rule: 'Lose: pay 1.5x. Win: get 1.5x', ability: 'compound', value: 1.5 },
-    { id: 'phantom', name: 'THE PHANTOM', icon: '👻', desc: '"Now you see me..."', rule: 'Dealer\'s cards all face-down', ability: 'hiddenDealer' }
+    { id: 'cardShark', name: 'THE CARD SHARK', icon: 'elite-card-shark', desc: '"I smell fear..."', rule: 'Draws from bottom of deck', ability: 'bottomDraw' },
+    { id: 'timekeeper', name: 'THE TIMEKEEPER', icon: 'elite-timekeeper', desc: '"Time is money, literally."', rule: 'You have 10 seconds per decision', ability: 'timer', value: 10 },
+    { id: 'collector', name: 'THE COLLECTOR', icon: 'elite-collector', desc: '"Your relics... give them."', rule: 'Lose a random relic if you lose', ability: 'stealRelic' },
+    { id: 'mirror', name: 'THE MIRROR', icon: 'elite-mirror', desc: '"I am you, but better."', rule: 'Copies your hand values', ability: 'mirrorHand' },
+    { id: 'highRoller', name: 'HIGH ROLLER', icon: 'elite-high-roller', desc: '"Go big or go home!"', rule: 'Minimum bet is $300', ability: 'minBet', value: 300 },
+    { id: 'trickster', name: 'THE TRICKSTER', icon: 'elite-trickster', desc: '"Nothing is what it seems!"', rule: 'Card values randomly shift ±1', ability: 'shiftValues' },
+    { id: 'banker', name: 'THE BANKER', icon: 'elite-banker', desc: '"Interest compounds quickly."', rule: 'Lose: pay 1.5x. Win: get 1.5x', ability: 'compound', value: 1.5 },
+    { id: 'phantom', name: 'THE PHANTOM', icon: 'elite-phantom', desc: '"Now you see me..."', rule: 'Dealer\'s cards all face-down', ability: 'hiddenDealer' }
 ];
 
 // Dealer Perks - permanent abilities dealer gains after each floor
@@ -241,7 +241,7 @@ const DEALER_PERKS = [
     { 
         id: 'standOn18', 
         name: 'Iron Stance', 
-        icon: '🛡️', 
+        icon: 'dperk-stand-on-18', 
         desc: 'Dealer now stands on 18+',
         effect: 'dealerStandsOn',
         value: 18
@@ -249,7 +249,7 @@ const DEALER_PERKS = [
     { 
         id: 'hitSoft17', 
         name: 'Aggressive Play', 
-        icon: '⚔️', 
+        icon: 'dperk-hit-soft-17', 
         desc: 'Dealer hits on soft 17',
         effect: 'dealerHitsSoft17',
         value: true
@@ -257,7 +257,7 @@ const DEALER_PERKS = [
     { 
         id: 'peekHole', 
         name: 'X-Ray Vision', 
-        icon: '👁️', 
+        icon: 'dperk-peek-hole', 
         desc: 'Peeks at hole card; wins blackjack ties',
         effect: 'dealerPeeks',
         value: true
@@ -265,7 +265,7 @@ const DEALER_PERKS = [
     { 
         id: 'fastHands', 
         name: 'Fast Hands', 
-        icon: '🖐️', 
+        icon: 'dperk-fast-hands', 
         desc: 'Dealer draws an extra card if under 15',
         effect: 'extraDraw',
         value: 15
@@ -273,7 +273,7 @@ const DEALER_PERKS = [
     { 
         id: 'taxCollector', 
         name: 'Tax Collector', 
-        icon: '💸', 
+        icon: 'dperk-tax-collector', 
         desc: 'Wins pay 10% less',
         effect: 'reducedPayout',
         value: 0.9
@@ -281,7 +281,7 @@ const DEALER_PERKS = [
     { 
         id: 'houseEdge', 
         name: 'House Edge', 
-        icon: '🏠', 
+        icon: 'dperk-house-edge', 
         desc: 'Pushes count as dealer wins',
         effect: 'pushLose',
         value: true
@@ -289,7 +289,7 @@ const DEALER_PERKS = [
     { 
         id: 'cardShark', 
         name: 'Card Shark', 
-        icon: '🦈', 
+        icon: 'dperk-card-shark', 
         desc: 'Draws favorable cards when under 17',
         effect: 'favorableDraws',
         value: true
@@ -301,7 +301,7 @@ const BOSSES = [
     { 
         id: 'pitboss', 
         name: 'THE PIT BOSS', 
-        icon: '👔', 
+        icon: 'boss-pitboss', 
         sprite: 'pitboss',
         desc: '"I run this floor."', 
         rule: 'Dealer stands on 18+',
@@ -311,7 +311,7 @@ const BOSSES = [
     { 
         id: 'ladyluck', 
         name: 'LADY LUCK', 
-        icon: '🎭', 
+        icon: 'boss-ladyluck', 
         sprite: 'ladyluck',
         desc: '"Luck is just math you don\'t understand."', 
         rule: 'All cards face-down until stand',
@@ -321,7 +321,7 @@ const BOSSES = [
     { 
         id: 'loanshark', 
         name: 'THE LOAN SHARK', 
-        icon: '🦈', 
+        icon: 'boss-loanshark', 
         sprite: 'loanshark',
         desc: '"Let\'s make this interesting..."', 
         rule: 'Win = 2.5x, Lose = 2x loss',
@@ -332,7 +332,7 @@ const BOSSES = [
     { 
         id: 'countess', 
         name: 'THE COUNTESS', 
-        icon: '🧛', 
+        icon: 'boss-countess', 
         sprite: 'countess',
         desc: '"Your blood... I mean money..."', 
         rule: 'Lose $75 every time you hit',
@@ -342,7 +342,7 @@ const BOSSES = [
     { 
         id: 'twins', 
         name: 'THE TWINS', 
-        icon: '👯', 
+        icon: 'boss-twins', 
         sprite: 'twins',
         desc: '"Two heads are better than one."', 
         rule: 'Must beat TWO dealer hands',
@@ -352,7 +352,7 @@ const BOSSES = [
     { 
         id: 'grandmaster', 
         name: 'THE GRANDMASTER', 
-        icon: '🎩', 
+        icon: 'boss-grandmaster', 
         sprite: 'grandmaster',
         desc: '"I taught Satan everything he knows."', 
         rule: 'Dealer always hits soft 17',
@@ -362,7 +362,7 @@ const BOSSES = [
     {
         id: 'croupier',
         name: 'THE CROUPIER',
-        icon: '🎴',
+        icon: 'boss-croupier',
         sprite: 'croupier',
         desc: '"Side action is mandatory."',
         rule: 'Must place at least $10 on each side bet',
@@ -372,7 +372,7 @@ const BOSSES = [
     {
         id: 'hangman',
         name: 'THE HANGMAN',
-        icon: '🪢',
+        icon: 'boss-hangman',
         sprite: 'hangman',
         desc: '"One wrong step..."',
         rule: 'Busting costs an extra full bet',
@@ -382,7 +382,7 @@ const BOSSES = [
     {
         id: 'jester',
         name: 'THE JESTER',
-        icon: '🃏',
+        icon: 'boss-jester',
         sprite: 'jester',
         desc: '"The house rules change when I laugh!"',
         rule: 'Random rule each hand (stand 16/18 or payout flip)',
@@ -392,7 +392,7 @@ const BOSSES = [
     {
         id: 'bookie',
         name: 'THE BOOKIE',
-        icon: '📒',
+        icon: 'boss-bookie',
         sprite: 'bookie',
         desc: '"Lock in your play before the deal."',
         rule: 'Declare HIT or STAND before the deal',
@@ -402,7 +402,7 @@ const BOSSES = [
     {
         id: 'widow',
         name: 'THE BLACK WIDOW',
-        icon: '🕷️',
+        icon: 'boss-widow',
         sprite: 'widow',
         desc: '"Something always gets burned."',
         rule: 'Top card is burned each hand',
@@ -412,7 +412,7 @@ const BOSSES = [
     {
         id: 'auditor',
         name: 'THE AUDITOR',
-        icon: '📋',
+        icon: 'boss-auditor',
         sprite: 'auditor',
         desc: '"Everything is taxable."',
         rule: 'Normal wins pay half; only blackjack pays full',
@@ -425,7 +425,7 @@ const BOSSES = [
 const SATAN_BOSS = { 
     id: 'satan', 
     name: 'SATAN HIMSELF', 
-    icon: '👹', 
+    icon: 'boss-satan', 
     sprite: 'satan',
     desc: '"You dare challenge ME?!"', 
     rule: 'Dealer starts with 3 cards',

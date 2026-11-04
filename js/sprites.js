@@ -321,6 +321,37 @@ IconSprites.define({
     'room-treasure': 'lid gold shine body band lock',
     'room-gamble': 'cabinet window reels tray lever knob',
     'room-boss': 'horn-l horn-r door bands slit ring',
-    'room-start': 'frame light door knob'
+    'room-start': 'frame light door knob',
+    // Bosses (mini heads, colours from the dealer sprites)
+    'boss-pitboss': 'hair head lens-l lens-r bridge eyes mouth tie',
+    'boss-ladyluck': 'hair head blindfold smile coin',
+    'boss-loanshark': 'fin head belly eyes teeth',
+    'boss-countess': 'hair head peak eyes mouth fang-l fang-r drop',
+    'boss-twins': 'head-l head-r eyes-l eyes-r mouths collar',
+    'boss-grandmaster': 'crown head eyes monocle chain mouth',
+    'boss-croupier': 'hat brim head eyes mustache chip',
+    'boss-hangman': 'head eye-l eye-r frown rope knot loop',
+    'boss-jester': 'hat bell-l bell-r head eyes grin teeth',
+    'boss-bookie': 'head visor eyes mouth cig ember ledger',
+    'boss-widow': 'head veil eyes lips legs spider',
+    'boss-auditor': 'hair head glasses eyes mouth board clip lines',
+    'boss-satan': 'horn-l horn-r head eyes pupils mouth fang-l fang-r goatee',
+    // Elites
+    'elite-card-shark': 'sea fin pip wake',
+    'elite-timekeeper': 'chain crown case face hand-h hand-m',
+    'elite-collector': 'lip neck body band glint base',
+    'elite-mirror': 'frame glass figure-head figure-body stand',
+    'elite-high-roller': 'side tower top',
+    'elite-trickster': 'card swirl swirl-in plus-h plus-v minus',
+    'elite-banker': 'door ring spoke-v spoke-h hub bolts',
+    'elite-phantom': 'body eyes card',
+    // Dealer perks
+    'dperk-stand-on-18': 'face shine waist base plaque',
+    'dperk-hit-soft-17': 'card crack fist claws',
+    'dperk-peek-hole': 'card flap eye iris pupil',
+    'dperk-fast-hands': 'streaks glove seps cuff',
+    'dperk-tax-collector': 'coin tin slot label dollar',
+    'dperk-house-edge': 'cliff grass house roof door',
+    'dperk-card-shark': 'back deck fin'
 });
 // @gen:end

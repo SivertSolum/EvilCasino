@@ -193,4 +193,168 @@
 .px-icon--room-start .p-light { --x:4;--y:2;--w:8;--h:14;--c:#ffd27a }
 .px-icon--room-start .p-door { --x:4;--y:2;--w:6;--h:14;--c:var(--wood);--clip:polygon(0% 0%, 100% 8%, 100% 92%, 0% 100%) }
 .px-icon--room-start .p-knob { --x:8;--y:9;--w:1.25;--h:1.25;--c:var(--gold) }
+
+/* --- Bosses (mini heads, colours from the dealer sprites) --- */
+.px-icon--boss-pitboss .p-hair { --x:3;--y:1.5;--w:10;--h:2.5;--c:#222;border-radius:calc(2 * var(--u)) calc(2 * var(--u)) 0 0 }
+.px-icon--boss-pitboss .p-head { --x:3;--y:3;--w:10;--h:11;--c:#d2b48c;--r:2 }
+.px-icon--boss-pitboss .p-lens-l { --x:3.5;--y:6;--w:4;--h:3;--b:1;--bc:#222 }
+.px-icon--boss-pitboss .p-lens-r { --x:8.5;--y:6;--w:4;--h:3;--b:1;--bc:#222 }
+.px-icon--boss-pitboss .p-bridge { --x:7.5;--y:6.5;--w:1;--h:1;--c:#222 }
+.px-icon--boss-pitboss .p-eyes { --x:5;--y:7;--w:1.5;--h:1.5;--c:#111;--sh:calc(5 * var(--u)) 0 0 #111 }
+.px-icon--boss-pitboss .p-mouth { --x:6;--y:11;--w:4;--h:1;--c:#422 }
+.px-icon--boss-pitboss .p-tie { --x:7;--y:14;--w:2;--h:2;--c:var(--blood) }
+.px-icon--boss-ladyluck .p-hair { --x:2;--y:1;--w:12;--h:13;--c:linear-gradient(90deg,#4a0080,#cc00aa);border-radius:calc(5 * var(--u)) calc(5 * var(--u)) calc(2 * var(--u)) calc(2 * var(--u)) }
+.px-icon--boss-ladyluck .p-head { --x:4;--y:3;--w:8;--h:11;--c:#e8c4a8;--r:3 }
+.px-icon--boss-ladyluck .p-blindfold { --x:3;--y:6;--w:10;--h:2.5;--c:#111 }
+.px-icon--boss-ladyluck .p-smile { --x:6;--y:11;--w:4;--h:1.5;--c:#a33;border-radius:0 0 calc(2 * var(--u)) calc(2 * var(--u)) }
+.px-icon--boss-ladyluck .p-coin { --x:11;--y:8;--w:4.5;--h:4.5;--c:var(--gold);border-radius:50%;--b:1;--bc:var(--gold-dk) }
+.px-icon--boss-loanshark .p-fin { --x:6;--y:0;--w:6;--h:5;--c:#4a8a72;--clip:polygon(40% 0%, 100% 100%, 0% 100%) }
+.px-icon--boss-loanshark .p-head { --x:1;--y:4;--w:14;--h:10;--c:#66aa99;border-radius:calc(6 * var(--u)) calc(6 * var(--u)) calc(3 * var(--u)) calc(3 * var(--u)) }
+.px-icon--boss-loanshark .p-belly { --x:3;--y:10;--w:10;--h:4;--c:#b9e0d4;border-radius:0 0 calc(3 * var(--u)) calc(3 * var(--u)) }
+.px-icon--boss-loanshark .p-eyes { --x:3.5;--y:6.5;--w:2;--h:2;--c:#111;--sh:calc(7 * var(--u)) 0 0 #111 }
+.px-icon--boss-loanshark .p-teeth { --x:3.5;--y:10;--w:9;--h:2;--c:repeating-linear-gradient(90deg,#fff 0 calc(1.5 * var(--u)),#335566 calc(1.5 * var(--u)) calc(2 * var(--u))) }
+.px-icon--boss-countess .p-hair { --x:2;--y:1;--w:12;--h:13;--c:#111;border-radius:calc(6 * var(--u)) calc(6 * var(--u)) calc(1 * var(--u)) calc(1 * var(--u)) }
+.px-icon--boss-countess .p-head { --x:4;--y:3;--w:8;--h:11;--c:#e8e0e8;--r:3 }
+.px-icon--boss-countess .p-peak { --x:6.5;--y:2.5;--w:3;--h:2;--c:#111;--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
+.px-icon--boss-countess .p-eyes { --x:5.5;--y:7;--w:1.5;--h:1.5;--c:#880000;--sh:calc(3.5 * var(--u)) 0 0 #880000 }
+.px-icon--boss-countess .p-mouth { --x:6;--y:10.5;--w:4;--h:1;--c:#600 }
+.px-icon--boss-countess .p-fang-l { --x:6.5;--y:11;--w:1;--h:2;--c:#fff;--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
+.px-icon--boss-countess .p-fang-r { --x:8.5;--y:11;--w:1;--h:2;--c:#fff;--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
+.px-icon--boss-countess .p-drop { --x:8.75;--y:13;--w:1.5;--h:2.5;--c:#aa0000;border-radius:50% }
+.px-icon--boss-twins .p-head-l { --x:0.5;--y:2;--w:7;--h:10;--c:#ccaabb;--r:2 }
+.px-icon--boss-twins .p-head-r { --x:8.5;--y:2;--w:7;--h:10;--c:#bbaacc;--r:2 }
+.px-icon--boss-twins .p-eyes-l { --x:2;--y:5.5;--w:1.5;--h:1.5;--c:#111;--sh:calc(2.5 * var(--u)) 0 0 #111 }
+.px-icon--boss-twins .p-eyes-r { --x:10;--y:5.5;--w:1.5;--h:1.5;--c:#111;--sh:calc(2.5 * var(--u)) 0 0 #111 }
+.px-icon--boss-twins .p-mouths { --x:2.5;--y:9;--w:2.5;--h:1;--c:#442222;--sh:calc(8 * var(--u)) 0 0 #442222 }
+.px-icon--boss-twins .p-collar { --x:1;--y:12;--w:14;--h:3;--c:#222244;--r:1 }
+.px-icon--boss-grandmaster .p-crown { --x:3;--y:0;--w:10;--h:4;--c:var(--gold);--clip:polygon(0% 100%, 0% 30%, 25% 70%, 50% 0%, 75% 70%, 100% 30%, 100% 100%) }
+.px-icon--boss-grandmaster .p-head { --x:3;--y:4;--w:10;--h:11;--c:#c4a882;--r:2 }
+.px-icon--boss-grandmaster .p-eyes { --x:5;--y:8;--w:1.5;--h:1.5;--c:#111;--sh:calc(4.5 * var(--u)) 0 0 #111 }
+.px-icon--boss-grandmaster .p-monocle { --x:8.5;--y:7;--w:3.5;--h:3.5;--c:rgba(255,255,255,0.15);border-radius:50%;--b:1;--bc:var(--gold) }
+.px-icon--boss-grandmaster .p-chain { --x:11.5;--y:10;--w:0.75;--h:4;--c:var(--gold) }
+.px-icon--boss-grandmaster .p-mouth { --x:6;--y:12;--w:4;--h:1;--c:#333 }
+.px-icon--boss-croupier .p-hat { --x:4;--y:0;--w:8;--h:2.5;--c:#111;border-radius:calc(1 * var(--u)) calc(1 * var(--u)) 0 0 }
+.px-icon--boss-croupier .p-brim { --x:2;--y:2;--w:12;--h:1.5;--c:#111 }
+.px-icon--boss-croupier .p-head { --x:3;--y:3;--w:10;--h:11;--c:#d2b48c;--r:2 }
+.px-icon--boss-croupier .p-eyes { --x:5;--y:7;--w:2;--h:1.5;--c:#222;--sh:calc(4 * var(--u)) 0 0 #222 }
+.px-icon--boss-croupier .p-mustache { --x:4;--y:10;--w:8;--h:2;--c:#333;border-radius:calc(1 * var(--u)) calc(1 * var(--u)) calc(2 * var(--u)) calc(2 * var(--u)) }
+.px-icon--boss-croupier .p-chip { --x:11.5;--y:11.5;--w:4.5;--h:4.5;--c:#0d6efd;border-radius:50%;--b:1;--bc:#fff }
+.px-icon--boss-hangman .p-head { --x:2.5;--y:1.5;--w:10;--h:11;--c:#bbbbbb;--r:2 }
+.px-icon--boss-hangman .p-eye-l { --x:4;--y:5.5;--w:3;--h:1;--c:#111;--t:rotate(25deg) }
+.px-icon--boss-hangman .p-eye-r { --x:8;--y:5.5;--w:3;--h:1;--c:#111;--t:rotate(-25deg) }
+.px-icon--boss-hangman .p-frown { --x:5;--y:9;--w:5;--h:3;border-radius:50% 50% 0 0;--b:1;--bc:#111;--clip:polygon(0% 0%, 100% 0%, 100% 45%, 0% 45%) }
+.px-icon--boss-hangman .p-rope { --x:13.25;--y:0;--w:1.5;--h:12;--c:#b08850 }
+.px-icon--boss-hangman .p-knot { --x:12.5;--y:11;--w:3;--h:3;--c:#8a6a3a;--r:1 }
+.px-icon--boss-hangman .p-loop { --x:3;--y:12.5;--w:11;--h:3;border-radius:50%;--b:1.5;--bc:#b08850 }
+.px-icon--boss-jester .p-hat { --x:1;--y:0;--w:14;--h:6.5;--c:linear-gradient(90deg,#cc0000 50%,#00aa00 50%);--clip:polygon(0% 100%, 10% 0%, 50% 62%, 90% 0%, 100% 100%) }
+.px-icon--boss-jester .p-bell-l { --x:0.5;--y:-0.5;--w:2.5;--h:2.5;--c:var(--gold);border-radius:50% }
+.px-icon--boss-jester .p-bell-r { --x:13;--y:-0.5;--w:2.5;--h:2.5;--c:var(--gold);border-radius:50% }
+.px-icon--boss-jester .p-head { --x:3;--y:5.5;--w:10;--h:10;--c:#e8c4a8;--r:2 }
+.px-icon--boss-jester .p-eyes { --x:5;--y:8;--w:2;--h:2;--c:#111;--sh:calc(4 * var(--u)) 0 0 #111 }
+.px-icon--boss-jester .p-grin { --x:5;--y:11;--w:6;--h:2.5;--c:#660000;border-radius:0 0 calc(3 * var(--u)) calc(3 * var(--u)) }
+.px-icon--boss-jester .p-teeth { --x:5.5;--y:11;--w:5;--h:0.75;--c:#fff }
+.px-icon--boss-bookie .p-head { --x:3;--y:2;--w:10;--h:12;--c:#c4a882;--r:2 }
+.px-icon--boss-bookie .p-visor { --x:2;--y:2;--w:12;--h:3;--c:rgba(40,170,80,0.85);border-radius:calc(2 * var(--u)) calc(2 * var(--u)) 0 0 }
+.px-icon--boss-bookie .p-eyes { --x:5;--y:7;--w:2;--h:1.5;--c:#111;--sh:calc(4 * var(--u)) 0 0 #111 }
+.px-icon--boss-bookie .p-mouth { --x:6;--y:11;--w:3.5;--h:1;--c:#333 }
+.px-icon--boss-bookie .p-cig { --x:9.5;--y:10.75;--w:5;--h:1;--c:#eeeeee }
+.px-icon--boss-bookie .p-ember { --x:14.25;--y:10.5;--w:1.5;--h:1.5;--c:#ff6600 }
+.px-icon--boss-bookie .p-ledger { --x:0;--y:11;--w:5.5;--h:5;--c:#f5f0d0;--b:0.75;--bc:#8b6b4a }
+.px-icon--boss-widow .p-head { --x:3;--y:3;--w:10;--h:11;--c:#ddd0d8;--r:3 }
+.px-icon--boss-widow .p-veil { --x:2;--y:1;--w:12;--h:7;--c:rgba(17,17,17,0.88);border-radius:calc(6 * var(--u)) calc(6 * var(--u)) calc(1 * var(--u)) calc(1 * var(--u)) }
+.px-icon--boss-widow .p-eyes { --x:5;--y:7;--w:1.5;--h:1.5;--c:#cc2222;--sh:calc(4.5 * var(--u)) 0 0 #cc2222 }
+.px-icon--boss-widow .p-lips { --x:6.5;--y:11;--w:3;--h:1.5;--c:#880000;--r:1 }
+.px-icon--boss-widow .p-legs { --x:9.5;--y:11.5;--w:6.5;--h:0.75;--c:#222;--sh:0 calc(1.5 * var(--u)) 0 #222,0 calc(3 * var(--u)) 0 #222 }
+.px-icon--boss-widow .p-spider { --x:11;--y:11;--w:4;--h:4;--c:#222;border-radius:50% }
+.px-icon--boss-auditor .p-hair { --x:3;--y:1.5;--w:10;--h:2.5;--c:#555;border-radius:calc(2 * var(--u)) calc(2 * var(--u)) 0 0 }
+.px-icon--boss-auditor .p-head { --x:3;--y:3;--w:10;--h:11;--c:#c4a882;--r:2 }
+.px-icon--boss-auditor .p-glasses { --x:3;--y:6;--w:10;--h:3;--c:rgba(150,200,255,0.35);--b:1;--bc:#222 }
+.px-icon--boss-auditor .p-eyes { --x:5;--y:7;--w:1.5;--h:1;--c:#111;--sh:calc(4.5 * var(--u)) 0 0 #111 }
+.px-icon--boss-auditor .p-mouth { --x:6.5;--y:11;--w:3;--h:1;--c:#333 }
+.px-icon--boss-auditor .p-board { --x:10;--y:9;--w:6;--h:7;--c:#eeeeee;--b:1;--bc:#8b6b4a }
+.px-icon--boss-auditor .p-clip { --x:12;--y:8.5;--w:2;--h:1.5;--c:var(--steel) }
+.px-icon--boss-auditor .p-lines { --x:11.25;--y:11.5;--w:3.5;--h:0.75;--c:#999;--sh:0 calc(1.5 * var(--u)) 0 #999 }
+.px-icon--boss-satan .p-horn-l { --x:1;--y:0;--w:4;--h:7;--c:linear-gradient(#4a0000,#cc0000);--clip:polygon(0% 0%, 100% 60%, 60% 100%) }
+.px-icon--boss-satan .p-horn-r { --x:11;--y:0;--w:4;--h:7;--c:linear-gradient(#4a0000,#cc0000);--clip:polygon(100% 0%, 40% 100%, 0% 60%) }
+.px-icon--boss-satan .p-head { --x:3;--y:3;--w:10;--h:11;--c:linear-gradient(180deg,#8b0000,#cc0000 50%,#8b0000);--r:2 }
+.px-icon--boss-satan .p-eyes { --x:4.5;--y:6.5;--w:3;--h:2;--c:#ffff00;--sh:calc(4 * var(--u)) 0 0 #ffff00 }
+.px-icon--boss-satan .p-pupils { --x:5.5;--y:6.75;--w:1;--h:1.5;--c:#000;--sh:calc(4 * var(--u)) 0 0 #000 }
+.px-icon--boss-satan .p-mouth { --x:5;--y:10.5;--w:6;--h:2;--c:#2a0000 }
+.px-icon--boss-satan .p-fang-l { --x:5.75;--y:10.5;--w:1;--h:1.5;--c:#fff;--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
+.px-icon--boss-satan .p-fang-r { --x:9.25;--y:10.5;--w:1;--h:1.5;--c:#fff;--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
+.px-icon--boss-satan .p-goatee { --x:6.5;--y:13;--w:3;--h:3;--c:linear-gradient(#2a0000,#000);--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
+
+/* --- Elites --- */
+.px-icon--elite-card-shark .p-sea { --x:0;--y:11;--w:16;--h:5;--c:var(--felt);border-radius:calc(1 * var(--u)) }
+.px-icon--elite-card-shark .p-fin { --x:3;--y:1;--w:9;--h:11;--c:var(--card);--clip:polygon(72% 0%, 100% 100%, 0% 100%) }
+.px-icon--elite-card-shark .p-pip { --x:7.5;--y:7;--w:2.5;--h:2.5;--c:var(--blood);--clip:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%) }
+.px-icon--elite-card-shark .p-wake { --x:1;--y:11;--w:14;--h:1;--c:#9be7b0;--sh:calc(2 * var(--u)) calc(2 * var(--u)) 0 #5fbf7a }
+.px-icon--elite-timekeeper .p-chain { --x:9.5;--y:0;--w:5;--h:4;border-radius:50%;--b:1;--bc:var(--gold) }
+.px-icon--elite-timekeeper .p-crown { --x:7;--y:1;--w:2;--h:2;--c:var(--gold-dk) }
+.px-icon--elite-timekeeper .p-case { --x:2;--y:3;--w:12;--h:12;--c:var(--gold);border-radius:50% }
+.px-icon--elite-timekeeper .p-face { --x:3.5;--y:4.5;--w:9;--h:9;--c:var(--card);border-radius:50% }
+.px-icon--elite-timekeeper .p-hand-h { --x:7.5;--y:6;--w:1;--h:3.5;--c:var(--ink) }
+.px-icon--elite-timekeeper .p-hand-m { --x:8;--y:8.5;--w:3;--h:1;--c:var(--blood) }
+.px-icon--elite-collector .p-lip { --x:5;--y:0.5;--w:6;--h:1.5;--c:#c97b3a;--r:0.5 }
+.px-icon--elite-collector .p-neck { --x:6;--y:1.5;--w:4;--h:3;--c:#b5651d }
+.px-icon--elite-collector .p-body { --x:3;--y:4;--w:10;--h:10;--c:#c97b3a;border-radius:50% 50% 40% 40% }
+.px-icon--elite-collector .p-band { --x:3;--y:7.5;--w:10;--h:1.5;--c:var(--gold) }
+.px-icon--elite-collector .p-glint { --x:5;--y:5;--w:1.5;--h:2;--c:#ffe0b0 }
+.px-icon--elite-collector .p-base { --x:5;--y:13.5;--w:6;--h:2;--c:#8b4513 }
+.px-icon--elite-mirror .p-frame { --x:3;--y:0;--w:10;--h:15;--c:var(--gold);border-radius:calc(5 * var(--u)) calc(5 * var(--u)) calc(1 * var(--u)) calc(1 * var(--u)) }
+.px-icon--elite-mirror .p-glass { --x:4.5;--y:1.5;--w:7;--h:12;--c:linear-gradient(135deg,#bfe6ff,#6aa9d8);border-radius:calc(4 * var(--u)) calc(4 * var(--u)) 0 0 }
+.px-icon--elite-mirror .p-figure-head { --x:6.5;--y:5;--w:3;--h:3;--c:#24476b;border-radius:50% }
+.px-icon--elite-mirror .p-figure-body { --x:5.5;--y:8;--w:5;--h:5.5;--c:#24476b;border-radius:calc(2 * var(--u)) calc(2 * var(--u)) 0 0 }
+.px-icon--elite-mirror .p-stand { --x:2;--y:14.5;--w:12;--h:1.5;--c:var(--gold-dk) }
+.px-icon--elite-high-roller .p-side { --x:10.5;--y:9;--w:5;--h:6;--c:repeating-linear-gradient(var(--purple) 0 calc(1.5 * var(--u)),#fff calc(1.5 * var(--u)) calc(2 * var(--u)));--r:1 }
+.px-icon--elite-high-roller .p-tower { --x:3;--y:2;--w:8;--h:13;--c:repeating-linear-gradient(var(--blood) 0 calc(1.5 * var(--u)),#fff calc(1.5 * var(--u)) calc(2 * var(--u)));--r:1 }
+.px-icon--elite-high-roller .p-top { --x:3;--y:0.5;--w:8;--h:3;--c:var(--gold);border-radius:50%;--b:0.75;--bc:var(--gold-dk) }
+.px-icon--elite-trickster .p-card { --x:3;--y:1;--w:10;--h:14;--c:var(--card);--r:1;--b:0.75;--bc:#bbb }
+.px-icon--elite-trickster .p-swirl { --x:5;--y:3;--w:6;--h:6;border-radius:50%;--b:1.5;--bc:var(--purple);--clip:polygon(0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 50%, 0% 50%) }
+.px-icon--elite-trickster .p-swirl-in { --x:6.5;--y:4.5;--w:3;--h:3;--c:var(--purple);border-radius:50% }
+.px-icon--elite-trickster .p-plus-h { --x:4.5;--y:11;--w:3.5;--h:1;--c:var(--blood) }
+.px-icon--elite-trickster .p-plus-v { --x:5.75;--y:9.75;--w:1;--h:3.5;--c:var(--blood) }
+.px-icon--elite-trickster .p-minus { --x:9;--y:11;--w:2.5;--h:1;--c:var(--blood) }
+.px-icon--elite-banker .p-door { --x:1;--y:1;--w:14;--h:14;--c:var(--steel-dk);border-radius:50% }
+.px-icon--elite-banker .p-ring { --x:3;--y:3;--w:10;--h:10;--c:var(--steel);border-radius:50% }
+.px-icon--elite-banker .p-spoke-v { --x:7.25;--y:3.5;--w:1.5;--h:9;--c:var(--steel-dk) }
+.px-icon--elite-banker .p-spoke-h { --x:3.5;--y:7.25;--w:9;--h:1.5;--c:var(--steel-dk) }
+.px-icon--elite-banker .p-hub { --x:6.5;--y:6.5;--w:3;--h:3;--c:var(--gold);border-radius:50% }
+.px-icon--elite-banker .p-bolts { --x:7.5;--y:1.5;--w:1;--h:1;--c:#dddddd;--sh:0 calc(12 * var(--u)) 0 #dddddd,calc(6 * var(--u)) calc(6 * var(--u)) 0 #dddddd,calc(-6 * var(--u)) calc(6 * var(--u)) 0 #dddddd }
+.px-icon--elite-phantom .p-body { --x:2;--y:1;--w:12;--h:14;--c:var(--ghost);border-radius:calc(6 * var(--u)) calc(6 * var(--u)) 0 0;--clip:polygon(0% 0%, 100% 0%, 100% 100%, 83% 88%, 67% 100%, 50% 88%, 33% 100%, 17% 88%, 0% 100%) }
+.px-icon--elite-phantom .p-eyes { --x:5;--y:5;--w:2;--h:3;--c:#222233;--r:1;--sh:calc(4 * var(--u)) 0 0 #222233 }
+.px-icon--elite-phantom .p-card { --x:9;--y:8;--w:6;--h:7;--c:var(--purple);--r:0.75;--b:0.75;--bc:var(--gold) }
+
+/* --- Dealer perks --- */
+.px-icon--dperk-stand-on-18 .p-face { --x:1;--y:4;--w:14;--h:3;--c:var(--steel-dk);--clip:polygon(0% 0%, 100% 0%, 100% 100%, 30% 100%, 0% 45%) }
+.px-icon--dperk-stand-on-18 .p-shine { --x:5;--y:4;--w:9;--h:1;--c:var(--steel) }
+.px-icon--dperk-stand-on-18 .p-waist { --x:5;--y:7;--w:6;--h:3;--c:#3e4652 }
+.px-icon--dperk-stand-on-18 .p-base { --x:3;--y:10;--w:10;--h:3;--c:var(--steel-dk) }
+.px-icon--dperk-stand-on-18 .p-plaque { --x:6;--y:10.5;--w:4;--h:2;--c:var(--gold) }
+.px-icon--dperk-hit-soft-17 .p-card { --x:1;--y:2;--w:9;--h:12;--c:var(--card);--r:1;--b:0.75;--bc:#bbb }
+.px-icon--dperk-hit-soft-17 .p-crack { --x:4;--y:4;--w:3;--h:8;--c:var(--ink);--clip:polygon(40% 0%, 100% 25%, 45% 50%, 100% 75%, 40% 100%, 0% 70%, 55% 50%, 0% 25%) }
+.px-icon--dperk-hit-soft-17 .p-fist { --x:7;--y:5;--w:8;--h:7;--c:#8b0000;--r:2 }
+.px-icon--dperk-hit-soft-17 .p-claws { --x:5.5;--y:5.5;--w:2;--h:1.2;--c:var(--bone);--sh:0 calc(2 * var(--u)) 0 var(--bone),0 calc(4 * var(--u)) 0 var(--bone) }
+.px-icon--dperk-peek-hole .p-card { --x:2;--y:6;--w:12;--h:9;--c:var(--blood);--r:1;--b:1;--bc:var(--card) }
+.px-icon--dperk-peek-hole .p-flap { --x:9;--y:6;--w:5;--h:5;--c:var(--card);--clip:polygon(0% 0%, 100% 100%, 0% 100%) }
+.px-icon--dperk-peek-hole .p-eye { --x:2;--y:1;--w:9;--h:5;--c:#fff;border-radius:50% }
+.px-icon--dperk-peek-hole .p-iris { --x:5;--y:1.5;--w:3;--h:4;--c:#cc0000;border-radius:50% }
+.px-icon--dperk-peek-hole .p-pupil { --x:6;--y:2.5;--w:1;--h:2;--c:#000 }
+.px-icon--dperk-fast-hands .p-streaks { --x:0;--y:4;--w:5;--h:1;--c:rgba(255,255,255,0.75);--sh:calc(-1 * var(--u)) calc(3 * var(--u)) 0 rgba(255,255,255,0.75),0 calc(6 * var(--u)) 0 rgba(255,255,255,0.75) }
+.px-icon--dperk-fast-hands .p-glove { --x:5;--y:3;--w:9;--h:10;--c:var(--card);--r:3 }
+.px-icon--dperk-fast-hands .p-seps { --x:7.5;--y:3.5;--w:0.6;--h:4;--c:#bbbbbb;--sh:calc(2 * var(--u)) 0 0 #bbbbbb,calc(4 * var(--u)) 0 0 #bbbbbb }
+.px-icon--dperk-fast-hands .p-cuff { --x:12;--y:5;--w:4;--h:6;--c:var(--ink) }
+.px-icon--dperk-tax-collector .p-coin { --x:6.5;--y:0.5;--w:3;--h:3;--c:var(--gold);border-radius:50%;--b:0.5;--bc:var(--gold-dk) }
+.px-icon--dperk-tax-collector .p-tin { --x:3;--y:5;--w:10;--h:10;--c:var(--steel);--r:1 }
+.px-icon--dperk-tax-collector .p-slot { --x:5;--y:6.5;--w:6;--h:1;--c:var(--ink) }
+.px-icon--dperk-tax-collector .p-label { --x:4;--y:9;--w:8;--h:4;--c:var(--blood) }
+.px-icon--dperk-tax-collector .p-dollar { --x:7.5;--y:9.5;--w:1;--h:3;--c:var(--gold) }
+.px-icon--dperk-house-edge .p-cliff { --x:0;--y:10;--w:9;--h:6;--c:#6b4a2e;--clip:polygon(0% 0%, 100% 0%, 78% 100%, 0% 100%) }
+.px-icon--dperk-house-edge .p-grass { --x:0;--y:9.5;--w:9;--h:1.5;--c:#3c8d40 }
+.px-icon--dperk-house-edge .p-house { --x:6;--y:6;--w:7;--h:5;--c:#e0c090;--t:rotate(18deg);transform-origin:calc(2 * var(--u)) calc(2 * var(--u)) }
+.px-icon--dperk-house-edge .p-roof { --x:5;--y:2.5;--w:9;--h:4;--c:var(--blood);--clip:polygon(50% 0%, 100% 100%, 0% 100%);--t:rotate(18deg);transform-origin:calc(3 * var(--u)) calc(5.5 * var(--u)) }
+.px-icon--dperk-house-edge .p-door { --x:9;--y:8;--w:1.5;--h:3;--c:var(--wood-dk);--t:rotate(18deg);transform-origin:calc(-1 * var(--u)) calc(0 * var(--u)) }
+.px-icon--dperk-card-shark .p-back { --x:3;--y:4;--w:12;--h:11;--c:#cccccc;--r:1 }
+.px-icon--dperk-card-shark .p-deck { --x:1;--y:2;--w:12;--h:11;--c:var(--card);--r:1;--clip:polygon(0% 0%, 58% 0%, 64% 14%, 70% 4%, 76% 16%, 82% 6%, 88% 18%, 94% 8%, 100% 22%, 100% 100%, 0% 100%) }
+.px-icon--dperk-card-shark .p-fin { --x:3;--y:5.5;--w:6;--h:6;--c:#4a8a72;--clip:polygon(45% 0%, 100% 100%, 0% 100%) }
 /* @gen:end */

@@ -965,7 +965,7 @@ class EvilCasino {
         if (this.isBossFight && this.currentBoss?.forceSideBets) {
             const need = this.currentBoss.forceSideBets;
             if ((this.sideBetPP || 0) < need || (this.sideBet21Plus3 || 0) < need) {
-                this.showMessage(`🎴 Croupier demands ≥$${need} on Perfect Pairs AND 21+3!`);
+                this.showMessage(`{i:boss-croupier} Croupier demands ≥$${need} on Perfect Pairs AND 21+3!`);
                 return;
             }
         }
@@ -999,7 +999,7 @@ class EvilCasino {
         if (this.isBossFight && this.currentBoss?.burnCard) {
             const burned = this.drawCard();
             const burnedSuit = this.hasCurse('poorEyesight') ? '?' : IconSprites.suit(burned.suit);
-            this.showMessage(`🕷️ Black Widow burns ${burned.value}${burnedSuit}...`);
+            this.showMessage(`{i:boss-widow} Black Widow burns ${burned.value}${burnedSuit}...`);
             if (typeof GameAnimations !== 'undefined' && this.deckAreaEl) {
                 const burnEl = document.createElement('div');
                 burnEl.className = 'card burn-card-temp anim-boss-burn';
@@ -1066,7 +1066,7 @@ class EvilCasino {
             for (const c of allCards) {
                 c.classList.add('face-down', 'hidden-by-boss');
             }
-            this.showMessage('🎭 Lady Luck hides all cards until you stand!');
+            this.showMessage('{i:boss-ladyluck} Lady Luck hides all cards until you stand!');
         }
 
         const playerScore = this.calculateScore(this.playerHand, true);
@@ -1106,14 +1106,14 @@ class EvilCasino {
         
         // Bookie declaration: auto stand or force hit path
         if (this.bookieDeclaration === 'stand') {
-            this.showMessage('📒 Bookie: You locked in STAND.');
+            this.showMessage('{i:boss-bookie} Bookie: You locked in STAND.');
             this.bookieDeclaration = null;
             await this.delay(400);
             await this.stand({ forced: true });
             return;
         }
         if (this.bookieDeclaration === 'hit') {
-            this.showMessage('📒 Bookie: You locked in HIT — take a card!');
+            this.showMessage('{i:boss-bookie} Bookie: You locked in HIT — take a card!');
             this.bookieDeclaration = null;
         }
 
@@ -1176,7 +1176,7 @@ class EvilCasino {
         if (this.isBossFight && this.currentBoss?.hitCost) {
             this.money -= this.currentBoss.hitCost;
             this.applyMoneyChange(-this.currentBoss.hitCost);
-            this.showMessage(`🧛 The Countess drains $${this.currentBoss.hitCost}!`, 'lose');
+            this.showMessage(`{i:boss-countess} The Countess drains $${this.currentBoss.hitCost}!`, 'lose');
             this.updateDisplay();
         }
         
@@ -1222,7 +1222,7 @@ class EvilCasino {
             if (this.isBossFight && this.currentBoss?.bustPenalty) {
                 this.money = Math.max(0, this.money - this.currentBet);
                 this.applyMoneyChange(-this.currentBet);
-                this.showMessage(`🪢 Hangman: Extra bust penalty -$${this.currentBet}!`, 'lose');
+                this.showMessage(`{i:boss-hangman} Hangman: Extra bust penalty -$${this.currentBet}!`, 'lose');
                 this.updateDisplay();
                 if (typeof GameAnimations !== 'undefined') {
                     await GameAnimations.shakeTable(this.tableEl);
@@ -1689,7 +1689,7 @@ class EvilCasino {
     }
 
     async resolveTwinsSecondHand() {
-        this.showMessage('👯 The Twins deal a second hand...');
+        this.showMessage('{i:boss-twins} The Twins deal a second hand...');
         await this.delay(600);
         const hand2 = [this.drawCard(), this.drawCard()];
         let score2 = this.calculateScore(hand2);
@@ -1699,7 +1699,7 @@ class EvilCasino {
             score2 = this.calculateScore(hand2);
             await this.delay(300);
         }
-        this.showMessage(`👯 Twin hand scores ${score2}`);
+        this.showMessage(`{i:boss-twins} Twin hand scores ${score2}`);
         await this.delay(500);
 
         const playerScore = this.calculateScore(this.playerHand, true);
@@ -1710,12 +1710,12 @@ class EvilCasino {
 
         if (beatFirst && beatSecond && playerScore <= 21) {
             playWinSound();
-            this.showMessage('👯 You beat BOTH twins!', 'win');
+            this.showMessage('{i:boss-twins} You beat BOTH twins!', 'win');
             this.addToHistory(playerScore, Math.max(dealerScore, score2), 'win');
             await this.finishRoundWithBeat(true);
         } else {
             playLoseSound();
-            this.showMessage('👯 The Twins overwhelm you!', 'lose');
+            this.showMessage('{i:boss-twins} The Twins overwhelm you!', 'lose');
             this.addToHistory(playerScore, Math.max(dealerScore, score2), 'loss');
             await this.finishRoundWithBeat(false);
         }
@@ -1872,7 +1872,7 @@ class EvilCasino {
             if (this.jesterHandRule === 'flipPayout') {
                 const refund = Math.floor(this.currentBet / 2);
                 this.money += refund;
-                this.showMessage(`🃏 Jester refunds $${refund}`);
+                this.showMessage(`{i:boss-jester} Jester refunds $${refund}`);
             }
             
             // Reset tournament on loss
@@ -1894,7 +1894,7 @@ class EvilCasino {
         if (playerWon === true && this.isBossFight && this.currentBoss?.taxWins && !isBlackjack) {
             const refund = Math.floor(payout / 2);
             this.money -= refund;
-            this.showMessage('📋 Auditor taxed your win — half payout!', 'lose');
+            this.showMessage('{i:boss-auditor} Auditor taxed your win — half payout!', 'lose');
             if (typeof GameAnimations !== 'undefined') {
                 GameAnimations.flashElement(this.messageEl, 'anim-flash-loss', 400);
             }
@@ -2705,7 +2705,7 @@ class EvilCasino {
         // Croupier: force side bets
         if (this.isBossFight && this.currentBoss?.forceSideBets) {
             const amt = this.currentBoss.forceSideBets;
-            this.showMessage(`🎴 Croupier requires $${amt} on each side bet.`);
+            this.showMessage(`{i:boss-croupier} Croupier requires $${amt} on each side bet.`);
         }
 
         // Jester: roll rule for this hand
@@ -2713,7 +2713,7 @@ class EvilCasino {
             const rules = ['stand16', 'stand18', 'flipPayout'];
             this.jesterHandRule = rules[Math.floor(Math.random() * rules.length)];
             const labels = { stand16: 'Dealer stands on 16+', stand18: 'Dealer stands on 18+', flipPayout: 'Wins pay 0.5x / losses refund half' };
-            this.showMessage(`🃏 Jester laughs: ${labels[this.jesterHandRule]}`);
+            this.showMessage(`{i:boss-jester} Jester laughs: ${labels[this.jesterHandRule]}`);
             if (this.tableEl) this.tableEl.classList.add('jester-tint');
         } else if (this.tableEl) {
             this.tableEl.classList.remove('jester-tint');
