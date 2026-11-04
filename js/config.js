@@ -651,7 +651,7 @@ const MESSAGES = {
     ],
     
     lose: [
-        "Working as intended. 😈",
+        "Working as intended. {i:react-devil}",
         "The dealer sends his regards.",
         "Did you really think you had a chance?",
         "Another satisfied customer! (We're satisfied, not you)",
@@ -663,7 +663,7 @@ const MESSAGES = {
         "BUST! The dealer didn't even have to cheat this time!",
         "Over 21! Your cards betrayed you. (We paid them)",
         "Busted! The house thanks you for your generous donation.",
-        "💥 BOOM! There goes your bet!",
+        "{i:react-boom} BOOM! There goes your bet!",
         "You played yourself. Literally.",
         "The house thanks you for your generous donation."
     ],
@@ -672,13 +672,13 @@ const MESSAGES = {
         "BLACKJACK! What are the odds?! (Very high, actually)",
         "Natural 21! The dealer is just built different.",
         "Wow, another blackjack! Must be the dealer's lucky day! (Every day is)",
-        "Blackjack! The cards really love the dealer. Wonder why. 🤔"
+        "Blackjack! The cards really love the dealer. Wonder why. {i:react-think}"
     ],
     
     multiCard21: [
-        "21 with {count} cards! The dealer has SKILLS! 🎯",
+        "21 with {count} cards! The dealer has SKILLS! {i:react-bullseye}",
         "{count}-card 21! That's not luck, that's DESTINY!",
-        "Dealer hits 21 with {count} cards! *chef's kiss* 👨‍🍳"
+        "Dealer hits 21 with {count} cards! *chef's kiss* {i:react-chef}"
     ],
     
     floorComplete: [

@@ -1447,7 +1447,7 @@ class EvilCasino {
         if (value1 !== value2) return null;
         
         if (card1.suit === card2.suit) {
-            return { type: 'perfectPair', name: 'PERFECT PAIR', icon: '👯', payout: this.sideBetPayouts.perfectPair };
+            return { type: 'perfectPair', name: 'PERFECT PAIR', icon: 'hand-perfect-pair', payout: this.sideBetPayouts.perfectPair };
         }
         
         const redSuits = ['♥', '♦'];
@@ -1455,10 +1455,10 @@ class EvilCasino {
         const isCard2Red = redSuits.includes(card2.suit);
         
         if (isCard1Red === isCard2Red) {
-            return { type: 'coloredPair', name: 'COLORED PAIR', icon: '🎨', payout: this.sideBetPayouts.coloredPair };
+            return { type: 'coloredPair', name: 'COLORED PAIR', icon: 'hand-colored-pair', payout: this.sideBetPayouts.coloredPair };
         }
         
-        return { type: 'mixedPair', name: 'MIXED PAIR', icon: '👫', payout: this.sideBetPayouts.mixedPair };
+        return { type: 'mixedPair', name: 'MIXED PAIR', icon: 'hand-mixed-pair', payout: this.sideBetPayouts.mixedPair };
     }
     
     check21Plus3(playerHand, dealerHand) {
@@ -1478,11 +1478,11 @@ class EvilCasino {
         const isHighStraight = sortedValues[0] === 0 && sortedValues[1] === 11 && sortedValues[2] === 12;
         const isStraight = isSequential || isLowStraight || isHighStraight;
         
-        if (allSameValue && allSameSuit) return { type: 'suitedTrips', name: 'SUITED TRIPS', icon: '🔥', payout: this.sideBetPayouts.suitedTrips };
-        if (isStraight && allSameSuit) return { type: 'straightFlush', name: 'STRAIGHT FLUSH', icon: '🌟', payout: this.sideBetPayouts.straightFlush };
-        if (allSameValue) return { type: 'threeOfAKind', name: 'THREE OF A KIND', icon: '🎰', payout: this.sideBetPayouts.threeOfAKind };
-        if (isStraight) return { type: 'straight', name: 'STRAIGHT', icon: '📈', payout: this.sideBetPayouts.straight };
-        if (allSameSuit) return { type: 'flush', name: 'FLUSH', icon: '💎', payout: this.sideBetPayouts.flush };
+        if (allSameValue && allSameSuit) return { type: 'suitedTrips', name: 'SUITED TRIPS', icon: 'hand-suited-trips', payout: this.sideBetPayouts.suitedTrips };
+        if (isStraight && allSameSuit) return { type: 'straightFlush', name: 'STRAIGHT FLUSH', icon: 'hand-straight-flush', payout: this.sideBetPayouts.straightFlush };
+        if (allSameValue) return { type: 'threeOfAKind', name: 'THREE OF A KIND', icon: 'hand-three-of-a-kind', payout: this.sideBetPayouts.threeOfAKind };
+        if (isStraight) return { type: 'straight', name: 'STRAIGHT', icon: 'hand-straight', payout: this.sideBetPayouts.straight };
+        if (allSameSuit) return { type: 'flush', name: 'FLUSH', icon: 'hand-flush', payout: this.sideBetPayouts.flush };
         
         return null;
     }

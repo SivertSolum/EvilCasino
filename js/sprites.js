@@ -439,6 +439,21 @@ IconSprites.define({
     'game-coin-flip': 'arc coin edge lines',
     'game-dice-roll': 'die shade pips',
     'game-wheel-spin': 'wheel hub pointer',
-    'game-slots': 'frame windows bars stems'
+    'game-slots': 'frame windows bars stems',
+    // Side-bet results
+    'hand-perfect-pair': 'card-a card-b pip-a pip-b',
+    'hand-colored-pair': 'card-a card-b pip-a pip-b',
+    'hand-mixed-pair': 'card-a card-b pip-a pip-b',
+    'hand-suited-trips': 'flame card-1 card-2 card-3 pips pip-2 pip-3',
+    'hand-straight-flush': 'card-1 card-2 card-3 pip-1 pip-2 pip-3 star',
+    'hand-three-of-a-kind': 'card-1 card-2 card-3 pip-1 pip-2 pip-3 rank',
+    'hand-straight': 'card-1 card-2 card-3 pip-1 pip-2 pip-3',
+    'hand-flush': 'card-1 card-2 card-3 card-4 card-5 pip',
+    // Reactions (MESSAGES punchlines)
+    'react-devil': 'horn-l horn-r face brow-l brow-r eyes grin',
+    'react-boom': 'burst inner core',
+    'react-think': 'face eyes brow mouth hand finger',
+    'react-bullseye': 'ring-1 ring-2 ring-3 center shaft flights',
+    'react-chef': 'puff band band-line face mustache kiss'
 });
 // @gen:end
