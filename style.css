@@ -1496,12 +1496,6 @@ body {
     color: var(--black);
 }
 
-.subtext {
-    font-size: var(--fs-xs);
-    opacity: 0.6;
-    display: none;
-}
-
 .current-bet {
     text-align: center;
     font-size: var(--fs-sm);
@@ -1881,8 +1875,42 @@ body {
     box-shadow: 1px 1px 0px #000;
 }
 
-.action-btn .subtext {
-    display: none;
+/* Quips (ACTION_QUIPS): hover tag above the button, caption when disabled */
+.action-btn {
+    position: relative;
+}
+
+.action-btn:hover:not(:disabled)[data-quip]::after {
+    content: attr(data-quip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 4px 8px;
+    background: #000;
+    border: 2px solid var(--gold);
+    box-shadow: 2px 2px 0px #000;
+    font-size: var(--fs-xs);
+    color: var(--gold);
+    pointer-events: none;
+    z-index: 20;
+}
+
+/* Fixed bottom padding reserves caption space so the bar never changes height */
+.game-controls .action-btn {
+    padding: 10px 8px 20px;
+}
+
+.action-btn:disabled[data-quip-off]::after {
+    content: attr(data-quip-off);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    font-size: var(--fs-xs);
+    color: #ddd;
+    pointer-events: none;
 }
 
 .hit-btn {
@@ -2987,15 +3015,38 @@ body {
 }
 
 /* How To Play */
+.howto-content {
+    max-width: 640px;
+    max-height: 760px;
+    overflow-y: auto;
+}
+
+.howto-content h2 {
+    margin-bottom: 20px;
+}
+
 .howto-text {
     text-align: left;
     font-size: var(--fs-sm);
-    line-height: 2;
+    line-height: 1.8;
     color: #ccc;
 }
 
+.howto-section {
+    margin-bottom: 18px;
+}
+
+.howto-section h3 {
+    font-size: var(--fs-md);
+    color: var(--red);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #4a3a6a;
+}
+
 .howto-text p {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .howto-text strong {
@@ -3004,8 +3055,12 @@ body {
 
 .howto-text .warning-text {
     color: var(--red);
-    margin-top: 20px;
+    margin-top: 12px;
     text-align: center;
+}
+
+.howto-content .back-btn {
+    margin-top: 10px;
 }
 
 /* Music Controls */

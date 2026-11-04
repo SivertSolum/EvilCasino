@@ -11,6 +11,23 @@ Object.assign(EvilCasino.prototype, {
         this.ruleBannerTagEl = document.getElementById('rule-banner-tag');
         this.ruleBannerTextEl = document.getElementById('rule-banner-text');
         this.ruleBannerWarnEl = document.getElementById('rule-banner-warn');
+        this.setupActionQuips();
+    },
+
+    // === ACTION QUIPS (sarcasm on hover / disabled, never in the button label) ===
+    setupActionQuips() {
+        if (typeof ACTION_QUIPS === 'undefined') return;
+        document.querySelectorAll('.action-btn[data-action]').forEach(btn => {
+            const quips = ACTION_QUIPS[btn.dataset.action];
+            if (!quips) return;
+            if (quips.off) btn.dataset.quipOff = quips.off;
+            const pick = () => {
+                const pool = quips.hover || [];
+                if (pool.length) btn.dataset.quip = pool[Math.floor(Math.random() * pool.length)];
+            };
+            pick();
+            btn.addEventListener('mouseenter', pick);
+        });
     },
 
     updateDisplay() {

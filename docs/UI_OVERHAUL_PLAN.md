@@ -113,7 +113,10 @@ Seven phases, each shippable and testable on its own. **No balance numbers chang
   - `js/game/hud.js` now owns `updateDisplay`, `updateRoguelikeDisplay`, perk badges/tooltips, contract meter, rule banner.
   - Money pulse already existed (`GameAnimations.animateMoneyChange`); kept as-is.
   - Boss subtitle under the dealer name no longer repeats the rule (banner shows it).
-- [ ] Phase 2 — Copy
+- [x] Phase 2 — Copy
+  - Subtexts were already hidden by CSS; removed the dead spans. `ACTION_QUIPS` (config.js) drive a hover tag and a disabled caption (fixed padding, so the bar never resizes).
+  - How to Play → THE RUN / THE HAND / THE CATCH (added SPLIT, which was missing).
+  - Tightened: Perfect Streak, X-Ray Vision, Card Shark descs; Bookie and Black Widow boss rules (same effects).
 - [ ] Phase 3 — First glance
 - [ ] Phase 4 — Decoration diet
 - [ ] Phase 5 — Consistency

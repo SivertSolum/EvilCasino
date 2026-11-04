@@ -165,7 +165,7 @@ const SIDE_BET_PERKS = [
     { id: 'luckyStart', name: 'Lucky Start', icon: '🌟', desc: 'Free $10 side bet each hand', passive: true, milestone: 'earnings', threshold: 200, rarity: 'common' },
     { id: 'sideInsurance', name: 'Side Insurance', icon: '🛟', desc: 'Side bets cost 20% less', passive: true, milestone: 'earnings', threshold: 500, rarity: 'uncommon' },
     { id: 'doubleDown21', name: 'Double Down 21', icon: '♠️', desc: '21+3 Straight Flush pays 3x more', passive: true, milestone: 'earnings', threshold: 1000, rarity: 'rare' },
-    { id: 'perfectStreak', name: 'Perfect Streak', icon: '✨', desc: 'Consecutive side bet wins give +10% bonus each', passive: true, milestone: 'earnings', threshold: 2500, rarity: 'legendary' }
+    { id: 'perfectStreak', name: 'Perfect Streak', icon: '✨', desc: 'Side bet win streaks add +10% each', passive: true, milestone: 'earnings', threshold: 2500, rarity: 'legendary' }
 ];
 
 // Relics - permanent powerful effects found during runs
@@ -230,7 +230,7 @@ const DEALER_PERKS = [
         id: 'peekHole', 
         name: 'X-Ray Vision', 
         icon: '👁️', 
-        desc: 'Dealer peeks at hole card (auto-wins blackjack ties)',
+        desc: 'Peeks at hole card; wins blackjack ties',
         effect: 'dealerPeeks',
         value: true
     },
@@ -262,7 +262,7 @@ const DEALER_PERKS = [
         id: 'cardShark', 
         name: 'Card Shark', 
         icon: '🦈', 
-        desc: 'Dealer always draws favorable cards when under 17',
+        desc: 'Draws favorable cards when under 17',
         effect: 'favorableDraws',
         value: true
     }
@@ -367,7 +367,7 @@ const BOSSES = [
         icon: '📒',
         sprite: 'bookie',
         desc: '"Lock in your play before the deal."',
-        rule: 'Declare HIT or STAND before cards are dealt',
+        rule: 'Declare HIT or STAND before the deal',
         declareBeforeDeal: true,
         reward: { type: 'relic', value: 1 }
     },
@@ -377,7 +377,7 @@ const BOSSES = [
         icon: '🕷️',
         sprite: 'widow',
         desc: '"Something always gets burned."',
-        rule: 'First card of the deck is burned each hand',
+        rule: 'Top card is burned each hand',
         burnCard: true,
         reward: { type: 'money', value: 350 }
     },
@@ -568,6 +568,26 @@ const GAMBLE_GAMES = [
     { id: 'wheelSpin', name: 'Wheel of Fortune', icon: '🎡', desc: 'Spin for prizes!', special: 'wheel' },
     { id: 'slots', name: 'Slot Machine', icon: '🎰', desc: 'Match symbols to win big!', special: 'slots' }
 ];
+
+// Action button quips: hover shows a random one; disabled buttons show `off`
+const ACTION_QUIPS = {
+    hit: {
+        hover: ['Bad idea.', 'Feeling lucky? Don\'t.', 'One more. What could go wrong?', 'The deck thanks you.'],
+        off: 'Hands off.'
+    },
+    stand: {
+        hover: ['Also bad.', 'Cowardice, noted.', 'Bold of you to stop here.', 'The dealer smiles.'],
+        off: 'Too late.'
+    },
+    double: {
+        hover: ['Lmao.', 'Twice the money, twice the regret.', 'Do it. We dare you.', 'Satan loves a high roller.'],
+        off: 'Not now, peasant.'
+    },
+    split: {
+        hover: ['Two hands, two losses.', 'Risky. We love it.', 'Double the heartbreak.'],
+        off: 'You wish.'
+    }
+};
 
 // Messages
 const MESSAGES = {

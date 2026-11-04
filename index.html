@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVIL CASINO - The World's Most Fair Casino™</title>
-    <link rel="stylesheet" href="style.css?v=50">
+    <link rel="stylesheet" href="style.css?v=51">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -203,16 +203,26 @@
             <h2>❓ HOW TO PLAY</h2>
             
             <div class="howto-text">
-                <p><strong>GOAL:</strong> Survive 7 floors and defeat Satan Himself!</p>
-                <p><strong>MAP:</strong> Pick a path through rooms — shops, events, elites, and more.</p>
-                <p><strong>CONTRACT:</strong> Finish it before you clear the boss — or you forfeit after the fight.</p>
-                <p><strong>BLACKJACK:</strong> Get closer to 21 than the dealer without going over.</p>
-                <p><strong>CARDS:</strong> Number cards = face value, Face cards = 10, Aces = 1 or 11</p>
-                <p><strong>HIT:</strong> Take another card</p>
-                <p><strong>STAND:</strong> Keep your hand</p>
-                <p><strong>DOUBLE:</strong> Double bet, take one card, then stand</p>
-                <p><strong>SHOPS:</strong> Only on the map — no free shop after wins!</p>
-                <p class="warning-text">⚠️ The dealer may or may not cheat. Probably will.</p>
+                <section class="howto-section">
+                    <h3>THE RUN</h3>
+                    <p><strong>Climb</strong> 7 floors. Beat Satan on the last one.</p>
+                    <p><strong>Pick</strong> a path on the map: fights, shops, events, rests.</p>
+                    <p><strong>Finish</strong> the floor contract, then beat the boss. Skip it and your soul is forfeit anyway.</p>
+                    <p><strong>Spend</strong> cash on bets and shops. Hit $0 and it's over.</p>
+                </section>
+                <section class="howto-section">
+                    <h3>THE HAND</h3>
+                    <p><strong>Beat</strong> the dealer's total without going over 21.</p>
+                    <p><strong>Count</strong> face cards as 10, Aces as 1 or 11.</p>
+                    <p><strong>HIT</strong> takes a card. <strong>STAND</strong> keeps your hand.</p>
+                    <p><strong>DOUBLE</strong> doubles the bet for exactly one card.</p>
+                    <p><strong>SPLIT</strong> turns a pair into two hands.</p>
+                </section>
+                <section class="howto-section">
+                    <h3>THE CATCH</h3>
+                    <p><strong>Bosses</strong> bend the rules. Theirs is pinned to the table.</p>
+                    <p class="warning-text">⚠️ The dealer may or may not cheat. Probably will.</p>
+                </section>
             </div>
             
             <button class="menu-btn back-btn" id="howto-back-btn">← BACK</button>
@@ -426,18 +436,11 @@
             </div>
 
             <div class="game-controls hidden" id="game-controls">
-                <button class="action-btn hit-btn" id="hit-btn">
-                    👊 HIT<br><span class="subtext">(Bad Idea)</span>
-                </button>
-                <button class="action-btn stand-btn" id="stand-btn">
-                    🛑 STAND<br><span class="subtext">(Also Bad)</span>
-                </button>
-                <button class="action-btn double-btn" id="double-btn">
-                    💸 DOUBLE<br><span class="subtext">(Lmao)</span>
-                </button>
-                <button class="action-btn split-btn" id="split-btn" disabled>
-                    ✂️ SPLIT<br><span class="subtext">(Risky)</span>
-                </button>
+                <!-- Quips come from ACTION_QUIPS in config.js (hover / disabled captions) -->
+                <button class="action-btn hit-btn" id="hit-btn" data-action="hit">👊 HIT</button>
+                <button class="action-btn stand-btn" id="stand-btn" data-action="stand">🛑 STAND</button>
+                <button class="action-btn double-btn" id="double-btn" data-action="double">💸 DOUBLE</button>
+                <button class="action-btn split-btn" id="split-btn" data-action="split" disabled>✂️ SPLIT</button>
             </div>
         </div>
 
@@ -695,14 +698,14 @@
     </div><!-- End game-scale-wrapper -->
 
     <!-- Modular JavaScript -->
-    <script src="js/config.js?v=25"></script>
+    <script src="js/config.js?v=26"></script>
     <script src="js/map.js?v=1"></script>
     <script src="js/sprites.js?v=2"></script>
     <script src="js/audio.js?v=22"></script>
     <script src="js/ui.js?v=28"></script>
     <script src="js/animations.js?v=2"></script>
     <script src="js/game.js?v=56"></script>
-    <script src="js/game/hud.js?v=1"></script>
+    <script src="js/game/hud.js?v=2"></script>
     <script src="js/roguelike.js?v=4"></script>
     <script src="js/main.js?v=23"></script>
 </body>
