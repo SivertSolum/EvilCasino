@@ -1166,6 +1166,23 @@ body {
     justify-content: center;
 }
 
+/* Poor Eyesight curse: suits (and their colour) are hidden; rank stays */
+.curse-hidden-suits .card .card-suit {
+    display: none;
+}
+.curse-hidden-suits .card.red,
+.curse-hidden-suits .card.black {
+    color: #333;
+}
+.curse-hidden-suits .card:not(.face-down) .card-center::before {
+    content: '?';
+    opacity: 0.35;
+}
+/* Burned card shows its rank in the centre; don't add a ? there */
+.curse-hidden-suits .burn-card-temp .card-center::before {
+    content: none;
+}
+
 .card.dealing {
     animation: dealCard 0.3s ease-out;
 }
@@ -1851,6 +1868,31 @@ body {
     border: 2px solid var(--purple);
     box-shadow: 2px 2px 0px #000;
     flex-shrink: 0;
+    position: relative;
+}
+
+/* Impatient curse: decision countdown pinned to the action bar's top edge */
+.curse-timer {
+    position: absolute;
+    top: -12px;
+    right: 8px;
+    padding: 3px 6px;
+    background: #000;
+    border: 2px solid var(--gold);
+    box-shadow: 2px 2px 0px #000;
+    font-family: 'Press Start 2P', monospace;
+    font-size: var(--fs-xs);
+    color: var(--gold);
+    z-index: 5;
+    pointer-events: none;
+}
+.curse-timer.urgent {
+    border-color: #ff3333;
+    color: #ff3333;
+    animation: curseTimerPulse 0.5s steps(2) infinite;
+}
+@keyframes curseTimerPulse {
+    50% { opacity: 0.4; }
 }
 
 .action-btn {

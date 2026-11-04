@@ -545,10 +545,11 @@ class EvilCasino {
         const isRed = ['♥', '♦'].includes(card.suit);
         cardEl.classList.add(isRed ? 'red' : 'black');
 
+        // .card-suit spans let the Poor Eyesight curse hide suits via CSS
         cardEl.innerHTML = `
-            <div class="card-corner">${card.value}${card.suit}</div>
-            <div class="card-center">${card.suit}</div>
-            <div class="card-corner bottom">${card.value}${card.suit}</div>
+            <div class="card-corner">${card.value}<span class="card-suit">${card.suit}</span></div>
+            <div class="card-center"><span class="card-suit">${card.suit}</span></div>
+            <div class="card-corner bottom">${card.value}<span class="card-suit">${card.suit}</span></div>
         `;
 
         return cardEl;
@@ -940,10 +941,18 @@ class EvilCasino {
             totalSideBets -= sideBetDiscount;
         }
         
-        const totalRequired = this.currentBet + totalSideBets;
+        // Heavy Debt curse: per-hand cost must be covered up front
+        const curseHandCost = this.getCurseHandCost();
+        const totalRequired = this.currentBet + totalSideBets + curseHandCost;
         const minBet = this.getMinBet();
         
-        if (this.currentBet <= 0 || totalRequired > this.money) return;
+        if (this.currentBet <= 0) return;
+        if (totalRequired > this.money) {
+            if (curseHandCost > 0 && totalRequired - curseHandCost <= this.money) {
+                this.showMessage(`📜 Heavy Debt wants $${curseHandCost} first. Bet less.`);
+            }
+            return;
+        }
         
         // Check minimum bet for current floor
         if (this.currentBet < minBet) {
@@ -967,13 +976,13 @@ class EvilCasino {
         }
 
         // Apply per-hand costs (curses)
-        if (this.hasCurse && this.hasCurse('heavyDebt')) {
-            const cost = 25;
-            this.money -= cost;
-            this.applyMoneyChange(-cost);
-            this.showMessage(`📜 Heavy Debt: -$${cost}`);
+        if (curseHandCost > 0) {
+            this.money -= curseHandCost;
+            this.applyMoneyChange(-curseHandCost);
+            this.showMessage(`📜 Heavy Debt: -$${curseHandCost}`);
             this.updateDisplay();
         }
+        this.syncCurseEffects();
         
         // Zen Mind perk: gain money at start of hand
         if (this.hasPerk && this.hasPerk('meditation')) {
@@ -988,13 +997,14 @@ class EvilCasino {
         // Widow: burn top card
         if (this.isBossFight && this.currentBoss?.burnCard) {
             const burned = this.drawCard();
-            this.showMessage(`🕷️ Black Widow burns ${burned.value}${burned.suit}...`);
+            const burnedSuit = this.hasCurse('poorEyesight') ? '?' : burned.suit;
+            this.showMessage(`🕷️ Black Widow burns ${burned.value}${burnedSuit}...`);
             if (typeof GameAnimations !== 'undefined' && this.deckAreaEl) {
                 const burnEl = document.createElement('div');
                 burnEl.className = 'card burn-card-temp anim-boss-burn';
                 const isRed = ['♥', '♦'].includes(burned.suit);
                 burnEl.classList.add(isRed ? 'red' : 'black');
-                burnEl.innerHTML = `<div class="card-center">${burned.value}${burned.suit}</div>`;
+                burnEl.innerHTML = `<div class="card-center">${burned.value}<span class="card-suit">${burned.suit}</span></div>`;
                 this.deckAreaEl.appendChild(burnEl);
                 setTimeout(() => burnEl.remove(), 600);
             }
@@ -1098,7 +1108,7 @@ class EvilCasino {
             this.showMessage('📒 Bookie: You locked in STAND.');
             this.bookieDeclaration = null;
             await this.delay(400);
-            await this.stand();
+            await this.stand({ forced: true });
             return;
         }
         if (this.bookieDeclaration === 'hit') {
@@ -1109,6 +1119,8 @@ class EvilCasino {
         this.showMessage("Your move, genius.");
         this.updateScores(!(this.isBossFight && this.currentBoss?.hideCards));
         this.updateBustProbability();
+        this.syncStandButton();
+        this.armDecisionTimer();
     }
 
     async animateDeal() {
@@ -1153,6 +1165,7 @@ class EvilCasino {
             await this.hitSplitHand();
             this.isProcessingAction = false;
             this.hitBtn.disabled = false;
+            this.syncStandButton();
             return;
         }
         
@@ -1228,6 +1241,7 @@ class EvilCasino {
             // Re-enable hit button for next action
             this.isProcessingAction = false;
             this.hitBtn.disabled = false;
+            this.syncStandButton();
         }
     }
     
@@ -1255,6 +1269,7 @@ class EvilCasino {
                 this.hitBtn.disabled = false;
                 this.standBtn.disabled = false;
                 this.isProcessingAction = false;
+                this.syncStandButton();
             } else {
                 // Both hands done, resolve
                 await this.resolveSplitHands();
@@ -1320,6 +1335,7 @@ class EvilCasino {
                     this.standBtn.disabled = false;
                     this.doubleBtn.disabled = false;
                     this.isProcessingAction = false;
+                    this.syncStandButton();
                 } else {
                     await this.resolveSplitHands();
                 }
@@ -1336,6 +1352,7 @@ class EvilCasino {
                     this.standBtn.disabled = false;
                     this.doubleBtn.disabled = false;
                     this.isProcessingAction = false;
+                    this.syncStandButton();
                 } else {
                     await this.resolveSplitHands();
                 }
@@ -1368,7 +1385,7 @@ class EvilCasino {
             } else {
                 // After doubling, player must stand - dealer plays
                 this.isProcessingAction = false;
-                await this.stand();
+                await this.stand({ forced: true });
             }
         }
     }
@@ -1560,11 +1577,18 @@ class EvilCasino {
         }
     }
 
-    async stand() {
+    async stand(opts = {}) {
         if (!this.gameInProgress) return;
         if (this.isPopupOpen()) return;
         if (this.isProcessingAction) return;
-        
+
+        // Shaky Hands curse: no standing on 17-19 (doubles / Bookie lock-ins still finish the hand)
+        if (opts.forced !== true && this.curseBlocksStand()) {
+            this.showMessage(this.getRandomMessage(MESSAGES.curses.shakyBlocked), 'lose');
+            this.syncStandButton();
+            return;
+        }
+
         this.isProcessingAction = true;
 
         // Handle split hands
@@ -1572,6 +1596,8 @@ class EvilCasino {
             await this.standSplitHand();
             return;
         }
+
+        this.disarmDecisionTimer();
 
         this.hitBtn.disabled = true;
         this.standBtn.disabled = true;
@@ -1611,7 +1637,15 @@ class EvilCasino {
         // Grandmaster / soft 17
         const hitsSoft17 = this.isBossFight && this.currentBoss?.dealerHitsSoft17;
         
-        if (dealerScore >= standThreshold && !(hitsSoft17 && dealerScore === 17 && this.isSoftScore(this.dealerHand))) {
+        // Marked Cards curse can override the house rule either way
+        const dealerWantsCard = (score) => {
+            const soft = this.isSoftScore && this.isSoftScore(this.dealerHand);
+            const houseHits = score < standThreshold || (hitsSoft17 && score === 17 && soft);
+            const marked = this.curseDealerDecision(score);
+            return marked === null ? houseHits : marked;
+        };
+
+        if (!dealerWantsCard(dealerScore)) {
             this.showMessage("Dealer stands on " + dealerScore + ".");
             await this.delay(800);
         } else {
@@ -1620,10 +1654,7 @@ class EvilCasino {
             
             while (true) {
                 const score = this.calculateScore(this.dealerHand);
-                const soft = this.isSoftScore && this.isSoftScore(this.dealerHand);
-                const mustHitSoft17 = hitsSoft17 && score === 17 && soft;
-                if (score >= standThreshold && !mustHitSoft17) break;
-                if (score > 21) break;
+                if (score > 21 || !dealerWantsCard(score)) break;
 
                 const card = this.drawCard();
                 this.dealerHand.push(card);
@@ -1745,9 +1776,9 @@ class EvilCasino {
                 const isRed = ['♥', '♦'].includes(card.suit);
                 faceDownCard.classList.add(isRed ? 'red' : 'black', 'rigged');
                 faceDownCard.innerHTML = `
-                    <div class="card-corner">${card.value}${card.suit}</div>
-                    <div class="card-center">${card.suit}</div>
-                    <div class="card-corner bottom">${card.value}${card.suit}</div>
+                    <div class="card-corner">${card.value}<span class="card-suit">${card.suit}</span></div>
+                    <div class="card-center"><span class="card-suit">${card.suit}</span></div>
+                    <div class="card-corner bottom">${card.value}<span class="card-suit">${card.suit}</span></div>
                 `;
             }
         }
@@ -1760,6 +1791,12 @@ class EvilCasino {
         this.gameInProgress = false;
         this.handsPlayed++;
         this.commitPlayedCards();
+
+        // Paranoid curse: reveal the score now that it can't help you
+        if (this.hasCurse('paranoid')) {
+            if (this.isSplitHand && this.splitHands.length) this.updateSplitScores();
+            else this.updateScores();
+        }
         
         // Hide bust probability
         if (this.bustProbabilityEl) this.bustProbabilityEl.classList.add('hidden');
@@ -1794,7 +1831,10 @@ class EvilCasino {
                 this.blessingActive = false;
                 this.showMessage("Blessing activated! Double payout!");
             }
-            
+
+            // Casino Tax curse
+            payout = this.applyCurseWinTax(payout);
+
             this.money += Math.floor(payout);
             
             // Vampiric perk: Heal $25 on wins
@@ -1844,6 +1884,9 @@ class EvilCasino {
                 this.money += this.currentBet;
                 this.showMessage("Insurance Fraud activated! Bet returned!", 'win');
             }
+
+            // Bad Luck curse
+            this.applyCurseLoss();
         }
 
         // Auditor: tax normal wins (blackjack already paid full above — adjust)
@@ -2462,6 +2505,7 @@ class EvilCasino {
         
         this.showMessage("✂️ Hand split! Play Hand 1 first.");
         this.updateSplitScores();
+        this.syncStandButton();
     }
     
     updateSplitActiveHand() {
@@ -2503,7 +2547,9 @@ class EvilCasino {
     }
     
     updateSplitScores() {
-        const scores = this.splitHands.map(h => this.calculateScore(h, true));
+        const scores = this.curseHidesScore()
+            ? ['??', '??']
+            : this.splitHands.map(h => this.calculateScore(h, true));
         const text = `H1: ${scores[0]} | H2: ${scores[1]}`;
         if (this.playerScoreEl.textContent !== text && typeof GameAnimations !== 'undefined') {
             GameAnimations.playAnimation(this.playerScoreEl, 'anim-bump', { durationMs: 350 });
@@ -2523,6 +2569,7 @@ class EvilCasino {
             this.hitBtn.disabled = false;
             this.standBtn.disabled = false;
             this.isProcessingAction = false;
+            this.syncStandButton();
         } else {
             // Both hands done, resolve against dealer
             await this.resolveSplitHands();
@@ -2624,6 +2671,7 @@ class EvilCasino {
         this.standBtn.disabled = false;
         this.doubleBtn.disabled = false;
         this.isProcessingAction = false;
+        this.disarmDecisionTimer();
         if (this.splitBtn) this.splitBtn.disabled = true;
         this.messageEl.classList.remove('win', 'lose');
         
@@ -2797,6 +2845,7 @@ class EvilCasino {
         this.playerHand = [];
         this.dealerHand = [];
         this.gameInProgress = false;
+        this.disarmDecisionTimer();
         this.lastRoundWon = false;
         
         this.currentFloor = 1;
@@ -2904,7 +2953,8 @@ class EvilCasino {
             ? null
             : this.calculateScore(this.playerHand, true);
         if (!this.isSplitHand) {
-            this.playerScoreEl.textContent = `Score: ${playerScore}`;
+            // Paranoid curse: no peeking at your own total
+            this.playerScoreEl.textContent = this.curseHidesScore() ? 'Score: ??' : `Score: ${playerScore}`;
         }
 
         let dealerScore;
@@ -2949,7 +2999,7 @@ class EvilCasino {
     }
     
     updateScoreboard(playerScore, dealerScore, hideDealer = false) {
-        this.scoreboardPlayerEl.textContent = playerScore > 0 ? playerScore : '--';
+        this.scoreboardPlayerEl.textContent = this.curseHidesScore() ? '??' : (playerScore > 0 ? playerScore : '--');
         
         if (hideDealer) {
             const visibleScore = this.getCardValue(this.dealerHand[0], 0);

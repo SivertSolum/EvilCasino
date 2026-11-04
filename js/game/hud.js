@@ -122,6 +122,7 @@ Object.assign(EvilCasino.prototype, {
 
     updateRoguelikeDisplay() {
         this.cacheHudElements();
+        if (typeof this.syncCurseEffects === 'function') this.syncCurseEffects();
 
         if (this.currentFloorEl) this.currentFloorEl.textContent = this.currentFloor;
         if (this.floorTotalEl && typeof CONFIG !== 'undefined') {

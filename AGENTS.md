@@ -25,10 +25,10 @@ You are an expert vanilla JavaScript and browser game developer working on **Evi
 **Current load order** (what `index.html` ships today — **this is what runs**):
 
 ```
-config.js → map.js → sprites.js → audio.js → ui.js → animations.js → game.js → game/hud.js → roguelike.js → main.js
+config.js → map.js → sprites.js → audio.js → ui.js → animations.js → game.js → game/hud.js → game/curses.js → roguelike.js → main.js
 ```
 
-Of `js/game/*.js`, only **`game/hud.js`** is live (HUD: status bar, contract meter, perk badges, rule banner; owns `updateDisplay` / `updateRoguelikeDisplay`). The rest exist on disk but are **not** included in `index.html`. Do not assume those files are live. UI overhaul roadmap: `docs/UI_OVERHAUL_PLAN.md`.
+Of `js/game/*.js`, only **`game/hud.js`** (HUD: status bar, contract meter, perk badges, rule banner; owns `updateDisplay` / `updateRoguelikeDisplay`) and **`game/curses.js`** (`hasCurse` + every curse effect hook) are live. The rest exist on disk but are **not** included in `index.html`. Do not assume those files are live. UI overhaul roadmap: `docs/UI_OVERHAUL_PLAN.md`.
 
 **Target load order** (modular migration — prefer this when wiring `js/game/`):
 
@@ -68,7 +68,8 @@ Evil Casino/
         ├── betting.js      # Min bet, place bet, same bet
         ├── perks.js        # Perks / relics / curses helpers
         ├── sidebets.js     # Perfect Pairs, 21+3, milestones
-        └── hud.js          # LIVE: status bar, contract meter, perk badges, rule banner, shop cards, tracker, history
+        ├── hud.js          # LIVE: status bar, contract meter, perk badges, rule banner, shop cards, tracker, history
+        └── curses.js       # LIVE: hasCurse / getCurse + curse effect hooks (called from game.js)
 ```
 
 **Architecture:**
@@ -88,7 +89,7 @@ flowchart LR
 
 | Module | Role |
 |--------|------|
-| `CONFIG`, `CONTRACTS`, `PERKS`, `BOSSES`, `EVENTS`, `MESSAGES`, … | Data tables in `config.js` (`VERSION.number` is `2.1.0`) |
+| `CONFIG`, `CONTRACTS`, `PERKS`, `BOSSES`, `EVENTS`, `MESSAGES`, … | Data tables in `config.js` (`VERSION.number` is `2.1.1`) |
 | `FloorMap` | STS-lite branching floor generation (`map.js`) |
 | `DealerSprites` | HTML builders for House Dealer + anomaly bosses (`sprites.js`) |
 | `EvilCasino` | Live class in `game.js`; extend via `js/game/*.js` only after wiring them |

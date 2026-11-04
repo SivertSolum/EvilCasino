@@ -45,11 +45,7 @@ EvilCasino.prototype.addRelic = function(relic) {
     this.updateRoguelikeDisplay();
 };
 
-// Curse Management
-EvilCasino.prototype.hasCurse = function(curseId) {
-    return this.activeCurses.some(c => c.id === curseId);
-};
-
+// Curse Management (hasCurse / curse effects live in game/curses.js)
 EvilCasino.prototype.addRandomCurse = function() {
     const availableCurses = this.allCurses.filter(c => !this.hasCurse(c.id));
     if (availableCurses.length > 0) {

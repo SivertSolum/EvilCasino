@@ -3,9 +3,21 @@
 
 // Version and Changelog
 const VERSION = {
-    number: '2.1.0',
-    date: '2026-11-04',
+    number: '2.1.1',
+    date: '2026-11-05',
     changelog: [
+        {
+            version: '2.1.1',
+            date: '2026-11-05',
+            title: 'Curses Actually Curse',
+            changes: [
+                'Curses used to be decorative. Now all eight do what they say. You\'re welcome.',
+                'Poor Eyesight hides card suits; Paranoid hides your score until the hand ends',
+                'Shaky Hands won\'t let you stand on 17-19; Impatient gives you 5 seconds to decide',
+                'Marked Cards: the dealer plays against your actual hand',
+                'Bad Luck, Casino Tax and Heavy Debt now cost real money'
+            ]
+        },
         {
             version: '2.1.0',
             date: '2026-11-04',
@@ -681,6 +693,20 @@ const MESSAGES = {
         "Floor {floor}. The air feels heavier here.",
         "You've reached Floor {floor}. Turn back? Ha, no exits.",
         "Floor {floor}. The dealers here don't play nice."
-    ]
+    ],
+
+    // Curse feedback (Shaky Hands, Impatient)
+    curses: {
+        shakyBlocked: [
+            "Your hands are shaking too much to stand. Hit it is.",
+            "Stand on that? With THOSE hands? Hit.",
+            "Shaky Hands says no. Shaky Hands always says no."
+        ],
+        impatientTimeout: [
+            "Too slow. The house decided for you.",
+            "Time's up. We picked for you. You're welcome.",
+            "Impatient? You? Clearly not impatient enough."
+        ]
+    }
 };
 
