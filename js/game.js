@@ -950,7 +950,7 @@ class EvilCasino {
         if (this.currentBet <= 0) return;
         if (totalRequired > this.money) {
             if (curseHandCost > 0 && totalRequired - curseHandCost <= this.money) {
-                this.showMessage(`📜 Heavy Debt wants $${curseHandCost} first. Bet less.`);
+                this.showMessage(`{i:curse-heavy-debt} Heavy Debt wants $${curseHandCost} first. Bet less.`);
             }
             return;
         }
@@ -980,7 +980,7 @@ class EvilCasino {
         if (curseHandCost > 0) {
             this.money -= curseHandCost;
             this.applyMoneyChange(-curseHandCost);
-            this.showMessage(`📜 Heavy Debt: -$${curseHandCost}`);
+            this.showMessage(`{i:curse-heavy-debt} Heavy Debt: -$${curseHandCost}`);
             this.updateDisplay();
         }
         this.syncCurseEffects();

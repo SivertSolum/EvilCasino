@@ -377,6 +377,28 @@ IconSprites.define({
     'sbperk-lucky-start': 'trail star',
     'sbperk-side-insurance': 'ring',
     'sbperk-double-down-21': 'point lobe-l lobe-r stem digits',
-    'sbperk-perfect-streak': 'chip-1 chip-2 chip-3 star-a star-b star-c'
+    'sbperk-perfect-streak': 'chip-1 chip-2 chip-3 star-a star-b star-c',
+    // Relics
+    'relic-lucky-chip': 'chip inner leaves stem',
+    'relic-devils-dice': 'horn-l horn-r die pips',
+    'relic-snake-eyes': 'die-a die-b pips body head eye tongue',
+    'relic-ace-in-hole': 'sleeve cuff link card ace pip',
+    'relic-blood-pact': 'vane spine nib drop',
+    'relic-golden-horseshoe': 'shoe nails shine',
+    'relic-rabbit-foot': 'ring chain foot toes',
+    'relic-cursed-mirror': 'handle frame glass crack',
+    'relic-heavy-wallet': 'bills wallet flap clasp weight-ring weight',
+    'relic-gamblers-bane': 'chip cranium eyes nose teeth gaps',
+    'relic-phoenix-feather': 'vane glow shaft',
+    'relic-card-shark': 'cord beads tooth shade',
+    // Curses
+    'curse-bad-luck': 'tail body head ear-l ear-r eyes',
+    'curse-heavy-debt': 'link-a link-b ball shine dollar slash',
+    'curse-shaky': 'shake fingers hand seps sweat',
+    'curse-marked': 'card ring cross-h cross-v dot',
+    'curse-taxed': 'coin inner dollar slash',
+    'curse-paranoid': 'dark eye-l eye-r pupils brows',
+    'curse-impatient': 'bell-l bell-r legs body face hand-h hand-m ring',
+    'curse-poor-eyesight': 'lens-l lens-r bridge crack'
 });
 // @gen:end

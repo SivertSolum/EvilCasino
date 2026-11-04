@@ -461,4 +461,109 @@
 .px-icon--sbperk-perfect-streak .p-star-a { --x:0.5;--y:4;--w:5;--h:5;--c:#fff;--clip:polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%) }
 .px-icon--sbperk-perfect-streak .p-star-b { --x:6;--y:0;--w:5;--h:5;--c:var(--gold);--clip:polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%) }
 .px-icon--sbperk-perfect-streak .p-star-c { --x:11;--y:4;--w:5;--h:5;--c:#fff;--clip:polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%) }
+
+/* --- Relics --- */
+.px-icon--relic-lucky-chip .p-chip { --x:1;--y:1;--w:14;--h:14;--c:conic-gradient(var(--gold) 0 9%,#fff 0 16%,var(--gold) 0 34%,#fff 0 41%,var(--gold) 0 59%,#fff 0 66%,var(--gold) 0 84%,#fff 0 91%,var(--gold) 0);border-radius:50% }
+.px-icon--relic-lucky-chip .p-inner { --x:3.5;--y:3.5;--w:9;--h:9;--c:var(--gold-dk);border-radius:50% }
+.px-icon--relic-lucky-chip .p-leaves { --x:5.25;--y:5;--w:2.75;--h:2.75;--c:#2e9d4a;border-radius:50%;--sh:calc(2.75 * var(--u)) 0 0 #2e9d4a,calc(1.4 * var(--u)) calc(2.25 * var(--u)) 0 #2e9d4a }
+.px-icon--relic-lucky-chip .p-stem { --x:7.5;--y:9;--w:0.75;--h:2.5;--c:#2e9d4a }
+.px-icon--relic-devils-dice .p-horn-l { --x:2;--y:0;--w:4;--h:5;--c:var(--bone);--clip:polygon(0% 0%, 100% 100%, 30% 100%) }
+.px-icon--relic-devils-dice .p-horn-r { --x:10;--y:0;--w:4;--h:5;--c:var(--bone);--clip:polygon(100% 0%, 70% 100%, 0% 100%) }
+.px-icon--relic-devils-dice .p-die { --x:2;--y:4;--w:12;--h:11;--c:var(--blood);--r:2 }
+.px-icon--relic-devils-dice .p-pips { --x:4;--y:6;--w:2;--h:2;--c:#fff;border-radius:50%;--sh:calc(3 * var(--u)) calc(3 * var(--u)) 0 #fff,calc(6 * var(--u)) calc(6 * var(--u)) 0 #fff }
+.px-icon--relic-snake-eyes .p-die-a { --x:1;--y:8;--w:6;--h:6;--c:var(--card);--r:1 }
+.px-icon--relic-snake-eyes .p-die-b { --x:9;--y:8;--w:6;--h:6;--c:var(--card);--r:1 }
+.px-icon--relic-snake-eyes .p-pips { --x:3.25;--y:10.25;--w:1.5;--h:1.5;--c:var(--ink);border-radius:50%;--sh:calc(8 * var(--u)) 0 0 var(--ink) }
+.px-icon--relic-snake-eyes .p-body { --x:1;--y:2;--w:13;--h:7;border-radius:50%;--b:1.5;--bc:#3c8d40;--clip:polygon(0% 0%, 100% 0%, 100% 55%, 0% 55%) }
+.px-icon--relic-snake-eyes .p-head { --x:11.5;--y:2.5;--w:4.5;--h:3;--c:#3c8d40;border-radius:50% }
+.px-icon--relic-snake-eyes .p-eye { --x:13.5;--y:3;--w:1;--h:1;--c:#ffee00 }
+.px-icon--relic-snake-eyes .p-tongue { --x:15;--y:4.5;--w:1;--h:1.5;--c:var(--blood) }
+.px-icon--relic-ace-in-hole .p-sleeve { --x:9;--y:0;--w:7;--h:16;--c:#2b2b44 }
+.px-icon--relic-ace-in-hole .p-cuff { --x:7.5;--y:0;--w:3;--h:16;--c:#fff }
+.px-icon--relic-ace-in-hole .p-link { --x:8.25;--y:7;--w:1.5;--h:2;--c:var(--gold) }
+.px-icon--relic-ace-in-hole .p-card { --x:0.5;--y:3;--w:8;--h:11;--c:var(--card);--r:1;--b:0.75;--bc:#bbb }
+.px-icon--relic-ace-in-hole .p-ace { --x:2;--y:4.5;--w:3;--h:4;--c:var(--blood);--clip:polygon(35% 0%, 65% 0%, 100% 100%, 70% 100%, 50% 45%, 30% 100%, 0% 100%) }
+.px-icon--relic-ace-in-hole .p-pip { --x:4;--y:9.5;--w:3;--h:3;--c:var(--ink);--clip:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%) }
+.px-icon--relic-blood-pact .p-vane { --x:4;--y:0;--w:10;--h:12;--c:var(--bone);--clip:polygon(100% 0%, 70% 55%, 30% 100%, 15% 85%, 45% 40%) }
+.px-icon--relic-blood-pact .p-spine { --x:7;--y:1;--w:1;--h:11;--c:#b8a888;--t:rotate(35deg) }
+.px-icon--relic-blood-pact .p-nib { --x:2;--y:10;--w:4;--h:4;--c:var(--ink);--clip:polygon(100% 0%, 0% 100%, 45% 35%) }
+.px-icon--relic-blood-pact .p-drop { --x:1.5;--y:12.5;--w:2.5;--h:3.5;--c:var(--blood);--clip:polygon(50% 0%, 100% 62%, 75% 100%, 25% 100%, 0% 62%) }
+.px-icon--relic-golden-horseshoe .p-shoe { --x:2;--y:1;--w:12;--h:14;border-radius:calc(6 * var(--u)) calc(6 * var(--u)) calc(4 * var(--u)) calc(4 * var(--u));--b:3;--bc:var(--gold);--clip:polygon(0% 0%, 100% 0%, 100% 100%, 72% 100%, 72% 55%, 28% 55%, 28% 100%, 0% 100%) }
+.px-icon--relic-golden-horseshoe .p-nails { --x:3.3;--y:5;--w:1;--h:1;--c:#8a6d00;--sh:calc(8.4 * var(--u)) 0 0 #8a6d00,0 calc(4 * var(--u)) 0 #8a6d00,calc(8.4 * var(--u)) calc(4 * var(--u)) 0 #8a6d00 }
+.px-icon--relic-golden-horseshoe .p-shine { --x:5;--y:1.5;--w:3;--h:1;--c:#fff6b0 }
+.px-icon--relic-rabbit-foot .p-ring { --x:6;--y:0;--w:4;--h:4;border-radius:50%;--b:1;--bc:var(--steel) }
+.px-icon--relic-rabbit-foot .p-chain { --x:7.5;--y:3;--w:1;--h:2;--c:var(--steel) }
+.px-icon--relic-rabbit-foot .p-foot { --x:4;--y:4.5;--w:8;--h:11;--c:#e8dccb;border-radius:50% 50% 45% 45% }
+.px-icon--relic-rabbit-foot .p-toes { --x:4.5;--y:11.5;--w:2;--h:3;--c:#cdbca5;border-radius:50%;--sh:calc(2.5 * var(--u)) 0 0 #cdbca5,calc(5 * var(--u)) 0 0 #cdbca5 }
+.px-icon--relic-cursed-mirror .p-handle { --x:7;--y:11;--w:2;--h:5;--c:#4a2a6a }
+.px-icon--relic-cursed-mirror .p-frame { --x:2;--y:0;--w:12;--h:12;--c:var(--purple);border-radius:50% }
+.px-icon--relic-cursed-mirror .p-glass { --x:3.5;--y:1.5;--w:9;--h:9;--c:linear-gradient(135deg,#c9b6ff,#5a3d8a);border-radius:50% }
+.px-icon--relic-cursed-mirror .p-crack { --x:5;--y:2;--w:6;--h:8;--c:#2a1240;--clip:polygon(50% 0%, 60% 30%, 100% 40%, 62% 52%, 75% 100%, 48% 62%, 10% 70%, 42% 45%, 30% 20%) }
+.px-icon--relic-heavy-wallet .p-bills { --x:2;--y:2;--w:9;--h:4;--c:#3c8d40;--r:0.5 }
+.px-icon--relic-heavy-wallet .p-wallet { --x:1;--y:4;--w:14;--h:10;--c:#6b3e1f;--r:1.5 }
+.px-icon--relic-heavy-wallet .p-flap { --x:1;--y:4;--w:14;--h:4;--c:#8b5a2b;border-radius:calc(1.5 * var(--u)) calc(1.5 * var(--u)) 0 0 }
+.px-icon--relic-heavy-wallet .p-clasp { --x:11;--y:6;--w:3;--h:3;--c:var(--gold);--r:0.5 }
+.px-icon--relic-heavy-wallet .p-weight-ring { --x:4.75;--y:7.5;--w:2.5;--h:2;border-radius:50%;--b:0.75;--bc:var(--steel) }
+.px-icon--relic-heavy-wallet .p-weight { --x:3;--y:9;--w:6;--h:5;--c:var(--steel-dk);--clip:polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%) }
+.px-icon--relic-gamblers-bane .p-chip { --x:3;--y:9;--w:10;--h:7;--c:var(--blood);border-radius:50%;--b:1;--bc:#fff }
+.px-icon--relic-gamblers-bane .p-cranium { --x:2;--y:0;--w:12;--h:10;--c:var(--bone);border-radius:50% 50% 40% 40% }
+.px-icon--relic-gamblers-bane .p-eyes { --x:4;--y:4;--w:3;--h:3;--c:var(--ink);--r:1;--sh:calc(5 * var(--u)) 0 0 var(--ink) }
+.px-icon--relic-gamblers-bane .p-nose { --x:7;--y:7;--w:2;--h:1.5;--c:var(--ink) }
+.px-icon--relic-gamblers-bane .p-teeth { --x:4.5;--y:9;--w:7;--h:2;--c:var(--bone) }
+.px-icon--relic-gamblers-bane .p-gaps { --x:6.25;--y:9;--w:0.5;--h:2;--c:var(--ink);--sh:calc(1.75 * var(--u)) 0 0 var(--ink),calc(3.5 * var(--u)) 0 0 var(--ink) }
+.px-icon--relic-phoenix-feather .p-vane { --x:3;--y:0;--w:11;--h:15;--c:linear-gradient(var(--flame),var(--hell) 55%,var(--blood));--clip:polygon(65% 0%, 100% 22%, 72% 70%, 28% 100%, 8% 88%, 30% 40%) }
+.px-icon--relic-phoenix-feather .p-glow { --x:8;--y:2;--w:4;--h:6;--c:#fff3a0;opacity:0.8;--clip:polygon(50% 0%, 100% 60%, 75% 100%, 25% 100%, 0% 60%) }
+.px-icon--relic-phoenix-feather .p-shaft { --x:3;--y:10;--w:1.5;--h:6;--c:#8b4513;--t:rotate(35deg) }
+.px-icon--relic-card-shark .p-cord { --x:1;--y:0;--w:14;--h:9;border-radius:0 0 50% 50%;--b:1;--bc:#8b5a2b }
+.px-icon--relic-card-shark .p-beads { --x:3;--y:7;--w:1.5;--h:1.5;--c:#4a8a72;border-radius:50%;--sh:calc(8.5 * var(--u)) 0 0 #4a8a72 }
+.px-icon--relic-card-shark .p-tooth { --x:5;--y:7;--w:6;--h:9;--c:#f4f4f4;--clip:polygon(0% 0%, 100% 0%, 50% 100%) }
+.px-icon--relic-card-shark .p-shade { --x:8;--y:7;--w:3;--h:9;--c:#cfcfcf;--clip:polygon(0% 0%, 100% 0%, 0% 100%) }
+
+/* --- Curses --- */
+.px-icon--curse-bad-luck { --ink:#8a7a9a }
+.px-icon--curse-bad-luck .p-tail { --x:10;--y:6;--w:5;--h:9;border-radius:0 calc(6 * var(--u)) calc(6 * var(--u)) 0;--b:1.5;--bc:#1b1b1b;--clip:polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%) }
+.px-icon--curse-bad-luck .p-body { --x:3;--y:7;--w:9;--h:8;--c:#1b1b1b;border-radius:calc(5 * var(--u)) calc(5 * var(--u)) calc(2 * var(--u)) calc(2 * var(--u)) }
+.px-icon--curse-bad-luck .p-head { --x:3.5;--y:2;--w:8;--h:7;--c:#1b1b1b;border-radius:50% }
+.px-icon--curse-bad-luck .p-ear-l { --x:3.5;--y:0;--w:3;--h:4;--c:#1b1b1b;--clip:polygon(0% 100%, 30% 0%, 100% 100%) }
+.px-icon--curse-bad-luck .p-ear-r { --x:8.5;--y:0;--w:3;--h:4;--c:#1b1b1b;--clip:polygon(0% 100%, 70% 0%, 100% 100%) }
+.px-icon--curse-bad-luck .p-eyes { --x:5;--y:4.5;--w:1.5;--h:2;--c:#ffd400;--sh:calc(3.5 * var(--u)) 0 0 #ffd400 }
+.px-icon--curse-heavy-debt { --ink:#8a7a9a }
+.px-icon--curse-heavy-debt .p-link-a { --x:0;--y:0.5;--w:5;--h:3;--r:1.5;--b:1;--bc:var(--steel) }
+.px-icon--curse-heavy-debt .p-link-b { --x:3.5;--y:3;--w:5;--h:3;--r:1.5;--b:1;--bc:var(--steel) }
+.px-icon--curse-heavy-debt .p-ball { --x:5;--y:5;--w:11;--h:11;--c:#2a2a2a;border-radius:50% }
+.px-icon--curse-heavy-debt .p-shine { --x:7;--y:7;--w:2;--h:2;--c:#666;border-radius:50% }
+.px-icon--curse-heavy-debt .p-dollar { --x:9.25;--y:8.25;--w:3.5;--h:5.5;--c:var(--gold);--clip:polygon(100% 0%, 0% 0%, 0% 58%, 70% 58%, 70% 78%, 0% 78%, 0% 100%, 100% 100%, 100% 42%, 30% 42%, 30% 22%, 100% 22%) }
+.px-icon--curse-heavy-debt .p-slash { --x:10.6;--y:7.5;--w:0.8;--h:7;--c:var(--gold) }
+.px-icon--curse-shaky .p-shake { --x:0;--y:4;--w:1;--h:3;--c:#fff;--sh:calc(14.5 * var(--u)) calc(1 * var(--u)) 0 #fff,calc(1 * var(--u)) calc(5 * var(--u)) 0 #fff }
+.px-icon--curse-shaky .p-fingers { --x:3;--y:2;--w:9;--h:6;--c:var(--skin);border-radius:calc(2 * var(--u)) calc(2 * var(--u)) 0 0 }
+.px-icon--curse-shaky .p-hand { --x:3;--y:5;--w:9;--h:10;--c:var(--skin);--r:2.5 }
+.px-icon--curse-shaky .p-seps { --x:5.2;--y:2.5;--w:0.6;--h:4;--c:var(--skin-dk);--sh:calc(2.2 * var(--u)) 0 0 var(--skin-dk),calc(4.4 * var(--u)) 0 0 var(--skin-dk) }
+.px-icon--curse-shaky .p-sweat { --x:12;--y:0;--w:3.5;--h:4.5;--c:var(--sky);--clip:polygon(50% 0%, 100% 62%, 75% 100%, 25% 100%, 0% 62%) }
+.px-icon--curse-marked .p-card { --x:2;--y:1;--w:12;--h:14;--c:var(--card);--r:1;--b:0.75;--bc:#bbb }
+.px-icon--curse-marked .p-ring { --x:3.5;--y:3.5;--w:9;--h:9;border-radius:50%;--b:1.25;--bc:var(--blood) }
+.px-icon--curse-marked .p-cross-h { --x:2.5;--y:7.5;--w:11;--h:1;--c:var(--blood) }
+.px-icon--curse-marked .p-cross-v { --x:7.5;--y:2.5;--w:1;--h:11;--c:var(--blood) }
+.px-icon--curse-marked .p-dot { --x:7.25;--y:7.25;--w:1.5;--h:1.5;--c:var(--blood) }
+.px-icon--curse-taxed .p-coin { --x:1;--y:1;--w:14;--h:14;--c:var(--gold);border-radius:50%;-webkit-mask:radial-gradient(circle at 88% 12%,transparent 24%,#000 25%);mask:radial-gradient(circle at 88% 12%,transparent 24%,#000 25%) }
+.px-icon--curse-taxed .p-inner { --x:3.5;--y:3.5;--w:9;--h:9;--c:var(--gold-dk);border-radius:50% }
+.px-icon--curse-taxed .p-dollar { --x:6.5;--y:5.25;--w:3;--h:5.5;--c:#ffe680;--clip:polygon(100% 0%, 0% 0%, 0% 58%, 70% 58%, 70% 78%, 0% 78%, 0% 100%, 100% 100%, 100% 42%, 30% 42%, 30% 22%, 100% 22%) }
+.px-icon--curse-taxed .p-slash { --x:7.6;--y:4.5;--w:0.8;--h:7;--c:#ffe680 }
+.px-icon--curse-paranoid { --ink:#8a7a9a }
+.px-icon--curse-paranoid .p-dark { --x:0;--y:3;--w:16;--h:10;--c:#1a1030;--r:3 }
+.px-icon--curse-paranoid .p-eye-l { --x:2;--y:6;--w:5;--h:4;--c:#fff;border-radius:50% }
+.px-icon--curse-paranoid .p-eye-r { --x:9;--y:6;--w:5;--h:4;--c:#fff;border-radius:50% }
+.px-icon--curse-paranoid .p-pupils { --x:2.25;--y:7;--w:2;--h:2;--c:#111;border-radius:50%;--sh:calc(7 * var(--u)) 0 0 #111 }
+.px-icon--curse-paranoid .p-brows { --x:2;--y:4.5;--w:5;--h:1;--c:#9a8aaa;--sh:calc(7 * var(--u)) 0 0 #9a8aaa }
+.px-icon--curse-impatient .p-bell-l { --x:1;--y:0;--w:5;--h:4;--c:#cc2222;border-radius:50% 50% 0 0;--t:rotate(-25deg) }
+.px-icon--curse-impatient .p-bell-r { --x:10;--y:0;--w:5;--h:4;--c:#cc2222;border-radius:50% 50% 0 0;--t:rotate(25deg) }
+.px-icon--curse-impatient .p-legs { --x:3;--y:13;--w:2;--h:3;--c:#881111;--sh:calc(8 * var(--u)) 0 0 #881111 }
+.px-icon--curse-impatient .p-body { --x:2;--y:3;--w:12;--h:12;--c:#cc2222;border-radius:50% }
+.px-icon--curse-impatient .p-face { --x:3.5;--y:4.5;--w:9;--h:9;--c:var(--card);border-radius:50% }
+.px-icon--curse-impatient .p-hand-h { --x:7.5;--y:6;--w:1;--h:3.5;--c:var(--ink) }
+.px-icon--curse-impatient .p-hand-m { --x:8;--y:8.5;--w:3;--h:1;--c:var(--ink) }
+.px-icon--curse-impatient .p-ring { --x:0;--y:7;--w:1;--h:2;--c:#fff;--sh:calc(15 * var(--u)) 0 0 #fff }
+.px-icon--curse-poor-eyesight .p-lens-l { --x:0.5;--y:5;--w:7;--h:6;--c:rgba(180,220,255,0.3);--r:2;--b:1.5;--bc:#222 }
+.px-icon--curse-poor-eyesight .p-lens-r { --x:8.5;--y:5;--w:7;--h:6;--c:rgba(180,220,255,0.3);--r:2;--b:1.5;--bc:#222 }
+.px-icon--curse-poor-eyesight .p-bridge { --x:7;--y:6.5;--w:2;--h:1;--c:#222 }
+.px-icon--curse-poor-eyesight .p-crack { --x:2;--y:5.5;--w:4.5;--h:5;--c:#fff;opacity:0.9;--clip:polygon(40% 0%, 55% 35%, 100% 45%, 60% 60%, 70% 100%, 45% 65%, 0% 70%, 40% 45%) }
 /* @gen:end */

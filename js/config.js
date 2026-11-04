@@ -198,30 +198,30 @@ const SIDE_BET_PERKS = [
 
 // Relics - permanent powerful effects found during runs
 const RELICS = [
-    { id: 'luckyChip', name: 'Lucky Chip', icon: '🪙', desc: 'Start each floor with +$100', passive: true, rarity: 'common' },
-    { id: 'devilsDice', name: "Devil's Dice", icon: '🎲', desc: '10% chance for double payout', passive: true, rarity: 'rare' },
-    { id: 'snakeEyes', name: 'Snake Eyes', icon: '🐍', desc: '2s count as 3s for you', passive: true, rarity: 'common' },
-    { id: 'aceInHole', name: 'Ace in the Hole', icon: '🃏', desc: 'Start with an ace in hand once per floor', uses: 1, maxUses: 1, rarity: 'legendary' },
-    { id: 'bloodPact', name: 'Blood Pact', icon: '🩸', desc: 'Pay $50 to peek at next card', usable: true, rarity: 'uncommon' },
-    { id: 'goldenHorseshoe', name: 'Golden Horseshoe', icon: '🧲', desc: 'Pushes become wins', passive: true, rarity: 'legendary' },
-    { id: 'rabbitFoot', name: "Rabbit's Foot", icon: '🐰', desc: 'First loss each floor refunds bet', uses: 1, maxUses: 1, rarity: 'rare' },
-    { id: 'cursedMirror', name: 'Cursed Mirror', icon: '🪞', desc: 'Copy boss abilities (risky)', passive: true, rarity: 'legendary' },
-    { id: 'heavyWallet', name: 'Heavy Wallet', icon: '👛', desc: '+5% win chance per $1000 held', passive: true, rarity: 'uncommon' },
-    { id: 'gamblersBane', name: "Gambler's Bane", icon: '☠️', desc: 'All-in bets pay 2x', passive: true, rarity: 'rare' },
-    { id: 'phoenixFeather', name: 'Phoenix Feather', icon: '🔥', desc: 'Once per run: Revive at $500 if broke', uses: 1, maxUses: 1, rarity: 'legendary' },
-    { id: 'cardShark', name: 'Card Shark', icon: '🦈', desc: 'See top card of deck', passive: true, rarity: 'rare' }
+    { id: 'luckyChip', name: 'Lucky Chip', icon: 'relic-lucky-chip', desc: 'Start each floor with +$100', passive: true, rarity: 'common' },
+    { id: 'devilsDice', name: "Devil's Dice", icon: 'relic-devils-dice', desc: '10% chance for double payout', passive: true, rarity: 'rare' },
+    { id: 'snakeEyes', name: 'Snake Eyes', icon: 'relic-snake-eyes', desc: '2s count as 3s for you', passive: true, rarity: 'common' },
+    { id: 'aceInHole', name: 'Ace in the Hole', icon: 'relic-ace-in-hole', desc: 'Start with an ace in hand once per floor', uses: 1, maxUses: 1, rarity: 'legendary' },
+    { id: 'bloodPact', name: 'Blood Pact', icon: 'relic-blood-pact', desc: 'Pay $50 to peek at next card', usable: true, rarity: 'uncommon' },
+    { id: 'goldenHorseshoe', name: 'Golden Horseshoe', icon: 'relic-golden-horseshoe', desc: 'Pushes become wins', passive: true, rarity: 'legendary' },
+    { id: 'rabbitFoot', name: "Rabbit's Foot", icon: 'relic-rabbit-foot', desc: 'First loss each floor refunds bet', uses: 1, maxUses: 1, rarity: 'rare' },
+    { id: 'cursedMirror', name: 'Cursed Mirror', icon: 'relic-cursed-mirror', desc: 'Copy boss abilities (risky)', passive: true, rarity: 'legendary' },
+    { id: 'heavyWallet', name: 'Heavy Wallet', icon: 'relic-heavy-wallet', desc: '+5% win chance per $1000 held', passive: true, rarity: 'uncommon' },
+    { id: 'gamblersBane', name: "Gambler's Bane", icon: 'relic-gamblers-bane', desc: 'All-in bets pay 2x', passive: true, rarity: 'rare' },
+    { id: 'phoenixFeather', name: 'Phoenix Feather', icon: 'relic-phoenix-feather', desc: 'Once per run: Revive at $500 if broke', uses: 1, maxUses: 1, rarity: 'legendary' },
+    { id: 'cardShark', name: 'Card Shark', icon: 'relic-card-shark', desc: 'See top card of deck', passive: true, rarity: 'rare' }
 ];
 
 // Curses - negative effects that accumulate
 const CURSES = [
-    { id: 'badLuck', name: 'Bad Luck', icon: '🖤', desc: 'Lose $10 extra on losses', effect: 'extraLoss', value: 10 },
-    { id: 'heavyDebt', name: 'Heavy Debt', icon: '📜', desc: 'Lose $25 per hand', effect: 'perHandCost', value: 25 },
-    { id: 'shaky', name: 'Shaky Hands', icon: '😰', desc: 'Can\'t stand on 17-19', effect: 'mustHit', value: 19 },
-    { id: 'marked', name: 'Marked Cards', icon: '🎯', desc: 'Dealer sees your cards', effect: 'dealerSees', value: true },
-    { id: 'taxed', name: 'Casino Tax', icon: '💸', desc: 'Wins pay 20% less', effect: 'reducedWin', value: 0.2 },
-    { id: 'paranoid', name: 'Paranoid', icon: '👀', desc: 'Can\'t see your score', effect: 'hiddenScore', value: true },
-    { id: 'impatient', name: 'Impatient', icon: '⏰', desc: 'Must decide within 5 seconds', effect: 'timer', value: 5 },
-    { id: 'poorEyesight', name: 'Poor Eyesight', icon: '👓', desc: 'Card suits are hidden', effect: 'hiddenSuits', value: true }
+    { id: 'badLuck', name: 'Bad Luck', icon: 'curse-bad-luck', desc: 'Lose $10 extra on losses', effect: 'extraLoss', value: 10 },
+    { id: 'heavyDebt', name: 'Heavy Debt', icon: 'curse-heavy-debt', desc: 'Lose $25 per hand', effect: 'perHandCost', value: 25 },
+    { id: 'shaky', name: 'Shaky Hands', icon: 'curse-shaky', desc: 'Can\'t stand on 17-19', effect: 'mustHit', value: 19 },
+    { id: 'marked', name: 'Marked Cards', icon: 'curse-marked', desc: 'Dealer sees your cards', effect: 'dealerSees', value: true },
+    { id: 'taxed', name: 'Casino Tax', icon: 'curse-taxed', desc: 'Wins pay 20% less', effect: 'reducedWin', value: 0.2 },
+    { id: 'paranoid', name: 'Paranoid', icon: 'curse-paranoid', desc: 'Can\'t see your score', effect: 'hiddenScore', value: true },
+    { id: 'impatient', name: 'Impatient', icon: 'curse-impatient', desc: 'Must decide within 5 seconds', effect: 'timer', value: 5 },
+    { id: 'poorEyesight', name: 'Poor Eyesight', icon: 'curse-poor-eyesight', desc: 'Card suits are hidden', effect: 'hiddenSuits', value: true }
 ];
 
 // Elite dealers - mini-bosses
